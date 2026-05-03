@@ -1,0 +1,14 @@
+".\Objects\main.obj",
+".\Objects\port.obj",
+".\Objects\clock.obj",
+".\Objects\cre.obj",
+".\Objects\usblib.obj",
+".\Objects\mathlib.obj",
+".\Sources\lib\ai8051u_32_mdu32.lib",
+".\Sources\lib\ai8051u_32_tfpu.lib",
+".\Sources\lib\stc_usb_cdc_32g_xdata.lib" 
+TO ".\Objects\03-March_Wheel_leg_FOC" 
+PRINT(".\Listings\03-March_Wheel_leg_FOC.map") CASE DISABLEWARNING (16) 
+REMOVEUNUSED, NOOVERLAY 
+CLASSES (EDATA (0x0-0x7FF), 
+HDATA (0x0-0x7FF)) 

@@ -1,0 +1,114 @@
+C251 COMPILER V5.60.0,  clock                                                              03/05/26  20:45:02  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE clock
+OBJECT MODULE PLACED IN .\Objects\clock.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\clock.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listi
+                    -ngs\clock.lst) OBJECT(.\Objects\clock.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: clock.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // 时钟初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void CLK_Init(void)
+   33          {
+   34   1          CLK_HSIOCK_Divider(1);              //设置高速外设时钟预分频系数
+   35   1          CLK_SPICLK_Divider(1);              //设置SPI时钟预分频系数
+   36   1          CLK_I2SCLK_Divider(1);              //设置I2S时钟预分频系数
+   37   1          CLK_PWMACLK_Divider(1);             //设置PWMA时钟预分频系数
+   38   1          CLK_PWMBCLK_Divider(1);             //设置PWMB时钟预分频系数
+   39   1          CLK_TFPUCLK_Divider(1);             //设置TFPU时钟预分频系数
+   40   1      
+   41   1          CLK_X32K_Enable();                  //启动外部32768晶振
+   42   1          CLK_X32K_FullGain();                //振荡器高增益
+   43   1          CLK_X32K_WaitStable();              //等待振荡器稳定
+   44   1      
+   45   1          CLK_LIRC_Enable();                  //启动内部低速LIRC
+   46   1          CLK_LIRC_WaitStable();              //等待振荡器稳定
+   47   1      
+   48   1          CLK_IRC48M_Enable();                //启动内部48M高速IRC
+   49   1          CLK_IRC48M_WaitStable();            //等待振荡器稳定
+   50   1      
+   51   1          CLK_SYSCLK_Divider(10);             //切换主时钟前先将系统时钟降频
+   52   1      
+   53   1          HIRC_24M();                         //选择内部预置的频率
+   54   1      
+   55   1          CLK_MCLK_HIRC();                    //选择内部高精度HIRC作为PLL输入时钟
+   56   1          CLK_PLL_Output144MHz();             //选择PLL的144M作为PLL的输出时钟
+   57   1          CLK_PLL_PreDivider2();              //PLL输入时钟2分频
+   58   1          CLK_PLL_Enable();                   //启动PLL
+C251 COMPILER V5.60.0,  clock                                                              03/05/26  20:45:02  PAGE 2   
+
+   59   1          delay_ms(1);                        //等待PLL锁频
+   60   1      
+   61   1          CLK_MCLK2_PLL();                    //选择PLL的输出时钟作为主时钟
+   62   1      
+   63   1          CLK_SYSCLK_Divider(4);              //设置系统时钟分频系数
+   64   1      
+   65   1          CLK_HSIOCK_MCLK();                  //选择MCLK主时钟作为高速外设时钟源
+   66   1      
+   67   1          //<<AICUBE_USER_CLOCK_INITIAL_BEGIN>>
+   68   1          // 在此添加用户初始化代码  
+   69   1          //<<AICUBE_USER_CLOCK_INITIAL_END>>
+   70   1      }
+   71          
+   72          
+   73          
+   74          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   75          // 在此添加用户函数实现代码  
+   76          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+   77          
+   78          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       259     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

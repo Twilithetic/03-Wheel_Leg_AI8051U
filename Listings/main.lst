@@ -1,0 +1,160 @@
+C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE main
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\main.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listin
+                    -gs\main.lst) OBJECT(.\Objects\main.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: main.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"                     //默认已包含stdio.h、intrins.h等头文件
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // 项目主函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void main(void)
+   33          {
+   34   1          //<<AICUBE_USER_MAIN_INITIAL_BEGIN>>
+   35   1          // 在此添加用户主函数初始化代码  
+   36   1          //<<AICUBE_USER_MAIN_INITIAL_END>>
+   37   1      
+   38   1          SYS_Init();
+   39   1      
+   40   1          //<<AICUBE_USER_MAIN_CODE_BEGIN>>
+   41   1          // 在此添加主函数中运行一次的用户代码  
+   42   1          //<<AICUBE_USER_MAIN_CODE_END>>
+   43   1      
+   44   1          while (1)
+   45   1          {
+   46   2              USBLIB_OUT_Done();              //查询方式处理USB接收的数据
+   47   2      
+   48   2              //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
+   49   2              // 在此添加主函数中用户主循环代码  
+   50   2              //<<AICUBE_USER_MAIN_LOOP_END>>
+   51   2          }
+   52   1      }
+   53          
+   54          ////////////////////////////////////////
+   55          // 系统初始化函数
+   56          // 入口参数: 无
+   57          // 函数返回: 无
+   58          ////////////////////////////////////////
+C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 2   
+
+   59          void SYS_Init(void)
+   60          {
+   61   1          EnableAccessXFR();                  //使能访问扩展XFR
+   62   1          AccessCodeFastest();                //设置最快速度访问程序代码
+   63   1          AccessIXramFastest();               //设置最快速度访问内部XDATA
+   64   1          IAP_SetTimeBase();                  //设置IAP等待参数,产生1us时基
+   65   1      
+   66   1          //<<AICUBE_USER_PREINITIAL_CODE_BEGIN>>
+   67   1          // 在此添加用户预初始化代码  
+   68   1          //<<AICUBE_USER_PREINITIAL_CODE_END>>
+   69   1      
+   70   1          PORT3_Init();                       //P3口初始化
+   71   1          PORT5_Init();                       //P5口初始化
+   72   1          CLK_Init();                         //时钟模块初始化
+   73   1          CRE_Init();                         //自动追频模块初始化
+   74   1          delay_ms(1);
+   75   1          USBLIB_Init();                      //USB库初始化
+   76   1          delay_ms(1);
+   77   1          MATHLIB_Init();                     //MATH库初始化
+   78   1      
+   79   1          //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
+   80   1          // 在此添加用户初始化代码  
+   81   1          //<<AICUBE_USER_INITIAL_CODE_END>>
+   82   1      
+   83   1          EnableGlobalInt();                  //使能全局中断
+   84   1          USBLIB_WaitConfiged();              //等待USB完成配置
+   85   1      }
+   86          
+   87          ////////////////////////////////////////
+   88          // 微秒延时函数
+   89          // 入口参数: us (设置延时的微秒值)
+   90          // 函数返回: 无
+   91          ////////////////////////////////////////
+   92          void delay_us(uint16_t us)
+   93          {
+   94   1          do
+   95   1          {
+   96   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+   97   2          } while (--us);
+   98   1      }
+   99          
+  100          
+  101          ////////////////////////////////////////
+  102          // 毫秒延时函数
+  103          // 入口参数: ms (设置延时的毫秒值)
+  104          // 函数返回: 无
+  105          ////////////////////////////////////////
+  106          void delay_ms(uint16_t ms)
+  107          {
+  108   1          uint16_t i;
+  109   1      
+  110   1          do
+  111   1          {
+  112   2              i = MAIN_Fosc / 6000;
+  113   2              while (--i);
+  114   2          } while (--ms);
+  115   1      }
+  116          
+  117          
+  118          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  119          // 在此添加用户函数实现代码  
+  120          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  121          
+  122          
+
+
+C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 3   
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       137     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         2     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

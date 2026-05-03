@@ -1,0 +1,96 @@
+C251 COMPILER V5.60.0,  cre                                                                03/05/26  20:45:02  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE cre
+OBJECT MODULE PLACED IN .\Objects\cre.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\cre.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
+                    -s\cre.lst) OBJECT(.\Objects\cre.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: cre.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // 自动追频初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void CRE_Init(void)
+   33          {
+   34   1          uint32_t cnt;
+   35   1          uint32_t res;
+   36   1      
+   37   1          CLK_HIRC_44MHzBand();               //选择44MHz频段
+   38   1      
+   39   1          CRE_OneStepMode();                  //设置单步追频模式
+   40   1          CRE_CalibCycle_1ms();               //设置追频周期
+   41   1      
+   42   1          cnt = CRE_LFCNT(CRE_FREQ);          //设置自动追频的频率
+   43   1          res = CRE_LFERROR(CRE_FREQ, CRE_ERROR); //设置自动追频的误差
+   44   1          CRE_SetCalibCounter(cnt);           //设置自动追频的计数值
+   45   1          CRE_SetCalibError(res);             //设置自动追频的误差值
+   46   1      
+   47   1          CRE_Enable();                       //启动自动追频
+   48   1      
+   49   1          //<<AICUBE_USER_CRE_INITIAL_BEGIN>>
+   50   1          // 在此添加用户初始化代码  
+   51   1          //<<AICUBE_USER_CRE_INITIAL_END>>
+   52   1      }
+   53          
+   54          
+   55          
+   56          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   57          // 在此添加用户函数实现代码  
+   58          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+C251 COMPILER V5.60.0,  cre                                                                03/05/26  20:45:02  PAGE 2   
+
+   59          
+   60          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        72     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

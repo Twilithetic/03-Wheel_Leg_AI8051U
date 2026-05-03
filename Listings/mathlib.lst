@@ -1,0 +1,83 @@
+C251 COMPILER V5.60.0,  mathlib                                                            03/05/26  20:45:02  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE mathlib
+OBJECT MODULE PLACED IN .\Objects\mathlib.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\mathlib.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Lis
+                    -tings\mathlib.lst) OBJECT(.\Objects\mathlib.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: mathlib.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // 数学库初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void MATHLIB_Init(void)
+   33          {
+   34   1          TFPU_CLK_SYSCLK();                  //选择系统时钟作为TFPU时钟
+   35   1      
+   36   1          //<<AICUBE_USER_MATHLIB_INITIAL_BEGIN>>
+   37   1          // 在此添加用户初始化代码  
+   38   1          //<<AICUBE_USER_MATHLIB_INITIAL_END>>
+   39   1      }
+   40          
+   41          
+   42          
+   43          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   44          // 在此添加用户函数实现代码  
+   45          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+   46          
+   47          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =         4     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+C251 COMPILER V5.60.0,  mathlib                                                            03/05/26  20:45:02  PAGE 2   
+
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

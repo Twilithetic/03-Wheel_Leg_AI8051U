@@ -1,0 +1,110 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C251: Compile",
+            "type": "process",
+            "command": "C:\\Keil_v5\\C251\\BIN\\C251.EXE",
+            "args": [
+                "src\\main.c",
+                "INCDIR(src\\STC)",
+                "INCDIR(inc)",
+                "OBJECT(build\\main.obj)",
+                "LARGE",
+                "DEBUG",
+                "SYMBOLS"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "c251",
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 5
+                }
+            },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            "label": "C251: Link",
+            "type": "process",
+            "command": "C:\\Keil_v5\\C251\\BIN\\L251.EXE",
+            "args": [
+                "build\\main.obj",
+                "TO",
+                "build\\AI8051U_C251.hex"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            "label": "C251: Build",
+            "dependsOn": ["C251: Compile", "C251: Link"],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "HID Flash",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "./tools/stc_hid_flash.py",
+                "${workspaceFolder}/build/Debug/AI8051U_test.hex"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "dedicated" },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build + Flash (C251 + HID)",
+            "dependsOn": ["C251: Compile", "C251: Link", "HID Flash"],
+            "dependsOrder": "sequence",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (EIDE C251)",
+            "type": "shell",
+            "command": "${command:eide.project.build}",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash (EIDE)",
+            "type": "shell",
+            "command": "${command:eide.project.uploadToDevice}",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build + Flash (EIDE)",
+            "type": "shell",
+            "command": "${command:eide.project.buildAndFlash}",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Rebuild (EIDE)",
+            "type": "shell",
+            "command": "${command:eide.project.rebuild}",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean (EIDE)",
+            "type": "shell",
+            "command": "${command:eide.project.clean}",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}
