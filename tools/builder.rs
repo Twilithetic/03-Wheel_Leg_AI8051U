@@ -47,11 +47,11 @@ const L251: &str = r"C:\Keil_v5\C251\BIN\L251.EXE";
 const SRC_DIR: &str = "Sources";
 const INC_DIR: &str = "Sources\\inc";
 const STC_INC: &str = "Sources\\inc\\stc";
-const BUILD_DIR: &str = "build";
+const BUILD_DIR: &str = "Objects";
 
 // 库文件
 const USB_LIB: &str = "Sources\\lib\\stc_usb_cdc_32g_xdata.LIB";
-const TARGET: &str = "build\\AI8051U_C251.HEX";
+const TARGET: &str = "Objects\\03-March_Wheel_leg_FOC.hex";
 
 // C251 编译选项
 const C251_FLAGS: &[&str] = &["LARGE", "DEBUG", "SYMBOLS"];
@@ -118,6 +118,7 @@ fn find_c_sources(dir: &str) -> Result<Vec<PathBuf>> {
 fn compile() -> Result<()> {
     step("编译中...");
     ensure_dir(BUILD_DIR)?;
+    ensure_dir("Listings")?;
 
     let sources = find_c_sources(SRC_DIR)?;
     if sources.is_empty() {
@@ -136,6 +137,7 @@ fn compile() -> Result<()> {
         args.push(format!("INCDIR({})", INC_DIR));
         args.push(format!("INCDIR({})", STC_INC));
         args.push(format!("OBJECT({})", obj));
+        args.push(format!("PRINT(Listings\\{}.lst)", stem));
 
         run_keil_tool(C251, &args)?;
     }
@@ -189,9 +191,11 @@ fn link() -> Result<()> {
 /// 清理构建产物
 fn clean() -> Result<()> {
     step("清理构建产物...");
+    let mut count = 0u32;
+
+    // 清理 Objects/ 目录
     if Path::new(BUILD_DIR).exists() {
         let patterns = &["*.obj", "*.hex", "*.map", "*.m51", "*.lst"];
-        let mut count = 0u32;
         for entry in fs::read_dir(BUILD_DIR)? {
             let entry = entry?;
             let name = entry.file_name().to_string_lossy().to_string();
@@ -203,10 +207,21 @@ fn clean() -> Result<()> {
                 count += 1;
             }
         }
-        ok(&format!("清理完成 ({} 个文件)", count));
-    } else {
-        ok("无需清理 (build 目录不存在)");
     }
+
+    // 清理 Listings/ 目录
+    if Path::new("Listings").exists() {
+        for entry in fs::read_dir("Listings")? {
+            let entry = entry?;
+            let name = entry.file_name().to_string_lossy().to_string();
+            if name.ends_with(".lst") || name.ends_with(".map") {
+                fs::remove_file(entry.path())?;
+                count += 1;
+            }
+        }
+    }
+
+    ok(&format!("清理完成 ({} 个文件)", count));
     Ok(())
 }
 

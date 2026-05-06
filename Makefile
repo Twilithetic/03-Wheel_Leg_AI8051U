@@ -28,7 +28,7 @@ ISP_TOOL   = tools\AiCube-ISP-v6.96V-plus.exe
 SRC_DIR   = Sources
 INC_DIR   = Sources\inc
 LIB_DIR   = Sources\lib
-BUILD_DIR = build
+BUILD_DIR = Objects
 
 # =========================== 源文件 ===========================
 # 所有 .c 源文件
@@ -47,7 +47,7 @@ TFPU_LIB  = $(LIB_DIR)\ai8051u_32_tfpu.lib
 
 # =========================== 输出 ===========================
 
-TARGET    = $(BUILD_DIR)\AI8051U_C251.HEX
+TARGET    = $(BUILD_DIR)\03-March_Wheel_leg_FOC.hex
 
 # =========================== 编译选项 ===========================
 
@@ -79,12 +79,13 @@ build: $(TARGET)
 # 模式规则: build\xxx.obj ← Sources\xxx.c
 $(BUILD_DIR)\\%.obj: $(SRC_DIR)\\%.c | _ensure_build_dir
 	@echo 🔨 编译 $< ...
-	$(C251) $< $(C251_FLAGS) OBJECT($@)
+	$(C251) $< $(C251_FLAGS) OBJECT($@) PRINT(Listings\\$*.lst)
 
-# 确保 build 目录存在（内部目标，不对外暴露）
+# 确保 build 目录和 listings 目录存在
 .PHONY: _ensure_build_dir
 _ensure_build_dir:
 	@if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+	@if not exist Listings mkdir Listings
 
 # ---- 链接 OBJ + LIB → HEX ----
 $(TARGET): $(OBJS) $(USB_LIB) $(MDU_LIB) $(TFPU_LIB)
@@ -109,6 +110,8 @@ clean:
 	@if exist $(BUILD_DIR)\*.map del /q $(BUILD_DIR)\*.map
 	@if exist $(BUILD_DIR)\*.m51 del /q $(BUILD_DIR)\*.m51
 	@if exist $(BUILD_DIR)\*.lst del /q $(BUILD_DIR)\*.lst
+	@if exist Listings\*.lst del /q Listings\*.lst
+	@if exist Listings\*.map del /q Listings\*.map
 	@echo ✅ 清理完成
 
 # ---- 重建 ----

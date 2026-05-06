@@ -1,10 +1,10 @@
-C251 COMPILER V5.60.0,  usblib                                                             04/05/26  10:30:44  PAGE 1   
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  22:32:07  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE usblib
-OBJECT MODULE PLACED IN .\Objects\usblib.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\usblib.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\List
-                    -ings\usblib.lst) OBJECT(.\Objects\usblib.obj) 
+OBJECT MODULE PLACED IN Objects\usblib.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\usblib.c LARGE DEBUG SYMBOLS INCDIR(Sources\inc) INCDIR(Source
+                    -s\inc\stc) OBJECT(Objects\usblib.obj) PRINT(Listings\usblib.lst) 
 
 stmt  level    source
 
@@ -66,7 +66,7 @@ stmt  level    source
    56          // 入口参数: 无
    57          // 函数返回: 无
    58          // bUsbOutReady：USB设备接收数据标志位
-C251 COMPILER V5.60.0,  usblib                                                             04/05/26  10:30:44  PAGE 2   
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  22:32:07  PAGE 2   
 
    59          // OutNumber：USB设备接收到的数据长度
    60          // UsbOutBuffer：保存USB设备接收到的数据
@@ -92,6 +92,97 @@ stmt  level    source
    79          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
    80          
    81          
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  22:32:07  PAGE 3   
+
+Name                                    Class    Space Type   Offset   Size
+---------------------------------------------------------------------------
+
+uint32_t . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint8. . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+INT. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+u16. . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+u32. . . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+s16. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+int8_t . . . . . . . . . . . . . . . .  type           char   000000H  1
+s32. . . . . . . . . . . . . . . . . .  type           long   000000H  4
+uint8_t. . . . . . . . . . . . . . . .  type           uchar  000000H  1
+WORD . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+BYTE . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+int16. . . . . . . . . . . . . . . . .  type           int    000000H  2
+int32. . . . . . . . . . . . . . . . .  type           long   000000H  4
+LONG . . . . . . . . . . . . . . . . .  type           long   000000H  4
+BOOL . . . . . . . . . . . . . . . . .  type     bit   bit    000000H  1
+u8 . . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+s8 . . . . . . . . . . . . . . . . . .  type           char   000000H  1
+uint16 . . . . . . . . . . . . . . . .  type           uint   000000H  2
+uint32 . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+CHAR . . . . . . . . . . . . . . . . .  type           char   000000H  1
+size_t . . . . . . . . . . . . . . . .  type           uint   000000H  2
+int16_t. . . . . . . . . . . . . . . .  type           int    000000H  2
+int32_t. . . . . . . . . . . . . . . .  type           long   000000H  4
+int8 . . . . . . . . . . . . . . . . .  type           char   000000H  1
+DWORD. . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint16_t . . . . . . . . . . . . . . .  type           uint   000000H  2
+PSW. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D0H     1
+IRCBAND. . . . . . . . . . . . . . . .  sfr      data  uchar  09DH     1
+AUXR2. . . . . . . . . . . . . . . . .  sfr      data  uchar  097H     1
+AUXINTIF . . . . . . . . . . . . . . .  sfr      data  uchar  0EFH     1
+S4CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0FDH     1
+S3CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0ACH     1
+S2CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  09AH     1
+IPH. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B7H     1
+SPSTAT . . . . . . . . . . . . . . . .  sfr      data  uchar  0CDH     1
+T4T3M. . . . . . . . . . . . . . . . .  sfr      data  uchar  0DDH     1
+WDT_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C1H     1
+IP3. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0DFH     1
+USBCON . . . . . . . . . . . . . . . .  sfr      data  uchar  0F4H     1
+IP2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B5H     1
+RSTCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0FFH     1
+ACC. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E0H     1
+IAP_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C7H     1
+AUXR . . . . . . . . . . . . . . . . .  sfr      data  uchar  08EH     1
+B. . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F0H     1
+IE2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0AFH     1
+TCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  088H     1
+TMOD . . . . . . . . . . . . . . . . .  sfr      data  uchar  089H     1
+SCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  098H     1
+PCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  087H     1
+ADC_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0BCH     1
+PSW1 . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D1H     1
+CMPCR2 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E7H     1
+CMPCR1 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E6H     1
+ADCCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0DEH     1
+IP . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B8H     1
+INTCLKO. . . . . . . . . . . . . . . .  sfr      data  uchar  08FH     1
+IP3H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0EEH     1
+IP2H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B6H     1
+P_SW4. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BFH     1
+IE . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A8H     1
+P_SW3. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BBH     1
+P_SW2. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BAH     1
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  22:32:07  PAGE 4   
+
+P_SW1. . . . . . . . . . . . . . . . .  sfr      data  uchar  0A2H     1
+SPCTL. . . . . . . . . . . . . . . . .  sfr      data  uchar  0CEH     1
+P7 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F8H     1
+P6 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E8H     1
+P5 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C8H     1
+P4 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C0H     1
+P3 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B0H     1
+P2 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A0H     1
+P1 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  090H     1
+P0 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  080H     1
+OutNumber. . . . . . . . . . . . . . .  extern   xdata uchar  000000H  1
+usb_OUT_done . . . . . . . . . . . . .  extern   code  funct  000000H  
+bUsbOutReady . . . . . . . . . . . . .  extern   bit   bit    000000H  1
+UsbOutBuffer . . . . . . . . . . . . .  extern   xdata array  000000H  64
+USB_SendData . . . . . . . . . . . . .  extern   code  funct  000000H  
+DeviceState. . . . . . . . . . . . . .  extern   xdata uchar  000000H  1
+set_usb_ispcmd . . . . . . . . . . . .  extern   code  funct  000000H  
+usb_init . . . . . . . . . . . . . . .  extern   code  funct  000000H  
+USBLIB_OUT_Done. . . . . . . . . . . .  public   code  funct  000000H  24
+USBLIB_Init. . . . . . . . . . . . . .  public   code  funct  000000H  20
+USBLIB_WaitConfiged. . . . . . . . . .  public   code  funct  000000H  13
 
 
 Module Information          Static   Overlayable
