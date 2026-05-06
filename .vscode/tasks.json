@@ -2,21 +2,19 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "C251: Compile",
+            "label": "🔨 Build",
+            "detail": "编译 + 链接 (builder.rs)",
             "type": "process",
-            "command": "C:\\Keil_v5\\C251\\BIN\\C251.EXE",
+            "command": "cargo",
             "args": [
-                "src\\main.c",
-                "INCDIR(src\\STC)",
-                "INCDIR(inc)",
-                "OBJECT(build\\main.obj)",
-                "LARGE",
-                "DEBUG",
-                "SYMBOLS"
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "build"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": { "reveal": "always", "panel": "shared" },
             "problemMatcher": {
                 "owner": "c251",
                 "pattern": {
@@ -26,85 +24,115 @@
                     "severity": 3,
                     "message": 5
                 }
-            },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
+            }
         },
         {
-            "label": "C251: Link",
+            "label": "🔨 Compile",
+            "detail": "仅编译 C → OBJ (builder.rs)",
             "type": "process",
-            "command": "C:\\Keil_v5\\C251\\BIN\\L251.EXE",
+            "command": "cargo",
             "args": [
-                "build\\main.obj",
-                "TO",
-                "build\\AI8051U_C251.hex"
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "compile"
             ],
             "options": { "cwd": "${workspaceFolder}" },
-            "problemMatcher": [],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": {
+                "owner": "c251",
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "🔗 Link",
+            "detail": "仅链接 OBJ + LIB → HEX (builder.rs)",
+            "type": "process",
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "link"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
             "group": "build",
             "presentation": { "reveal": "always", "panel": "shared" }
         },
         {
-            "label": "C251: Build",
-            "dependsOn": ["C251: Compile", "C251: Link"],
-            "dependsOrder": "sequence",
-            "group": { "kind": "build", "isDefault": true },
-            "problemMatcher": []
-        },
-        {
-            "label": "HID Flash",
-            "type": "shell",
-            "command": "python",
+            "label": "🧹 Clean",
+            "detail": "清理构建产物 (builder.rs)",
+            "type": "process",
+            "command": "cargo",
             "args": [
-                "./tools/stc_hid_flash.py",
-                "${workspaceFolder}/build/Debug/AI8051U_test.hex"
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "clean"
             ],
             "options": { "cwd": "${workspaceFolder}" },
             "group": "build",
-            "presentation": { "reveal": "always", "panel": "dedicated" },
-            "problemMatcher": []
+            "presentation": { "reveal": "always", "panel": "shared" }
         },
         {
-            "label": "Build + Flash (C251 + HID)",
-            "dependsOn": ["C251: Compile", "C251: Link", "HID Flash"],
+            "label": "🔄 Rebuild",
+            "detail": "清理 + 重新构建 (builder.rs)",
+            "type": "process",
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "rebuild"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            "label": "🔥 Flash",
+            "detail": "烧录 HEX 到芯片 (builder.rs)",
+            "type": "process",
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "flash"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "dedicated" }
+        },
+        {
+            "label": "🔥 Build + Flash",
+            "detail": "编译 → 链接 → 烧录",
+            "dependsOn": ["🔨 Build", "🔥 Flash"],
             "dependsOrder": "sequence",
             "group": "build",
             "problemMatcher": []
         },
         {
-            "label": "Build (EIDE C251)",
-            "type": "shell",
-            "command": "${command:eide.project.build}",
+            "label": "ℹ️  Project Info",
+            "detail": "显示项目信息 (builder.rs)",
+            "type": "process",
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools/builder.rs",
+                "info"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
             "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Flash (EIDE)",
-            "type": "shell",
-            "command": "${command:eide.project.uploadToDevice}",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Build + Flash (EIDE)",
-            "type": "shell",
-            "command": "${command:eide.project.buildAndFlash}",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Rebuild (EIDE)",
-            "type": "shell",
-            "command": "${command:eide.project.rebuild}",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "Clean (EIDE)",
-            "type": "shell",
-            "command": "${command:eide.project.clean}",
-            "group": "build",
-            "problemMatcher": []
+            "presentation": { "reveal": "always", "panel": "shared" }
         }
     ]
 }

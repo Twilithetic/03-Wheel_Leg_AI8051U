@@ -7,7 +7,7 @@
 		<ProjectName>03-March_Wheel_leg_FOC</ProjectName>
 		<ProjectType>1</ProjectType>
 		<Encoding>1</Encoding>
-		<PortInitStatus>1</PortInitStatus>
+		<PortInitStatus>0</PortInitStatus>
 		<AliasSortMode>0</AliasSortMode>
 	</Target>
 	<Keil>

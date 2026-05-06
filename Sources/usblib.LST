@@ -1,0 +1,209 @@
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  21:50:33  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE usblib
+OBJECT MODULE PLACED IN build\usblib.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\usblib.c LARGE DEBUG SYMBOLS INCDIR(Sources\inc) INCDIR(Source
+                    -s\inc\stc) OBJECT(build\usblib.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: usblib.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // USB库初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void USBLIB_Init(void)
+   33          {
+   34   1          usb_init();                         //初始化USB模块
+   35   1          USB_SetIntPriority(0);              //设置中断为最低优先级
+   36   1          set_usb_ispcmd("@STCISP#");         //设置USB不停电下载命令
+   37   1      
+   38   1          //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
+   39   1          // 在此添加用户初始化代码  
+   40   1          //<<AICUBE_USER_USBLIB_INITIAL_END>>
+   41   1      }
+   42          
+   43          ////////////////////////////////////////
+   44          // 等待USB配置完成函数
+   45          // 入口参数: 无
+   46          // 函数返回: 无
+   47          ////////////////////////////////////////
+   48          void USBLIB_WaitConfiged(void)
+   49          {
+   50   1          while (DeviceState != DEVSTATE_CONFIGURED) //等待USB完成配置
+   51   1              WDT_Clear();                    //清看门狗定时器 (防止硬件自动使能看门狗)
+   52   1      }
+   53          
+   54          ////////////////////////////////////////
+   55          // USB设备接收数据处理程序
+   56          // 入口参数: 无
+   57          // 函数返回: 无
+   58          // bUsbOutReady：USB设备接收数据标志位
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  21:50:33  PAGE 2   
+
+   59          // OutNumber：USB设备接收到的数据长度
+   60          // UsbOutBuffer：保存USB设备接收到的数据
+   61          ////////////////////////////////////////
+   62          void USBLIB_OUT_Done(void)
+   63          {
+   64   1          if (bUsbOutReady)                   //查询是否有接收到USB主机发送数据
+   65   1          {
+   66   2              //<<AICUBE_USER_USBLIB_ISR_CODE1_BEGIN>>
+   67   2              // 在此添加中断函数用户代码  
+   68   2              USB_SendData(UsbOutBuffer, OutNumber); //原路返回, 用于测试
+   69   2              // 在此处添加用户处理接收数据的代码
+   70   2              //<<AICUBE_USER_USBLIB_ISR_CODE1_END>>
+   71   2              usb_OUT_done();                 //当前包的数据处理完成,通知USB主机可以发送下�
+             -�包数据
+   72   2          }
+   73   1      }
+   74          
+   75          
+   76          
+   77          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   78          // 在此添加用户函数实现代码  
+   79          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+   80          
+   81          
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  21:50:33  PAGE 3   
+
+Name                                    Class    Space Type   Offset   Size
+---------------------------------------------------------------------------
+
+uint32_t . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint8. . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+INT. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+u16. . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+u32. . . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+s16. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+int8_t . . . . . . . . . . . . . . . .  type           char   000000H  1
+s32. . . . . . . . . . . . . . . . . .  type           long   000000H  4
+uint8_t. . . . . . . . . . . . . . . .  type           uchar  000000H  1
+WORD . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+BYTE . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+int16. . . . . . . . . . . . . . . . .  type           int    000000H  2
+int32. . . . . . . . . . . . . . . . .  type           long   000000H  4
+LONG . . . . . . . . . . . . . . . . .  type           long   000000H  4
+BOOL . . . . . . . . . . . . . . . . .  type     bit   bit    000000H  1
+u8 . . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+s8 . . . . . . . . . . . . . . . . . .  type           char   000000H  1
+uint16 . . . . . . . . . . . . . . . .  type           uint   000000H  2
+uint32 . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+CHAR . . . . . . . . . . . . . . . . .  type           char   000000H  1
+size_t . . . . . . . . . . . . . . . .  type           uint   000000H  2
+int16_t. . . . . . . . . . . . . . . .  type           int    000000H  2
+int32_t. . . . . . . . . . . . . . . .  type           long   000000H  4
+int8 . . . . . . . . . . . . . . . . .  type           char   000000H  1
+DWORD. . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint16_t . . . . . . . . . . . . . . .  type           uint   000000H  2
+PSW. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D0H     1
+IRCBAND. . . . . . . . . . . . . . . .  sfr      data  uchar  09DH     1
+AUXR2. . . . . . . . . . . . . . . . .  sfr      data  uchar  097H     1
+AUXINTIF . . . . . . . . . . . . . . .  sfr      data  uchar  0EFH     1
+S4CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0FDH     1
+S3CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0ACH     1
+S2CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  09AH     1
+IPH. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B7H     1
+SPSTAT . . . . . . . . . . . . . . . .  sfr      data  uchar  0CDH     1
+T4T3M. . . . . . . . . . . . . . . . .  sfr      data  uchar  0DDH     1
+WDT_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C1H     1
+IP3. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0DFH     1
+USBCON . . . . . . . . . . . . . . . .  sfr      data  uchar  0F4H     1
+IP2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B5H     1
+RSTCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0FFH     1
+ACC. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E0H     1
+IAP_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C7H     1
+AUXR . . . . . . . . . . . . . . . . .  sfr      data  uchar  08EH     1
+B. . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F0H     1
+IE2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0AFH     1
+TCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  088H     1
+TMOD . . . . . . . . . . . . . . . . .  sfr      data  uchar  089H     1
+SCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  098H     1
+PCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  087H     1
+ADC_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0BCH     1
+PSW1 . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D1H     1
+CMPCR2 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E7H     1
+CMPCR1 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E6H     1
+ADCCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0DEH     1
+IP . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B8H     1
+INTCLKO. . . . . . . . . . . . . . . .  sfr      data  uchar  08FH     1
+IP3H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0EEH     1
+IP2H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B6H     1
+P_SW4. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BFH     1
+IE . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A8H     1
+P_SW3. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BBH     1
+P_SW2. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BAH     1
+C251 COMPILER V5.60.0,  usblib                                                             06/05/26  21:50:33  PAGE 4   
+
+P_SW1. . . . . . . . . . . . . . . . .  sfr      data  uchar  0A2H     1
+SPCTL. . . . . . . . . . . . . . . . .  sfr      data  uchar  0CEH     1
+P7 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F8H     1
+P6 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E8H     1
+P5 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C8H     1
+P4 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C0H     1
+P3 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B0H     1
+P2 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A0H     1
+P1 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  090H     1
+P0 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  080H     1
+OutNumber. . . . . . . . . . . . . . .  extern   xdata uchar  000000H  1
+usb_OUT_done . . . . . . . . . . . . .  extern   code  funct  000000H  
+bUsbOutReady . . . . . . . . . . . . .  extern   bit   bit    000000H  1
+UsbOutBuffer . . . . . . . . . . . . .  extern   xdata array  000000H  64
+USB_SendData . . . . . . . . . . . . .  extern   code  funct  000000H  
+DeviceState. . . . . . . . . . . . . .  extern   xdata uchar  000000H  1
+set_usb_ispcmd . . . . . . . . . . . .  extern   code  funct  000000H  
+usb_init . . . . . . . . . . . . . . .  extern   code  funct  000000H  
+USBLIB_OUT_Done. . . . . . . . . . . .  public   code  funct  000000H  24
+USBLIB_Init. . . . . . . . . . . . . .  public   code  funct  000000H  20
+USBLIB_WaitConfiged. . . . . . . . . .  public   code  funct  000000H  13
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        57     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         9     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

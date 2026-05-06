@@ -1,9 +1,7 @@
-#ifndef __STC32G_H__
-#define __STC32G_H__
+#ifndef __AI8051U_H__
+#define __AI8051U_H__
 
 /////////////////////////////////////////////////
-
-//包含本头文件后,不用另外再包含"REG51.H"
 
 #include "stdio.h"
 #include "intrins.h"
@@ -101,6 +99,10 @@ sfr         P2M1        =           0x95;
 sfr         P2M0        =           0x96;
 
 sfr         AUXR2       =           0x97;
+    sbit    RAMTINY     =           AUXR2^7;
+    sbit    CPUMODE     =           AUXR2^6;
+    sbit    RAMEXE      =           AUXR2^5;
+    sbit    CANFD       =           AUXR2^4;
     sbit    CANSEL      =           AUXR2^3;
     sbit    CAN2EN      =           AUXR2^2;
     sbit    CANEN       =           AUXR2^1;
@@ -161,8 +163,6 @@ sfr         P_SW1       =           0xa2;
     sbit    LIN_S1      =           P_SW1^1;
     sbit    LIN_S0      =           P_SW1^0;
 
-sfr         V33TRIM     =           0xa3;
-sfr         BGTRIM      =           0xa5;
 sfr         VRTRIM      =           0xa6;
 
 sfr         IE          =           0xa8;
@@ -247,6 +247,7 @@ sfr         IP2H        =           0xb6;
     sbit    PS2H        =           IP2H^0;
 
 sfr         IPH         =           0xb7;
+    sbit    PPCAH       =           IPH^7;
     sbit    PLVDH       =           IPH^6;
     sbit    PADCH       =           IPH^5;
     sbit    PSH         =           IPH^4;
@@ -256,6 +257,7 @@ sfr         IPH         =           0xb7;
     sbit    PX0H        =           IPH^0;
 
 sfr         IP          =           0xb8;
+    sbit    PPCA        =           IP^7;
     sbit    PLVD        =           IP^6;
     sbit    PADC        =           IP^5;
     sbit    PS          =           IP^4;
@@ -294,6 +296,10 @@ sfr         ADC_CONTR   =           0xbc;
 sfr         ADC_RES     =           0xbd;
 sfr         ADC_RESL    =           0xbe;
 
+sfr         P_SW4       =           0xbf;
+    sbit    QSPI_S1     =           P_SW4^1;
+    sbit    QSPI_S0     =           P_SW4^0;
+
 sfr         P4          =           0xc0;
     sbit    P40         =           P4^0;
     sbit    P41         =           P4^1;
@@ -321,6 +327,7 @@ sfr         IAP_CONTR   =           0xc7;
     sbit    SWBS        =           IAP_CONTR^6;
     sbit    SWRST       =           IAP_CONTR^5;
     sbit    CMD_FAIL    =           IAP_CONTR^4;
+    sbit    SWBS2       =           IAP_CONTR^3;
 
 sfr         P5          =           0xc8;
     sbit    P50         =           P5^0;
@@ -360,9 +367,12 @@ sfr         PSW         =           0xd0;
     sbit    RS1         =           PSW^4;
     sbit    RS0         =           PSW^3;
     sbit    OV          =           PSW^2;
+    sbit    F1          =           PSW^1;
     sbit    P           =           PSW^0;
 
 sfr         PSW1        =           0xd1;
+    sbit    N           =           PSW1^5;
+    sbit    Z           =           PSW1^1;
 
 sfr         T4H         =           0xd2;
 sfr         T4L         =           0xd3;
@@ -371,7 +381,6 @@ sfr         T3L         =           0xd5;
 sfr         T2H         =           0xd6;
 sfr         T2L         =           0xd7;
 
-sfr         T3T4M       =           0xdd;
 sfr         TH4         =           0xd2;
 sfr         TL4         =           0xd3;
 sfr         TH3         =           0xd4;
@@ -381,6 +390,7 @@ sfr         TL2         =           0xd7;
 
 sfr         USBCLK      =           0xdc;
 
+sfr         T3T4M       =           0xdd;
 sfr         T4T3M       =           0xdd;
     sbit    T4R         =           T4T3M^7;
     sbit    T4_CT       =           T4T3M^6;
@@ -413,8 +423,6 @@ sfr         ACC         =           0xE0;
 sfr         P7M1        =           0xe1;
 sfr         P7M0        =           0xe2;
 sfr         DPS         =           0xe3;
-sfr         DPL1        =           0xe4;
-sfr         DPH1        =           0xe5;
 
 sfr         CMPCR1      =           0xe6;
     sbit    CMPEN       =           CMPCR1^7;
@@ -468,16 +476,6 @@ sfr         B           =           0xF0;
     sbit    B6          =           B^6;
     sbit    B7          =           B^7;
 
-sfr         CANICR      =           0xf1;
-    sbit    PCAN2H      =           CANICR^7;
-    sbit    CAN2IF      =           CANICR^6;
-    sbit    CAN2IE      =           CANICR^5;
-    sbit    PCAN2L      =           CANICR^4;
-    sbit    PCANH       =           CANICR^3;
-    sbit    CANIF       =           CANICR^2;
-    sbit    CANIE       =           CANICR^1;
-    sbit    PCANL       =           CANICR^0;
-
 sfr         USBCON      =           0xf4;
     sbit    ENUSB       =           USBCON^7;
     sbit    ENUSBRST    =           USBCON^6;
@@ -490,7 +488,6 @@ sfr         USBCON      =           0xf4;
 
 sfr         IAP_TPS     =           0xf5;
 sfr         IAP_ADDRE   =           0xf6;
-sfr         ICHECR      =           0xf7;
 
 sfr         P7          =           0xf8;
     sbit    P70         =           P7^0;
@@ -502,14 +499,6 @@ sfr         P7          =           0xf8;
     sbit    P76         =           P7^6;
     sbit    P77         =           P7^7;
 
-sfr         LINICR      =           0xf9;
-    sbit    PLINH       =           LINICR^3;
-    sbit    LINIF       =           LINICR^2;
-    sbit    LINIE       =           LINICR^1;
-    sbit    PLINL       =           LINICR^0;
-
-sfr         LINAR       =           0xfa;
-sfr         LINDR       =           0xfb;
 sfr         USBADR      =           0xfc;
 
 sfr         S4CON       =           0xfd;
@@ -526,13 +515,16 @@ sfr         S4BUF       =           0xfe;
 
 sfr         RSTCFG      =           0xff;
     sbit    ENLVR       =           RSTCFG^6;
-    sbit    P54RST      =           RSTCFG^4;
+    sbit    P47RST      =           RSTCFG^4;
 
+/////////////////////////////////////////////////
+//
 //如下特殊功能寄存器位于扩展RAM区域
 //访问这些寄存器,需先将EAXFR设置为1,才可正常读写
 //    EAXFR = 1;
 //或者
 //    P_SW2 |= 0x80;
+///////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
 //7E:FF00H-7E:FFFFH
@@ -553,11 +545,7 @@ sfr         RSTCFG      =           0xff;
 #define     IRCDB                   (*(unsigned char volatile far *)0x7efe06)
 #define     IRC48MCR                (*(unsigned char volatile far *)0x7efe07)
 #define     X32KCR                  (*(unsigned char volatile far *)0x7efe08)
-#define     IRC48ATRIM              (*(unsigned char volatile far *)0x7efe09)
-#define     IRC48BTRIM              (*(unsigned char volatile far *)0x7efe0a)
 #define     HSCLKDIV                (*(unsigned char volatile far *)0x7efe0b)
-#define     HPLLCR                  (*(unsigned char volatile far *)0x7efe0c)
-#define     HPLLPSCR                (*(unsigned char volatile far *)0x7efe0d)
 
 #define     P0PU                    (*(unsigned char volatile far *)0x7efe10)
 #define     P1PU                    (*(unsigned char volatile far *)0x7efe11)
@@ -607,6 +595,14 @@ sfr         RSTCFG      =           0xff;
 #define     P5PD                    (*(unsigned char volatile far *)0x7efe45)
 #define     P6PD                    (*(unsigned char volatile far *)0x7efe46)
 #define     P7PD                    (*(unsigned char volatile far *)0x7efe47)
+#define     P0BP                    (*(unsigned char volatile far *)0x7efe48)
+#define     P1BP                    (*(unsigned char volatile far *)0x7efe49)
+#define     P2BP                    (*(unsigned char volatile far *)0x7efe4a)
+#define     P3BP                    (*(unsigned char volatile far *)0x7efe4b)
+#define     P4BP                    (*(unsigned char volatile far *)0x7efe4c)
+#define     P5BP                    (*(unsigned char volatile far *)0x7efe4d)
+#define     P6BP                    (*(unsigned char volatile far *)0x7efe4e)
+#define     P7BP                    (*(unsigned char volatile far *)0x7efe4f)
 
 #define     LCMIFCFG                (*(unsigned char volatile far *)0x7efe50)
 #define     LCMIFCFG2               (*(unsigned char volatile far *)0x7efe51)
@@ -614,6 +610,7 @@ sfr         RSTCFG      =           0xff;
 #define     LCMIFSTA                (*(unsigned char volatile far *)0x7efe53)
 #define     LCMIFDATL               (*(unsigned char volatile far *)0x7efe54)
 #define     LCMIFDATH               (*(unsigned char volatile far *)0x7efe55)
+#define     LCMIFPSCR               (*(unsigned char volatile far *)0x7efe56)
 
 #define     RTCCR                   (*(unsigned char volatile far *)0x7efe60)
 #define     RTCCFG                  (*(unsigned char volatile far *)0x7efe61)
@@ -630,6 +627,8 @@ sfr         RSTCFG      =           0xff;
 #define     INIMIN                  (*(unsigned char volatile far *)0x7efe6c)
 #define     INISEC                  (*(unsigned char volatile far *)0x7efe6d)
 #define     INISSEC                 (*(unsigned char volatile far *)0x7efe6e)
+#define     INIWEEK                 (*(unsigned char volatile far *)0x7efe6f)
+#define     RTCWEEK                 (*(unsigned char volatile far *)0x7efe6f)
 #define     RTCYEAR                 (*(unsigned char volatile far *)0x7efe70)
 #define     RTCMONTH                (*(unsigned char volatile far *)0x7efe71)
 #define     RTCDAY                  (*(unsigned char volatile far *)0x7efe72)
@@ -637,6 +636,11 @@ sfr         RSTCFG      =           0xff;
 #define     RTCMIN                  (*(unsigned char volatile far *)0x7efe74)
 #define     RTCSEC                  (*(unsigned char volatile far *)0x7efe75)
 #define     RTCSSEC                 (*(unsigned char volatile far *)0x7efe76)
+
+#define     T11CR                   (*(unsigned char volatile far *)0x7efe78)
+#define     T11PS                   (*(unsigned char volatile far *)0x7efe79)
+#define     T11H                    (*(unsigned char volatile far *)0x7efe7a)
+#define     T11L                    (*(unsigned char volatile far *)0x7efe7b)
 
 #define     I2CCFG                  (*(unsigned char volatile far *)0x7efe80)
 #define     I2CMSCR                 (*(unsigned char volatile far *)0x7efe81)
@@ -647,8 +651,14 @@ sfr         RSTCFG      =           0xff;
 #define     I2CTXD                  (*(unsigned char volatile far *)0x7efe86)
 #define     I2CRXD                  (*(unsigned char volatile far *)0x7efe87)
 #define     I2CMSAUX                (*(unsigned char volatile far *)0x7efe88)
+#define     I2CPSCR                 (*(unsigned char volatile far *)0x7efe89)
 
-#define     SPFUNC                  (*(unsigned char volatile far *)0x7efe98)
+#define     SPI_CLKDIV              (*(unsigned char volatile far *)0x7efe90)
+#define     PWMA_CLKDIV             (*(unsigned char volatile far *)0x7efe91)
+#define     PWMB_CLKDIV             (*(unsigned char volatile far *)0x7efe92)
+#define     TFPU_CLKDIV             (*(unsigned char volatile far *)0x7efe93)
+#define     I2S_CLKDIV              (*(unsigned char volatile far *)0x7efe94)
+
 #define     RSTFLAG                 (*(unsigned char volatile far *)0x7efe99)
 #define     RSTCR0                  (*(unsigned char volatile far *)0x7efe9a)
 #define     RSTCR1                  (*(unsigned char volatile far *)0x7efe9b)
@@ -663,7 +673,6 @@ sfr         RSTCFG      =           0xff;
 #define     TM3PS                   (*(unsigned char volatile far *)0x7efea3)
 #define     TM4PS                   (*(unsigned char volatile far *)0x7efea4)
 #define     ADCTIM                  (*(unsigned char volatile far *)0x7efea8)
-#define     T3T4PS                  (*(unsigned char volatile far *)0x7efeac)
 #define     ADCEXCFG                (*(unsigned char volatile far *)0x7efead)
 #define     CMPEXCFG                (*(unsigned char volatile far *)0x7efeae)
 
@@ -675,9 +684,9 @@ sfr         RSTCFG      =           0xff;
 #define     PWMB_ENO                (*(unsigned char volatile far *)0x7efeb5)
 #define     PWMB_PS                 (*(unsigned char volatile far *)0x7efeb6)
 #define     PWMB_IOAUX              (*(unsigned char volatile far *)0x7efeb7)
-
-#define     CANAR                   (*(unsigned char volatile far *)0x7efebb)
-#define     CANDR                   (*(unsigned char volatile far *)0x7efebc)
+#define     PWMA_PS2                (*(unsigned char volatile far *)0x7efeb8)
+#define     PWMA_RCRH               (*(unsigned char volatile far *)0x7efeb9)
+#define     PWMB_RCRH               (*(unsigned char volatile far *)0x7efeba)
 
 #define     PWMA_CR1                (*(unsigned char volatile far *)0x7efec0)
 #define     PWMA_CR2                (*(unsigned char volatile far *)0x7efec1)
@@ -711,6 +720,7 @@ sfr         RSTCFG      =           0xff;
 #define     PWMA_BKR                (*(unsigned char volatile far *)0x7efedd)
 #define     PWMA_DTR                (*(unsigned char volatile far *)0x7efede)
 #define     PWMA_OISR               (*(unsigned char volatile far *)0x7efedf)
+
 #define     PWMB_CR1                (*(unsigned char volatile far *)0x7efee0)
 #define     PWMB_CR2                (*(unsigned char volatile far *)0x7efee1)
 #define     PWMB_SMCR               (*(unsigned char volatile far *)0x7efee2)
@@ -743,45 +753,6 @@ sfr         RSTCFG      =           0xff;
 #define     PWMB_BKR                (*(unsigned char volatile far *)0x7efefd)
 #define     PWMB_DTR                (*(unsigned char volatile far *)0x7efefe)
 #define     PWMB_OISR               (*(unsigned char volatile far *)0x7efeff)
-
-typedef struct TAG_PWM_STRUCT
-{
-    unsigned char CR1;
-    unsigned char CR2;
-    unsigned char SMCR;
-    unsigned char ETR;
-    unsigned char IER;
-    unsigned char SR1;
-    unsigned char SR2;
-    unsigned char EGR;
-    unsigned char CCMR1;
-    unsigned char CCMR2;
-    unsigned char CCMR3;
-    unsigned char CCMR4;
-    unsigned char CCER1;
-    unsigned char CCER2;
-    unsigned char CNTRH;
-    unsigned char CNTRL;
-    unsigned char PSCRH;
-    unsigned char PSCRL;
-    unsigned char ARRH;
-    unsigned char ARRL;
-    unsigned char RCR;
-    unsigned char CCR1H;
-    unsigned char CCR1L;
-    unsigned char CCR2H;
-    unsigned char CCR2L;
-    unsigned char CCR3H;
-    unsigned char CCR3L;
-    unsigned char CCR4H;
-    unsigned char CCR4L;
-    unsigned char BKR;
-    unsigned char DTR;
-    unsigned char OISR;
-} PWM_STRUCT;
-
-//#define     PWMA                    ((PWM_STRUCT volatile far *)0x7efec0)
-//#define     PWMB                    ((PWM_STRUCT volatile far *)0x7efee0)
 
 /////////////////////////////////////////////////
 //7E:FD00H-7E:FDFFH
@@ -828,8 +799,37 @@ typedef struct TAG_PWM_STRUCT
 #define     P6WKUE                  (*(unsigned char volatile far *)0x7efd46)
 #define     P7WKUE                  (*(unsigned char volatile far *)0x7efd47)
 
+#define     CCAPM2                  (*(unsigned char volatile far *)0x7efd50)
+#define     CCAP2L                  (*(unsigned char volatile far *)0x7efd51)
+#define     CCAP2H                  (*(unsigned char volatile far *)0x7efd52)
+#define     PCA_PWM2                (*(unsigned char volatile far *)0x7efd53)
+#define     CCAPM3                  (*(unsigned char volatile far *)0x7efd54)
+#define     CCAP3L                  (*(unsigned char volatile far *)0x7efd55)
+#define     CCAP3H                  (*(unsigned char volatile far *)0x7efd56)
+#define     PCA_PWM3                (*(unsigned char volatile far *)0x7efd57)
+#define     CCAPM0                  (*(unsigned char volatile far *)0x7efd58)
+#define     CCAP0L                  (*(unsigned char volatile far *)0x7efd59)
+#define     CCAP0H                  (*(unsigned char volatile far *)0x7efd5a)
+#define     PCA_PWM0                (*(unsigned char volatile far *)0x7efd5b)
+#define     CCAPM1                  (*(unsigned char volatile far *)0x7efd5c)
+#define     CCAP1L                  (*(unsigned char volatile far *)0x7efd5d)
+#define     CCAP1H                  (*(unsigned char volatile far *)0x7efd5e)
+#define     PCA_PWM1                (*(unsigned char volatile far *)0x7efd5f)
+
 #define     PINIPL                  (*(unsigned char volatile far *)0x7efd60)
 #define     PINIPH                  (*(unsigned char volatile far *)0x7efd61)
+
+#define     CCON                    (*(unsigned char volatile far *)0x7efd64)
+    #define     CF                  0x80
+    #define     CR                  0x40
+    #define     CCF2                0x04
+    #define     CCF1                0x02
+    #define     CCF0                0x01
+#define     CL                      (*(unsigned char volatile far *)0x7efd65)
+#define     CH                      (*(unsigned char volatile far *)0x7efd66)
+#define     CMOD                    (*(unsigned char volatile far *)0x7efd67)
+    #define     CIDL                0x80
+    #define     ECF                 0x01
 
 #define     UR1TOCR                 (*(unsigned char volatile far *)0x7efd70)
 #define     UR1TOSR                 (*(unsigned char volatile far *)0x7efd71)
@@ -856,6 +856,13 @@ typedef struct TAG_PWM_STRUCT
 #define     I2CTOTH                 (*(unsigned char volatile far *)0x7efd86)
 #define     I2CTOTL                 (*(unsigned char volatile far *)0x7efd87)
 
+#define     UR1TOTE                 (*(unsigned char volatile far *)0x7efd88)
+#define     UR2TOTE                 (*(unsigned char volatile far *)0x7efd89)
+#define     UR3TOTE                 (*(unsigned char volatile far *)0x7efd8a)
+#define     UR4TOTE                 (*(unsigned char volatile far *)0x7efd8b)
+#define     SPITOTE                 (*(unsigned char volatile far *)0x7efd8c)
+#define     I2CTOTE                 (*(unsigned char volatile far *)0x7efd8d)
+
 #define     I2SCR                   (*(unsigned char volatile far *)0x7efd98)
 #define     I2SSR                   (*(unsigned char volatile far *)0x7efd99)
 #define     I2SDRH                  (*(unsigned char volatile far *)0x7efd9a)
@@ -865,6 +872,7 @@ typedef struct TAG_PWM_STRUCT
 #define     I2SCFGH                 (*(unsigned char volatile far *)0x7efd9e)
 #define     I2SCFGL                 (*(unsigned char volatile far *)0x7efd9f)
 #define     I2SMD                   (*(unsigned char volatile far *)0x7efda0)
+#define     I2SMCKDIV               (*(unsigned char volatile far *)0x7efda1)
 
 #define     CRECR                   (*(unsigned char volatile far *)0x7efda8)
 #define     CRECNTH                 (*(unsigned char volatile far *)0x7efda9)
@@ -936,56 +944,53 @@ typedef struct TAG_PWM_STRUCT
 //7E:FB00H-7E:FBFFH
 /////////////////////////////////////////////////
 
+#define     CHIPIDX                 ( (unsigned char volatile far *)0x7efbd0)
+
+#define     CHIPIDX0                (*(unsigned char volatile far *)0x7efbd0)
+#define     CHIPIDX1                (*(unsigned char volatile far *)0x7efbd1)
+#define     CHIPIDX2                (*(unsigned char volatile far *)0x7efbd2)
+#define     CHIPIDX3                (*(unsigned char volatile far *)0x7efbd3)
+#define     CHIPIDX4                (*(unsigned char volatile far *)0x7efbd4)
+#define     CHIPIDX5                (*(unsigned char volatile far *)0x7efbd5)
+#define     CHIPIDX6                (*(unsigned char volatile far *)0x7efbd6)
+#define     CHIPIDX7                (*(unsigned char volatile far *)0x7efbd7)
+#define     CHIPIDX8                (*(unsigned char volatile far *)0x7efbd8)
+#define     CHIPIDX9                (*(unsigned char volatile far *)0x7efbd9)
+#define     CHIPIDX10               (*(unsigned char volatile far *)0x7efbda)
+#define     CHIPIDX11               (*(unsigned char volatile far *)0x7efbdb)
+#define     CHIPIDX12               (*(unsigned char volatile far *)0x7efbdc)
+#define     CHIPIDX13               (*(unsigned char volatile far *)0x7efbdd)
+#define     CHIPIDX14               (*(unsigned char volatile far *)0x7efbde)
+#define     CHIPIDX15               (*(unsigned char volatile far *)0x7efbdf)
+#define     CHIPIDX16               (*(unsigned char volatile far *)0x7efbe0)
+#define     CHIPIDX17               (*(unsigned char volatile far *)0x7efbe1)
+#define     CHIPIDX18               (*(unsigned char volatile far *)0x7efbe2)
+#define     CHIPIDX19               (*(unsigned char volatile far *)0x7efbe3)
+#define     CHIPIDX20               (*(unsigned char volatile far *)0x7efbe4)
+#define     CHIPIDX21               (*(unsigned char volatile far *)0x7efbe5)
+#define     CHIPIDX22               (*(unsigned char volatile far *)0x7efbe6)
+#define     CHIPIDX23               (*(unsigned char volatile far *)0x7efbe7)
+#define     CHIPIDX24               (*(unsigned char volatile far *)0x7efbe8)
+#define     CHIPIDX25               (*(unsigned char volatile far *)0x7efbe9)
+#define     CHIPIDX26               (*(unsigned char volatile far *)0x7efbea)
+#define     CHIPIDX27               (*(unsigned char volatile far *)0x7efbeb)
+#define     CHIPIDX28               (*(unsigned char volatile far *)0x7efbec)
+#define     CHIPIDX29               (*(unsigned char volatile far *)0x7efbed)
+#define     CHIPIDX30               (*(unsigned char volatile far *)0x7efbee)
+#define     CHIPIDX31               (*(unsigned char volatile far *)0x7efbef)
+
 #define     HSPWMA_CFG              (*(unsigned char volatile far *)0x7efbf0)
 #define     HSPWMA_ADR              (*(unsigned char volatile far *)0x7efbf1)
 #define     HSPWMA_DAT              (*(unsigned char volatile far *)0x7efbf2)
-
+#define     HSPWMA_ADRH             (*(unsigned char volatile far *)0x7efbf3)
 #define     HSPWMB_CFG              (*(unsigned char volatile far *)0x7efbf4)
 #define     HSPWMB_ADR              (*(unsigned char volatile far *)0x7efbf5)
 #define     HSPWMB_DAT              (*(unsigned char volatile far *)0x7efbf6)
-
+#define     HSPWMB_ADRH             (*(unsigned char volatile far *)0x7efbf7)
 #define     HSSPI_CFG               (*(unsigned char volatile far *)0x7efbf8)
 #define     HSSPI_CFG2              (*(unsigned char volatile far *)0x7efbf9)
 #define     HSSPI_STA               (*(unsigned char volatile far *)0x7efbfa)
-
-//使用下面的宏,需先将EAXFR设置为1
-//使用方法:
-//      char val;
-//
-//      EAXFR = 1;                      //使能访问XFR
-//      READ_HSPWMA(PWMA_CR1, val);     //异步读PWMA组寄存器
-//      val |= 0x01;
-//      WRITE_HSPWMA(PWMA_CR1, val);    //异步写PWMA组寄存器
-
-#define     READ_HSPWMA(reg, dat)           \
-            {                               \
-                while (HSPWMA_ADR & 0x80);  \
-                HSPWMA_ADR = ((char)&(reg)) | 0x80;  \
-                while (HSPWMA_ADR & 0x80);  \
-                (dat) = HSPWMA_DAT;         \
-            }
-
-#define     WRITE_HSPWMA(reg, dat)          \
-            {                               \
-                while (HSPWMA_ADR & 0x80);  \
-                HSPWMA_DAT = (dat);         \
-                HSPWMA_ADR = ((char)&(reg)) & 0x7f;  \
-            }
-
-#define     READ_HSPWMB(reg, dat)           \
-            {                               \
-                while (HSPWMB_ADR & 0x80);  \
-                HSPWMB_ADR = ((char)&(reg)) | 0x80;  \
-                while (HSPWMB_ADR & 0x80);  \
-                (dat) = HSPWMB_DAT;         \
-            }
-
-#define     WRITE_HSPWMB(reg, dat)          \
-            {                               \
-                while (HSPWMB_ADR & 0x80);  \
-                HSPWMB_DAT = (dat);         \
-                HSPWMB_ADR = ((char)&(reg)) & 0x7f;  \
-            }
+#define     HSSPI_PSCR              (*(unsigned char volatile far *)0x7efbfb)
 
 /////////////////////////////////////////////////
 //7E:FA00H-7E:FAFFH
@@ -1004,11 +1009,15 @@ typedef struct TAG_PWM_STRUCT
 #define     DMA_ADC_CFG             (*(unsigned char volatile far *)0x7efa10)
 #define     DMA_ADC_CR              (*(unsigned char volatile far *)0x7efa11)
 #define     DMA_ADC_STA             (*(unsigned char volatile far *)0x7efa12)
+#define     DMA_ADC_AMT             (*(unsigned char volatile far *)0x7efa13)
+#define     DMA_ADC_DONE            (*(unsigned char volatile far *)0x7efa14)
 #define     DMA_ADC_RXAH            (*(unsigned char volatile far *)0x7efa17)
 #define     DMA_ADC_RXAL            (*(unsigned char volatile far *)0x7efa18)
 #define     DMA_ADC_CFG2            (*(unsigned char volatile far *)0x7efa19)
 #define     DMA_ADC_CHSW0           (*(unsigned char volatile far *)0x7efa1a)
 #define     DMA_ADC_CHSW1           (*(unsigned char volatile far *)0x7efa1b)
+#define     DMA_ADC_ITVH            (*(unsigned char volatile far *)0x7efa1e)
+#define     DMA_ADC_ITVL            (*(unsigned char volatile far *)0x7efa1f)
 
 #define     DMA_SPI_CFG             (*(unsigned char volatile far *)0x7efa20)
 #define     DMA_SPI_CR              (*(unsigned char volatile far *)0x7efa21)
@@ -1020,6 +1029,8 @@ typedef struct TAG_PWM_STRUCT
 #define     DMA_SPI_RXAH            (*(unsigned char volatile far *)0x7efa27)
 #define     DMA_SPI_RXAL            (*(unsigned char volatile far *)0x7efa28)
 #define     DMA_SPI_CFG2            (*(unsigned char volatile far *)0x7efa29)
+#define     DMA_SPI_ITVH            (*(unsigned char volatile far *)0x7efa2e)
+#define     DMA_SPI_ITVL            (*(unsigned char volatile far *)0x7efa2f)
 
 #define     DMA_UR1T_CFG            (*(unsigned char volatile far *)0x7efa30)
 #define     DMA_UR1T_CR             (*(unsigned char volatile far *)0x7efa31)
@@ -1090,9 +1101,13 @@ typedef struct TAG_PWM_STRUCT
 #define     DMA_LCM_TXAL            (*(unsigned char volatile far *)0x7efa76)
 #define     DMA_LCM_RXAH            (*(unsigned char volatile far *)0x7efa77)
 #define     DMA_LCM_RXAL            (*(unsigned char volatile far *)0x7efa78)
+#define     DMA_LCM_ITVH            (*(unsigned char volatile far *)0x7efa7e)
+#define     DMA_LCM_ITVL            (*(unsigned char volatile far *)0x7efa7f)
 
 #define     DMA_M2M_AMTH            (*(unsigned char volatile far *)0x7efa80)
 #define     DMA_M2M_DONEH           (*(unsigned char volatile far *)0x7efa81)
+#define     DMA_ADC_AMTH            (*(unsigned char volatile far *)0x7efa82)
+#define     DMA_ADC_DONEH           (*(unsigned char volatile far *)0x7efa83)
 #define     DMA_SPI_AMTH            (*(unsigned char volatile far *)0x7efa84)
 #define     DMA_SPI_DONEH           (*(unsigned char volatile far *)0x7efa85)
 #define     DMA_LCM_AMTH            (*(unsigned char volatile far *)0x7efa86)
@@ -1133,7 +1148,6 @@ typedef struct TAG_PWM_STRUCT
 #define     DMA_I2CT_DONEH          (*(unsigned char volatile far *)0x7efaa9)
 #define     DMA_I2CR_AMTH           (*(unsigned char volatile far *)0x7efaaa)
 #define     DMA_I2CR_DONEH          (*(unsigned char volatile far *)0x7efaab)
-
 #define     DMA_I2C_CR              (*(unsigned char volatile far *)0x7efaad)
 #define     DMA_I2C_ST1             (*(unsigned char volatile far *)0x7efaae)
 #define     DMA_I2C_ST2             (*(unsigned char volatile far *)0x7efaaf)
@@ -1157,117 +1171,118 @@ typedef struct TAG_PWM_STRUCT
 #define     DMA_I2ST_DONEH          (*(unsigned char volatile far *)0x7efac1)
 #define     DMA_I2SR_AMTH           (*(unsigned char volatile far *)0x7efac2)
 #define     DMA_I2SR_DONEH          (*(unsigned char volatile far *)0x7efac3)
+#define     DMA_I2C_ITVH            (*(unsigned char volatile far *)0x7efac4)
+#define     DMA_I2C_ITVL            (*(unsigned char volatile far *)0x7efac5)
+#define     DMA_I2S_ITVH            (*(unsigned char volatile far *)0x7efac6)
+#define     DMA_I2S_ITVL            (*(unsigned char volatile far *)0x7efac7)
+#define     DMA_UR1_ITVH            (*(unsigned char volatile far *)0x7efac8)
+#define     DMA_UR1_ITVL            (*(unsigned char volatile far *)0x7efac9)
+#define     DMA_UR2_ITVH            (*(unsigned char volatile far *)0x7efaca)
+#define     DMA_UR2_ITVL            (*(unsigned char volatile far *)0x7efacb)
+#define     DMA_UR3_ITVH            (*(unsigned char volatile far *)0x7efacc)
+#define     DMA_UR3_ITVL            (*(unsigned char volatile far *)0x7efacd)
+#define     DMA_UR4_ITVH            (*(unsigned char volatile far *)0x7eface)
+#define     DMA_UR4_ITVL            (*(unsigned char volatile far *)0x7efacf)
 
+#define     DMA_QSPI_CFG            (*(unsigned char volatile far *)0x7efad0)
+#define     DMA_QSPI_CR             (*(unsigned char volatile far *)0x7efad1)
+#define     DMA_QSPI_STA            (*(unsigned char volatile far *)0x7efad2)
+#define     DMA_QSPI_AMT            (*(unsigned char volatile far *)0x7efad3)
+#define     DMA_QSPI_DONE           (*(unsigned char volatile far *)0x7efad4)
+#define     DMA_QSPI_TXAH           (*(unsigned char volatile far *)0x7efad5)
+#define     DMA_QSPI_TXAL           (*(unsigned char volatile far *)0x7efad6)
+#define     DMA_QSPI_RXAH           (*(unsigned char volatile far *)0x7efad7)
+#define     DMA_QSPI_RXAL           (*(unsigned char volatile far *)0x7efad8)
+#define     DMA_QSPI_AMTH           (*(unsigned char volatile far *)0x7efadb)
+#define     DMA_QSPI_DONEH          (*(unsigned char volatile far *)0x7efadc)
+#define     DMA_QSPI_ITVH           (*(unsigned char volatile far *)0x7efade)
+#define     DMA_QSPI_ITVL           (*(unsigned char volatile far *)0x7efadf)
+
+#define     DMA_P2P_CR1             (*(unsigned char volatile far *)0x7efaf0)
+#define     DMA_P2P_CR2             (*(unsigned char volatile far *)0x7efaf1)
 #define     DMA_ARB_CFG             (*(unsigned char volatile far *)0x7efaf8)
 #define     DMA_ARB_STA             (*(unsigned char volatile far *)0x7efaf9)
 
 /////////////////////////////////////////////////
-
-//sfr       CANICR      =           0xf1;
-//#define   CANAR                   (*(unsigned char volatile far *)0x7efebb)
-//#define   CANDR                   (*(unsigned char volatile far *)0x7efebc)
-
-//使用下面的宏,需先将EAXFR设置为1
-//使用方法:
-//      char dat;
-//
-//      EAXFR = 1;                  //使能访问XFR
-//      dat = READ_CAN(RX_BUF0);    //读CAN寄存器
-//      WRITE_CAN(TX_BUF0, 0x55);   //写CAN寄存器
-
-#define     READ_CAN(reg)           (CANAR = (reg), CANDR)
-#define     WRITE_CAN(reg, dat)     (CANAR = (reg), CANDR = (dat))
-
-#define     MR                      0x00
-#define     CMR                     0x01
-#define     SR                      0x02
-#define     ISR                     0x03
-#define     IMR                     0x04
-#define     RMC                     0x05
-#define     BTR0                    0x06
-#define     BTR1                    0x07
-#define     TM0                     0x06
-#define     TM1                     0x07
-#define     TX_BUF0                 0x08
-#define     TX_BUF1                 0x09
-#define     TX_BUF2                 0x0a
-#define     TX_BUF3                 0x0b
-#define     RX_BUF0                 0x0c
-#define     RX_BUF1                 0x0d
-#define     RX_BUF2                 0x0e
-#define     RX_BUF3                 0x0f
-#define     ACR0                    0x10
-#define     ACR1                    0x11
-#define     ACR2                    0x12
-#define     ACR3                    0x13
-#define     AMR0                    0x14
-#define     AMR1                    0x15
-#define     AMR2                    0x16
-#define     AMR3                    0x17
-#define     ECC                     0x18
-#define     RXERR                   0x19
-#define     TXERR                   0x1a
-#define     ALC                     0x1b
-
-/////////////////////////////////////////////////
-//LIN Control Regiter
+//7E:F900H-7E:F9FFH
 /////////////////////////////////////////////////
 
-//sfr       LINICR      =           0xf9;
-//sfr       LINAR       =           0xfa;
-//sfr       LINDR       =           0xfb;
+#define     QSPI_CR1                (*(unsigned char volatile far *)0x7ef900)
+#define     QSPI_CR2                (*(unsigned char volatile far *)0x7ef901)
+#define     QSPI_CR3                (*(unsigned char volatile far *)0x7ef902)
+#define     QSPI_CR4                (*(unsigned char volatile far *)0x7ef903)
+#define     QSPI_DCR1               (*(unsigned char volatile far *)0x7ef904)
+#define     QSPI_DCR2               (*(unsigned char volatile far *)0x7ef905)
+#define     QSPI_SR1                (*(unsigned char volatile far *)0x7ef906)
+#define     QSPI_SR2                (*(unsigned char volatile far *)0x7ef907)
+#define     QSPI_FCR                (*(unsigned char volatile far *)0x7ef908)
+#define     QSPI_HCR1               (*(unsigned char volatile far *)0x7ef909)
+#define     QSPI_HCR2               (*(unsigned char volatile far *)0x7ef90a)
+#define     QSPI_DLR1               (*(unsigned char volatile far *)0x7ef910)
+#define     QSPI_DLR2               (*(unsigned char volatile far *)0x7ef911)
+#define     QSPI_CCR1               (*(unsigned char volatile far *)0x7ef914)
+#define     QSPI_CCR2               (*(unsigned char volatile far *)0x7ef915)
+#define     QSPI_CCR3               (*(unsigned char volatile far *)0x7ef916)
+#define     QSPI_CCR4               (*(unsigned char volatile far *)0x7ef917)
+#define     QSPI_AR1                (*(unsigned char volatile far *)0x7ef918)
+#define     QSPI_AR2                (*(unsigned char volatile far *)0x7ef919)
+#define     QSPI_AR3                (*(unsigned char volatile far *)0x7ef91a)
+#define     QSPI_AR4                (*(unsigned char volatile far *)0x7ef91b)
+#define     QSPI_ABR                (*(unsigned char volatile far *)0x7ef91c)
+#define     QSPI_DR                 (*(unsigned char volatile far *)0x7ef920)
+#define     QSPI_PSMKR1             (*(unsigned char volatile far *)0x7ef924)
+#define     QSPI_PSMAR1             (*(unsigned char volatile far *)0x7ef928)
+#define     QSPI_PIR1               (*(unsigned char volatile far *)0x7ef92c)
+#define     QSPI_PIR2               (*(unsigned char volatile far *)0x7ef92d)
 
-//使用方法:
-//      char dat;
-//
-//      dat = READ_LIN(LBUF);       //读CAN寄存器
-//      WRITE_LIN(LBUF, 0x55);      //写CAN寄存器
+#define     PWMA_ENO2               (*(unsigned char volatile far *)0x7ef930)
+#define     PWMA_IOAUX2             (*(unsigned char volatile far *)0x7ef931)
+#define     PWMA_CR3                (*(unsigned char volatile far *)0x7ef932)
+#define     PWMA_SR3                (*(unsigned char volatile far *)0x7ef933)
+#define     PWMA_CCER3              (*(unsigned char volatile far *)0x7ef934)
+#define     PWMA_CCMR1X             (*(unsigned char volatile far *)0x7ef938)
+#define     PWMA_CCMR2X             (*(unsigned char volatile far *)0x7ef939)
+#define     PWMA_CCMR3X             (*(unsigned char volatile far *)0x7ef93a)
+#define     PWMA_CCMR4X             (*(unsigned char volatile far *)0x7ef93b)
+#define     PWMA_CCMR5              (*(unsigned char volatile far *)0x7ef93c)
+#define     PWMA_CCMR5X             (*(unsigned char volatile far *)0x7ef93d)
+#define     PWMA_CCMR6              (*(unsigned char volatile far *)0x7ef93e)
+#define     PWMA_CCMR6X             (*(unsigned char volatile far *)0x7ef93f)
+#define     PWMA_CCR5H              (*(unsigned char volatile far *)0x7ef940)
+#define     PWMA_CCR5L              (*(unsigned char volatile far *)0x7ef941)
+#define     PWMA_CCR5X              (*(unsigned char volatile far *)0x7ef942)
+#define     PWMA_CCR6H              (*(unsigned char volatile far *)0x7ef943)
+#define     PWMA_CCR6L              (*(unsigned char volatile far *)0x7ef944)
+#define     PWMA_DER                (*(unsigned char volatile far *)0x7ef948)
+#define     PWMA_DBA                (*(unsigned char volatile far *)0x7ef949)
+#define     PWMA_DBL                (*(unsigned char volatile far *)0x7ef94a)
+#define     PWMA_DMACR              (*(unsigned char volatile far *)0x7ef94b)
 
-#define     READ_LIN(reg)           (LINAR = (reg), LINDR)
-#define     WRITE_LIN(reg, dat)     (LINAR = (reg), LINDR = (dat))
+#define     DMA_PWMAT_CFG           (*(unsigned char volatile far *)0x7ef980)
+#define     DMA_PWMAT_CR            (*(unsigned char volatile far *)0x7ef981)
+#define     DMA_PWMAT_STA           (*(unsigned char volatile far *)0x7ef982)
+#define     DMA_PWMAT_AMTH          (*(unsigned char volatile far *)0x7ef984)
+#define     DMA_PWMAT_AMT           (*(unsigned char volatile far *)0x7ef985)
+#define     DMA_PWMAT_DONEH         (*(unsigned char volatile far *)0x7ef986)
+#define     DMA_PWMAT_DONE          (*(unsigned char volatile far *)0x7ef987)
+#define     DMA_PWMAT_TXAH          (*(unsigned char volatile far *)0x7ef988)
+#define     DMA_PWMAT_TXAL          (*(unsigned char volatile far *)0x7ef989)
+#define     DMA_PWMA_ITVH           (*(unsigned char volatile far *)0x7ef98e)
+#define     DMA_PWMA_ITVL           (*(unsigned char volatile far *)0x7ef98f)
 
-#define     LBUF                    0x00
-#define     LSEL                    0x01
-#define     LID                     0x02
-#define     LER                     0x03
-#define     LIE                     0x04
-#define     LSR                     0x05
-#define     LCR                     0x05
-#define     DLL                     0x06
-#define     DLH                     0x07
-#define     HDRL                    0x08
-#define     HDRH                    0x09
-#define     HDP                     0x0A
+#define     DMA_PWMAR_CFG           (*(unsigned char volatile far *)0x7ef990)
+#define     DMA_PWMAR_CR            (*(unsigned char volatile far *)0x7ef991)
+#define     DMA_PWMAR_STA           (*(unsigned char volatile far *)0x7ef992)
+#define     DMA_PWMAR_AMTH          (*(unsigned char volatile far *)0x7ef994)
+#define     DMA_PWMAR_AMT           (*(unsigned char volatile far *)0x7ef995)
+#define     DMA_PWMAR_DONEH         (*(unsigned char volatile far *)0x7ef996)
+#define     DMA_PWMAR_DONE          (*(unsigned char volatile far *)0x7ef997)
+#define     DMA_PWMAR_RXAH          (*(unsigned char volatile far *)0x7ef998)
+#define     DMA_PWMAR_RXAL          (*(unsigned char volatile far *)0x7ef999)
 
 /////////////////////////////////////////////////
 //USB Control Regiter
 /////////////////////////////////////////////////
-
-//sfr       USBCLK      =           0xdc;
-//sfr       USBDAT      =           0xec;
-//sfr       USBCON      =           0xf4;
-//sfr       USBADR      =           0xfc;
-
-//使用方法:
-//      char dat;
-//
-//      READ_USB(CSR0, dat);        //读USB寄存器
-//      WRITE_USB(FADDR, 0x00);     //写USB寄存器
-
-#define     READ_USB(reg, dat)          \
-            {                           \
-                while (USBADR & 0x80);  \
-                USBADR = (reg) | 0x80;  \
-                while (USBADR & 0x80);  \
-                (dat) = USBDAT;         \
-            }
-
-#define     WRITE_USB(reg, dat)         \
-            {                           \
-                while (USBADR & 0x80);  \
-                USBADR = (reg) & 0x7f;  \
-                USBDAT = (dat);         \
-            }
 
 #define     USBBASE                 0
 #define     FADDR                   (USBBASE + 0)
@@ -1380,30 +1395,23 @@ typedef struct TAG_PWM_STRUCT
 #define     UART1_VECTOR            4       //0023H
 #define     ADC_VECTOR              5       //002BH
 #define     LVD_VECTOR              6       //0033H
-//#define   PCA_VECTOR              7       //003BH
+#define     PCA_VECTOR              7       //003BH
 #define     UART2_VECTOR            8       //0043H
 #define     SPI_VECTOR              9       //004BH
 #define     INT2_VECTOR             10      //0053H
 #define     INT3_VECTOR             11      //005BH
 #define     TMR2_VECTOR             12      //0063H
 #define     USER_VECTOR             13      //006BH
-#define     BRK_VECTOR              14      //0073H
-#define     ICEP_VECTOR             15      //007BH
 #define     INT4_VECTOR             16      //0083H
 #define     UART3_VECTOR            17      //008BH
 #define     UART4_VECTOR            18      //0093H
 #define     TMR3_VECTOR             19      //009BH
 #define     TMR4_VECTOR             20      //00A3H
 #define     CMP_VECTOR              21      //00ABH
-//#define   PWM_VECTOR              22      //00B3H
-//#define   PWMFD_VECTOR            23      //00BBH
 #define     I2C_VECTOR              24      //00C3H
 #define     USB_VECTOR              25      //00CBH
 #define     PWMA_VECTOR             26      //00D3H
 #define     PWMB_VECTOR             27      //00DBH
-#define     CAN1_VECTOR             28      //00E3H
-#define     CAN2_VECTOR             29      //00EBH
-#define     LIN_VECTOR              30      //00F3H
 
 #define     RTC_VECTOR              36      //0123H
 #define     P0INT_VECTOR            37      //012BH
@@ -1432,11 +1440,16 @@ typedef struct TAG_PWM_STRUCT
 #define     I2S_VECTOR              62      //01F3H
 #define     DMA_I2ST_VECTOR         63      //01FBH
 #define     DMA_I2SR_VECTOR         64      //0203H
+#define     DMA_QSPI_VECTOR         65      //020BH
+#define     QSPI_VECTOR             66      //0213H
+#define     TMR11_VECTOR            67      //021BH
+#define     DMA_PWMAT_VECTOR        72      //0243H
+#define     DMA_PWMAR_VECTOR        73      //024BH
 
 /////////////////////////////////////////////////
+
 #define	EAXSFR()		EAXFR = 1		/* MOVX A,@DPTR/MOVX @DPTR,A指令的操作对象为扩展SFR(XSFR) */
 #define	EAXRAM()		EAXFR = 0		/* MOVX A,@DPTR/MOVX @DPTR,A指令的操作对象为扩展RAM(XRAM) */
-
 
 /////////////////////////////////////////////////
 #define NOP1()  _nop_()
@@ -1480,6 +1493,9 @@ typedef struct TAG_PWM_STRUCT
 #define NOP39() NOP38(),NOP1()
 #define NOP40() NOP39(),NOP1()
 #define NOP(N)  NOP##N()
+
+
+/////////////////////////////////////////////////
 
 
 #endif

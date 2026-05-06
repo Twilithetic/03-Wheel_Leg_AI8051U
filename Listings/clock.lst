@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  clock                                                              03/05/26  20:45:02  PAGE 1   
+C251 COMPILER V5.60.0,  clock                                                              04/05/26  10:30:43  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE clock
@@ -66,7 +66,7 @@ stmt  level    source
    56   1          CLK_PLL_Output144MHz();             //选择PLL的144M作为PLL的输出时钟
    57   1          CLK_PLL_PreDivider2();              //PLL输入时钟2分频
    58   1          CLK_PLL_Enable();                   //启动PLL
-C251 COMPILER V5.60.0,  clock                                                              03/05/26  20:45:02  PAGE 2   
+C251 COMPILER V5.60.0,  clock                                                              04/05/26  10:30:43  PAGE 2   
 
    59   1          delay_ms(1);                        //等待PLL锁频
    60   1      

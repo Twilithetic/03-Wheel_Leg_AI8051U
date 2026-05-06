@@ -1,0 +1,177 @@
+C251 COMPILER V5.60.0,  cre                                                                06/05/26  21:50:33  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE cre
+OBJECT MODULE PLACED IN build\cre.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\cre.c LARGE DEBUG SYMBOLS INCDIR(Sources\inc) INCDIR(Sources\i
+                    -nc\stc) OBJECT(build\cre.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: cre.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-03) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // 自动追频初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void CRE_Init(void)
+   33          {
+   34   1          uint32_t cnt;
+   35   1          uint32_t res;
+   36   1      
+   37   1          CLK_HIRC_44MHzBand();               //选择44MHz频段
+   38   1      
+   39   1          CRE_OneStepMode();                  //设置单步追频模式
+   40   1          CRE_CalibCycle_1ms();               //设置追频周期
+   41   1      
+   42   1          cnt = CRE_LFCNT(CRE_FREQ);          //设置自动追频的频率
+   43   1          res = CRE_LFERROR(CRE_FREQ, CRE_ERROR); //设置自动追频的误差
+   44   1          CRE_SetCalibCounter(cnt);           //设置自动追频的计数值
+   45   1          CRE_SetCalibError(res);             //设置自动追频的误差值
+   46   1      
+   47   1          CRE_Enable();                       //启动自动追频
+   48   1      
+   49   1          //<<AICUBE_USER_CRE_INITIAL_BEGIN>>
+   50   1          // 在此添加用户初始化代码  
+   51   1          //<<AICUBE_USER_CRE_INITIAL_END>>
+   52   1      }
+   53          
+   54          
+   55          
+   56          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   57          // 在此添加用户函数实现代码  
+   58          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+C251 COMPILER V5.60.0,  cre                                                                06/05/26  21:50:33  PAGE 2   
+
+   59          
+   60          
+C251 COMPILER V5.60.0,  cre                                                                06/05/26  21:50:33  PAGE 3   
+
+Name                                    Class    Space Type   Offset   Size
+---------------------------------------------------------------------------
+
+uint32_t . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint8. . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+INT. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+u16. . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+u32. . . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+s16. . . . . . . . . . . . . . . . . .  type           int    000000H  2
+int8_t . . . . . . . . . . . . . . . .  type           char   000000H  1
+s32. . . . . . . . . . . . . . . . . .  type           long   000000H  4
+uint8_t. . . . . . . . . . . . . . . .  type           uchar  000000H  1
+WORD . . . . . . . . . . . . . . . . .  type           uint   000000H  2
+BYTE . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+int16. . . . . . . . . . . . . . . . .  type           int    000000H  2
+int32. . . . . . . . . . . . . . . . .  type           long   000000H  4
+LONG . . . . . . . . . . . . . . . . .  type           long   000000H  4
+BOOL . . . . . . . . . . . . . . . . .  type     bit   bit    000000H  1
+u8 . . . . . . . . . . . . . . . . . .  type           uchar  000000H  1
+s8 . . . . . . . . . . . . . . . . . .  type           char   000000H  1
+uint16 . . . . . . . . . . . . . . . .  type           uint   000000H  2
+uint32 . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+CHAR . . . . . . . . . . . . . . . . .  type           char   000000H  1
+size_t . . . . . . . . . . . . . . . .  type           uint   000000H  2
+int16_t. . . . . . . . . . . . . . . .  type           int    000000H  2
+int32_t. . . . . . . . . . . . . . . .  type           long   000000H  4
+int8 . . . . . . . . . . . . . . . . .  type           char   000000H  1
+DWORD. . . . . . . . . . . . . . . . .  type           ulong  000000H  4
+uint16_t . . . . . . . . . . . . . . .  type           uint   000000H  2
+PSW. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D0H     1
+IRCBAND. . . . . . . . . . . . . . . .  sfr      data  uchar  09DH     1
+AUXR2. . . . . . . . . . . . . . . . .  sfr      data  uchar  097H     1
+AUXINTIF . . . . . . . . . . . . . . .  sfr      data  uchar  0EFH     1
+S4CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0FDH     1
+S3CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  0ACH     1
+S2CON. . . . . . . . . . . . . . . . .  sfr      data  uchar  09AH     1
+IPH. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B7H     1
+SPSTAT . . . . . . . . . . . . . . . .  sfr      data  uchar  0CDH     1
+T4T3M. . . . . . . . . . . . . . . . .  sfr      data  uchar  0DDH     1
+WDT_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C1H     1
+IP3. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0DFH     1
+USBCON . . . . . . . . . . . . . . . .  sfr      data  uchar  0F4H     1
+IP2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B5H     1
+RSTCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0FFH     1
+ACC. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E0H     1
+IAP_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0C7H     1
+AUXR . . . . . . . . . . . . . . . . .  sfr      data  uchar  08EH     1
+B. . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F0H     1
+IE2. . . . . . . . . . . . . . . . . .  sfr      data  uchar  0AFH     1
+TCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  088H     1
+TMOD . . . . . . . . . . . . . . . . .  sfr      data  uchar  089H     1
+SCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  098H     1
+PCON . . . . . . . . . . . . . . . . .  sfr      data  uchar  087H     1
+ADC_CONTR. . . . . . . . . . . . . . .  sfr      data  uchar  0BCH     1
+PSW1 . . . . . . . . . . . . . . . . .  sfr      data  uchar  0D1H     1
+CMPCR2 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E7H     1
+CMPCR1 . . . . . . . . . . . . . . . .  sfr      data  uchar  0E6H     1
+ADCCFG . . . . . . . . . . . . . . . .  sfr      data  uchar  0DEH     1
+IP . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B8H     1
+INTCLKO. . . . . . . . . . . . . . . .  sfr      data  uchar  08FH     1
+IP3H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0EEH     1
+IP2H . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B6H     1
+P_SW4. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BFH     1
+IE . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A8H     1
+P_SW3. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BBH     1
+P_SW2. . . . . . . . . . . . . . . . .  sfr      data  uchar  0BAH     1
+C251 COMPILER V5.60.0,  cre                                                                06/05/26  21:50:33  PAGE 4   
+
+P_SW1. . . . . . . . . . . . . . . . .  sfr      data  uchar  0A2H     1
+SPCTL. . . . . . . . . . . . . . . . .  sfr      data  uchar  0CEH     1
+P7 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0F8H     1
+P6 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0E8H     1
+P5 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C8H     1
+P4 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0C0H     1
+P3 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0B0H     1
+P2 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  0A0H     1
+P1 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  090H     1
+P0 . . . . . . . . . . . . . . . . . .  sfr      data  uchar  080H     1
+CRE_Init . . . . . . . . . . . . . . .  public   code  funct  000000H  72
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        72     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

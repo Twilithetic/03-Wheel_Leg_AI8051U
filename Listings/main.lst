@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               04/05/26  10:30:43  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -29,121 +29,185 @@ stmt  level    source
    19          
    20          
    21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
-   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
-   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
-   24          
-   25          
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明 
+   23          
+   24          // ==================== 全局变量 ====================
+   25          volatile unsigned int tick_10ms = 0;   // 10ms 计数器
    26          
-   27          ////////////////////////////////////////
-   28          // 项目主函数
-   29          // 入口参数: 无
-   30          // 函数返回: 无
-   31          ////////////////////////////////////////
-   32          void main(void)
-   33          {
-   34   1          //<<AICUBE_USER_MAIN_INITIAL_BEGIN>>
-   35   1          // 在此添加用户主函数初始化代码  
-   36   1          //<<AICUBE_USER_MAIN_INITIAL_END>>
-   37   1      
-   38   1          SYS_Init();
-   39   1      
-   40   1          //<<AICUBE_USER_MAIN_CODE_BEGIN>>
-   41   1          // 在此添加主函数中运行一次的用户代码  
-   42   1          //<<AICUBE_USER_MAIN_CODE_END>>
-   43   1      
-   44   1          while (1)
-   45   1          {
-   46   2              USBLIB_OUT_Done();              //查询方式处理USB接收的数据
-   47   2      
-   48   2              //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
-   49   2              // 在此添加主函数中用户主循环代码  
-   50   2              //<<AICUBE_USER_MAIN_LOOP_END>>
-   51   2          }
-   52   1      }
-   53          
-   54          ////////////////////////////////////////
-   55          // 系统初始化函数
-   56          // 入口参数: 无
-   57          // 函数返回: 无
-   58          ////////////////////////////////////////
-C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 2   
+   27          // ==================== T0 初始化 ====================
+   28          void Timer0_Init(void)
+   29          {
+   30   1          // 1. 设置为模式 0（16 位自动重装载）
+   31   1          TMOD &= 0xF0;              // 清除 T0 控制字段
+   32   1          TMOD |= 0x00;              // GATE=0, C/T=0, M1=0, M0=0
+   33   1          
+   34   1          // 2. 设置重装载值（目标：10ms 中断）
+   35   1          //    系统时钟 = 24MHz (默认 HIRC)
+   36   1          //    TM0PS = 11 → 预分频 12 → 定时器时钟 = 2MHz
+   37   1          //    65536 - 20000 = 45536 = 0xB1E0
+   38   1          TL0 = 0xE0;                // 低字节先写
+   39   1          TH0 = 0xB1;                // 高字节
+   40   1          
+   41   1          // 3. 设置 8 位预分频器 (需要先访问扩展寄存器)
+   42   1          EAXFR = 1;                 // 允许访问扩展 XFR
+   43   1          TM0PS = 11;                // 预分频 ÷ 12
+   44   1          EAXFR = 0;
+   45   1          
+   46   1          // 4. 1T 模式（不分频，速度最快）
+   47   1          AUXR |= 0x80;              // T0x12 = 1
+   48   1          
+   49   1          // 5. 开中断
+   50   1          ET0 = 1;                   // 允许 T0 中断
+   51   1          EA  = 1;                   // 开总中断
+   52   1          
+   53   1          // 6. 启动定时器
+   54   1          TR0 = 1;                   // T0 开始计数
+   55   1      }
+   56          
+   57          // ==================== T0 中断服务程序 ====================
+   58          void Timer0_ISR(void) interrupt 1
+C251 COMPILER V5.60.0,  main                                                               04/05/26  10:30:43  PAGE 2   
 
-   59          void SYS_Init(void)
-   60          {
-   61   1          EnableAccessXFR();                  //使能访问扩展XFR
-   62   1          AccessCodeFastest();                //设置最快速度访问程序代码
-   63   1          AccessIXramFastest();               //设置最快速度访问内部XDATA
-   64   1          IAP_SetTimeBase();                  //设置IAP等待参数,产生1us时基
-   65   1      
-   66   1          //<<AICUBE_USER_PREINITIAL_CODE_BEGIN>>
-   67   1          // 在此添加用户预初始化代码  
-   68   1          //<<AICUBE_USER_PREINITIAL_CODE_END>>
-   69   1      
-   70   1          PORT3_Init();                       //P3口初始化
-   71   1          PORT5_Init();                       //P5口初始化
-   72   1          CLK_Init();                         //时钟模块初始化
-   73   1          CRE_Init();                         //自动追频模块初始化
-   74   1          delay_ms(1);
-   75   1          USBLIB_Init();                      //USB库初始化
-   76   1          delay_ms(1);
-   77   1          MATHLIB_Init();                     //MATH库初始化
-   78   1      
-   79   1          //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
-   80   1          // 在此添加用户初始化代码  
-   81   1          //<<AICUBE_USER_INITIAL_CODE_END>>
+   59          {
+   60   1          tick_10ms++;               // 每 10ms +1
+   61   1          
+   62   1          if (tick_10ms >= 10)      // 1 秒到了（10ms × 100 = 1000ms）
+   63   1          {
+   64   2              tick_10ms = 0;
+   65   2              P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
+   66   2          }
+   67   1      }
+   68          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   69          
+   70          
+   71          
+   72          ////////////////////////////////////////
+   73          // 项目主函数
+   74          // 入口参数: 无
+   75          // 函数返回: 无
+   76          ////////////////////////////////////////
+   77          void main(void)
+   78          {
+   79   1          //<<AICUBE_USER_MAIN_INITIAL_BEGIN>>
+   80   1          // 在此添加用户主函数初始化代码  
+   81   1          //<<AICUBE_USER_MAIN_INITIAL_END>>
    82   1      
-   83   1          EnableGlobalInt();                  //使能全局中断
-   84   1          USBLIB_WaitConfiged();              //等待USB完成配置
-   85   1      }
-   86          
-   87          ////////////////////////////////////////
-   88          // 微秒延时函数
-   89          // 入口参数: us (设置延时的微秒值)
-   90          // 函数返回: 无
-   91          ////////////////////////////////////////
-   92          void delay_us(uint16_t us)
-   93          {
-   94   1          do
-   95   1          {
-   96   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
-   97   2          } while (--us);
-   98   1      }
-   99          
-  100          
-  101          ////////////////////////////////////////
-  102          // 毫秒延时函数
-  103          // 入口参数: ms (设置延时的毫秒值)
-  104          // 函数返回: 无
-  105          ////////////////////////////////////////
-  106          void delay_ms(uint16_t ms)
-  107          {
-  108   1          uint16_t i;
-  109   1      
-  110   1          do
-  111   1          {
-  112   2              i = MAIN_Fosc / 6000;
-  113   2              while (--i);
-  114   2          } while (--ms);
-  115   1      }
-  116          
-  117          
-  118          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
-  119          // 在此添加用户函数实现代码  
-  120          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-  121          
-  122          
+   83   1          SYS_Init();
+   84   1      
+   85   1          //<<AICUBE_USER_MAIN_CODE_BEGIN>>
+   86   1          // 在此添加主函数中运行一次的用户代码  
+   87   1              // GPIO 初始化为准双向口
+   88   1          P0M1 = 0;   P0M0 = 0;
+   89   1          P1M1 = 0;   P1M0 = 0;
+   90   1          P2M1 = 0;   P2M0 = 0;
+   91   1          P3M1 = 0;   P3M0 = 0;
+   92   1          P4M1 = 0;   P4M0 = 0;
+   93   1          P5M1 = 0;   P5M0 = 0;
+   94   1          P6M1 = 0;   P6M0 = 0;
+   95   1          P7M1 = 0;   P7M0 = 0;
+   96   1          
+   97   1          // 初始化端口
+   98   1          P0 = 0xFF;  P1 = 0xFF;  P2 = 0xFF;
+   99   1          P3 = 0xFF;  P4 = 0xFF;  P5 = 0xFF;
+  100   1          // LED 初始状态：亮
+  101   1          P42 = 0;
+  102   1          // 启动定时器
+  103   1          Timer0_Init();
+  104   1          //<<AICUBE_USER_MAIN_CODE_END>>
+  105   1      
+  106   1          while (1) 
+  107   1          {
+  108   2              USBLIB_OUT_Done();              //查询方式处理USB接收的数据
+  109   2      
+  110   2              //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
+  111   2              // 在此添加主函数中用户主循环代码  
+  112   2              //<<AICUBE_USER_MAIN_LOOP_END>>
+  113   2          }
+  114   1      }
+  115          
+  116          ////////////////////////////////////////
+  117          // 系统初始化函数
+  118          // 入口参数: 无
+  119          // 函数返回: 无
+  120          ////////////////////////////////////////
+  121          void SYS_Init(void)
+  122          {
+  123   1          EnableAccessXFR();                  //使能访问扩展XFR
+  124   1          AccessCodeFastest();                //设置最快速度访问程序代码
+C251 COMPILER V5.60.0,  main                                                               04/05/26  10:30:43  PAGE 3   
 
+  125   1          AccessIXramFastest();               //设置最快速度访问内部XDATA
+  126   1          IAP_SetTimeBase();                  //设置IAP等待参数,产生1us时基
+  127   1      
+  128   1          //<<AICUBE_USER_PREINITIAL_CODE_BEGIN>>
+  129   1          // 在此添加用户预初始化代码  
+  130   1          //<<AICUBE_USER_PREINITIAL_CODE_END>>
+  131   1      
+  132   1          PORT3_Init();                       //P3口初始化
+  133   1          PORT5_Init();                       //P5口初始化
+  134   1          CLK_Init();                         //时钟模块初始化
+  135   1          CRE_Init();                         //自动追频模块初始化
+  136   1          delay_ms(1);
+  137   1          USBLIB_Init();                      //USB库初始化
+  138   1          delay_ms(1);
+  139   1          MATHLIB_Init();                     //MATH库初始化
+  140   1      
+  141   1          //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
+  142   1          // 在此添加用户初始化代码  
+  143   1          //<<AICUBE_USER_INITIAL_CODE_END>>
+  144   1      
+  145   1          EnableGlobalInt();                  //使能全局中断
+  146   1          USBLIB_WaitConfiged();              //等待USB完成配置
+  147   1      }
+  148          
+  149          ////////////////////////////////////////
+  150          // 微秒延时函数
+  151          // 入口参数: us (设置延时的微秒值)
+  152          // 函数返回: 无
+  153          ////////////////////////////////////////
+  154          void delay_us(uint16_t us)
+  155          {
+  156   1          do
+  157   1          {
+  158   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+  159   2          } while (--us);
+  160   1      }
+  161          
+  162          
+  163          ////////////////////////////////////////
+  164          // 毫秒延时函数
+  165          // 入口参数: ms (设置延时的毫秒值)
+  166          // 函数返回: 无
+  167          ////////////////////////////////////////
+  168          void delay_ms(uint16_t ms)
+  169          {
+  170   1          uint16_t i;
+  171   1      
+  172   1          do
+  173   1          {
+  174   2              i = MAIN_Fosc / 6000;
+  175   2              while (--i);
+  176   2          } while (--ms);
+  177   1      }
+  178          
+  179          
+  180          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  181          // 在此添加用户函数实现代码  
+  182          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  183          
+  184          
 
-C251 COMPILER V5.60.0,  main                                                               03/05/26  20:45:01  PAGE 3   
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       137     ------
+  code size            =       299     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
+C251 COMPILER V5.60.0,  main                                                               04/05/26  10:30:43  PAGE 4   
+
   idata size           =    ------     ------
   pdata size           =    ------     ------
-  xdata size           =    ------     ------
+  xdata size           =         2     ------
   xdata-const size     =    ------     ------
   edata size           =    ------     ------
   bit size             =    ------     ------
@@ -153,7 +217,7 @@ Module Information          Static   Overlayable
   far data size        =    ------     ------
   huge data size       =    ------     ------
   const size           =    ------     ------
-  hconst size          =         2     ------
+  hconst size          =         9     ------
 End of Module Information.
 
 

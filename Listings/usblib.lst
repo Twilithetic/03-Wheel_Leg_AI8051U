@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  usblib                                                             03/05/26  20:45:02  PAGE 1   
+C251 COMPILER V5.60.0,  usblib                                                             04/05/26  10:30:44  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE usblib
@@ -66,7 +66,7 @@ stmt  level    source
    56          // 入口参数: 无
    57          // 函数返回: 无
    58          // bUsbOutReady：USB设备接收数据标志位
-C251 COMPILER V5.60.0,  usblib                                                             03/05/26  20:45:02  PAGE 2   
+C251 COMPILER V5.60.0,  usblib                                                             04/05/26  10:30:44  PAGE 2   
 
    59          // OutNumber：USB设备接收到的数据长度
    60          // UsbOutBuffer：保存USB设备接收到的数据
