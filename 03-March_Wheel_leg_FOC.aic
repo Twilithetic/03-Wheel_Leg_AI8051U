@@ -606,7 +606,7 @@
 		<HSTFPUDivider>1</HSTFPUDivider>
 	</CLOCK>
 	<CRE>
-		<PeriEnable>1</PeriEnable>
+		<PeriEnable>0</PeriEnable>
 		<EnableX32K>1</EnableX32K>
 		<CREFrequency>40000000</CREFrequency>
 		<CREError>5</CREError>

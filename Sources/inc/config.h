@@ -44,7 +44,6 @@
 
 #include "port.h"
 #include "clock.h"
-#include "cre.h"
 #include "usblib.h"
 #include "mathlib.h"
 

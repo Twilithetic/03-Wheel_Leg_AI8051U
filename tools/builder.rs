@@ -262,7 +262,7 @@ fn show_info() -> Result<()> {
     Ok(())
 }
 
-/// 烧录（调用 AiCube-ISP）
+/// 烧录（提示用户使用 AiCube-ISP 或 HID 脚本）
 fn flash() -> Result<()> {
     step("烧录中...");
 
@@ -270,19 +270,21 @@ fn flash() -> Result<()> {
         bail!("HEX 文件不存在: {} (请先运行 build)", TARGET);
     }
 
-    let isp = r"tools\AiCube-ISP-v6.96V-plus.exe";
-    if Path::new(isp).exists() {
-        info(&format!("启动烧录工具: {}", isp));
-        Command::new(isp)
-            .arg("/auto")
-            .arg(TARGET)
-            .spawn()
-            .with_context(|| "启动烧录工具失败")?;
-        ok("烧录命令已发送");
-    } else {
-        err(&format!("未找到烧录工具: {}", isp));
-        info("请手动打开 AiCube-ISP 烧录 HEX 文件");
-    }
+    let size = fs::metadata(TARGET)?.len();
+    println!("  📦 HEX: {} ({} bytes)", TARGET.dimmed(), size);
+    println!();
+
+    // AiCube-ISP 是 GUI 工具，不支持命令行参数
+    // 提示用户操作步骤
+    println!("  {}", "═══ 烧录步骤 ═══".yellow());
+    println!("  1. 打开 {} ", r"tools\AiCube-ISP-v6.96V-plus.exe".dimmed());
+    println!("  2. 选择芯片: AI8051U-34K64");
+    println!("  3. 选择 HEX: {}", TARGET.dimmed());
+    println!("  4. 点击「下载/编程」");
+    println!();
+    println!("  {}", "💡 提示: 正在开发 USB-HID 命令行烧录脚本 ~/".dimmed());
+    println!("  {}", "   完成后将支持一键烧录: builder.rs flash".dimmed());
+
     Ok(())
 }
 

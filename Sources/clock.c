@@ -38,10 +38,6 @@ void CLK_Init(void)
     CLK_PWMBCLK_Divider(1);             //设置PWMB时钟预分频系数
     CLK_TFPUCLK_Divider(1);             //设置TFPU时钟预分频系数
 
-    CLK_X32K_Enable();                  //启动外部32768晶振
-    CLK_X32K_FullGain();                //振荡器高增益
-    CLK_X32K_WaitStable();              //等待振荡器稳定
-
     CLK_LIRC_Enable();                  //启动内部低速LIRC
     CLK_LIRC_WaitStable();              //等待振荡器稳定
 

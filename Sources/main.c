@@ -103,7 +103,7 @@ void main(void)
     Timer0_Init();
     //<<AICUBE_USER_MAIN_CODE_END>>
 
-    while (1) 
+    while (1)
     {
         USBLIB_OUT_Done();              //查询方式处理USB接收的数据
 
@@ -129,10 +129,16 @@ void SYS_Init(void)
     // 在此添加用户预初始化代码  
     //<<AICUBE_USER_PREINITIAL_CODE_END>>
 
+    P0M0 = 0x00; P0M1 = 0x00;           //初始化P0口为准双向口模式
+    P1M0 = 0x00; P1M1 = 0x00;           //初始化P1口为准双向口模式
+    P2M0 = 0x00; P2M1 = 0x00;           //初始化P2口为准双向口模式
+    P3M0 = 0x00; P3M1 = 0x00;           //初始化P3口为准双向口模式
+    P4M0 = 0x00; P4M1 = 0x00;           //初始化P4口为准双向口模式
+    P5M0 = 0x00; P5M1 = 0x00;           //初始化P5口为准双向口模式
+
     PORT3_Init();                       //P3口初始化
     PORT5_Init();                       //P5口初始化
     CLK_Init();                         //时钟模块初始化
-    CRE_Init();                         //自动追频模块初始化
     delay_ms(1);
     USBLIB_Init();                      //USB库初始化
     delay_ms(1);
