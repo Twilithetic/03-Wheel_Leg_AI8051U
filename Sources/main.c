@@ -105,7 +105,7 @@ void main(void)
 
     while (1)
     {
-        USBLIB_OUT_Done();              //查询方式处理USB接收的数据
+        WDT_Clear();                    //清看门狗定时器
 
         //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
         // 在此添加主函数中用户主循环代码  
@@ -139,6 +139,7 @@ void SYS_Init(void)
     PORT3_Init();                       //P3口初始化
     PORT5_Init();                       //P5口初始化
     CLK_Init();                         //时钟模块初始化
+    WDT_Init();                         //看门狗初始化
     delay_ms(1);
     USBLIB_Init();                      //USB库初始化
     delay_ms(1);

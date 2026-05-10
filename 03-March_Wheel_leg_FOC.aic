@@ -615,7 +615,7 @@
 		<CREStep>0</CREStep>
 	</CRE>
 	<WDT>
-		<PeriEnable>0</PeriEnable>
+		<PeriEnable>1</PeriEnable>
 		<WDTIdleRun>0</WDTIdleRun>
 		<WDTPrescale>3</WDTPrescale>
 	</WDT>
@@ -753,9 +753,9 @@
 		<UartREN>1</UartREN>
 		<EnableTMO>0</EnableTMO>
 		<EnableTMOInt>0</EnableTMOInt>
-		<EnableInt>0</EnableInt>
+		<EnableInt>1</EnableInt>
 		<LinkPrintf>0</LinkPrintf>
-		<ModbusCRC16>0</ModbusCRC16>
+		<ModbusCRC16>1</ModbusCRC16>
 		<BaudGenerator>1</BaudGenerator>
 		<UartBit>0</UartBit>
 		<UartBaudrate>9600</UartBaudrate>
@@ -764,14 +764,14 @@
 		<TMOInterval>10</TMOInterval>
 		<TMOUnit>0</TMOUnit>
 		<IntPriority>0</IntPriority>
-		<EnableTxDMA>0</EnableTxDMA>
-		<EnableTxDMAInt>0</EnableTxDMAInt>
+		<EnableTxDMA>1</EnableTxDMA>
+		<EnableTxDMAInt>1</EnableTxDMAInt>
 		<TxDMAAmount>16</TxDMAAmount>
 		<TxDMAInterval>0</TxDMAInterval>
 		<TxDMAIntPriority>0</TxDMAIntPriority>
 		<TxDMABusPriority>0</TxDMABusPriority>
-		<EnableRxDMA>0</EnableRxDMA>
-		<EnableRxDMAInt>0</EnableRxDMAInt>
+		<EnableRxDMA>1</EnableRxDMA>
+		<EnableRxDMAInt>1</EnableRxDMAInt>
 		<RxDMAAmount>16</RxDMAAmount>
 		<RxDMAInterval>0</RxDMAInterval>
 		<RxDMAIntPriority>0</RxDMAIntPriority>
@@ -785,7 +785,7 @@
 		<AutoRecvData>1</AutoRecvData>
 		<RxBufferSize>16</RxBufferSize>
 		<RxBuffer>pu8UART1RxBuffer</RxBuffer>
-		<RxCount></RxCount>
+		<RxCount>u8UART1RxCount</RxCount>
 	</UART1>
 	<UART2>
 		<PeriEnable>0</PeriEnable>
@@ -824,7 +824,7 @@
 		<AutoRecvData>1</AutoRecvData>
 		<RxBufferSize>16</RxBufferSize>
 		<RxBuffer>pu8UART2RxBuffer</RxBuffer>
-		<RxCount></RxCount>
+		<RxCount>u8UART2RxCount</RxCount>
 	</UART2>
 	<UART3>
 		<PeriEnable>0</PeriEnable>
@@ -863,7 +863,7 @@
 		<AutoRecvData>1</AutoRecvData>
 		<RxBufferSize>16</RxBufferSize>
 		<RxBuffer>pu8UART3RxBuffer</RxBuffer>
-		<RxCount></RxCount>
+		<RxCount>u8UART3RxCount</RxCount>
 	</UART3>
 	<UART4>
 		<PeriEnable>0</PeriEnable>
@@ -902,7 +902,7 @@
 		<AutoRecvData>1</AutoRecvData>
 		<RxBufferSize>16</RxBufferSize>
 		<RxBuffer>pu8UART4RxBuffer</RxBuffer>
-		<RxCount></RxCount>
+		<RxCount>u8UART4RxCount</RxCount>
 	</UART4>
 	<EXTI0>
 		<PeriEnable>0</PeriEnable>
@@ -1481,10 +1481,10 @@
 		<PeriEnable>1</PeriEnable>
 		<USBPort>0</USBPort>
 		<USBPotocol>0</USBPotocol>
-		<ProcessMode>0</ProcessMode>
+		<ProcessMode>1</ProcessMode>
 		<EnableUPDISP>1</EnableUPDISP>
 		<WaitConfiged>1</WaitConfiged>
-		<LinkPrintf>1</LinkPrintf>
+		<LinkPrintf>0</LinkPrintf>
 		<ISPCommand>@STCISP#</ISPCommand>
 		<EnableInt>1</EnableInt>
 		<IntPriority>0</IntPriority>

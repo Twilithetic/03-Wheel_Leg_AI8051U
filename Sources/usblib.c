@@ -33,6 +33,7 @@ void USBLIB_Init(void)
 {
     usb_init();                         //初始化USB模块
     USB_SetIntPriority(0);              //设置中断为最低优先级
+    set_usb_OUT_callback(USBLIB_OUT_Callback); //设置USB中断回调函数
     set_usb_ispcmd("@STCISP#");         //设置USB不停电下载命令
 
     //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
@@ -52,24 +53,19 @@ void USBLIB_WaitConfiged(void)
 }
 
 ////////////////////////////////////////
-// USB设备接收数据处理程序
+// USB设备接收数据中断回调程序
 // 入口参数: 无
 // 函数返回: 无
-// bUsbOutReady：USB设备接收数据标志位
 // OutNumber：USB设备接收到的数据长度
 // UsbOutBuffer：保存USB设备接收到的数据
 ////////////////////////////////////////
-void USBLIB_OUT_Done(void)
+void USBLIB_OUT_Callback(void)
 {
-    if (bUsbOutReady)                   //查询是否有接收到USB主机发送数据
-    {
-        //<<AICUBE_USER_USBLIB_ISR_CODE1_BEGIN>>
+    //<<AICUBE_USER_USBLIB_ISR_CODE1_BEGIN>>
         // 在此添加中断函数用户代码  
         USB_SendData(UsbOutBuffer, OutNumber); //原路返回, 用于测试
         // 在此处添加用户处理接收数据的代码
-        //<<AICUBE_USER_USBLIB_ISR_CODE1_END>>
-        usb_OUT_done();                 //当前包的数据处理完成,通知USB主机可以发送下一包数据
-    }
+    //<<AICUBE_USER_USBLIB_ISR_CODE1_END>>
 }
 
 

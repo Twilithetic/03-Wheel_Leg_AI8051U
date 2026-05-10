@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               10/05/26  20:35:52  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               10/05/26  21:26:27  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -66,7 +66,7 @@ stmt  level    source
    56          
    57          // ==================== T0 中断服务程序 ====================
    58          void Timer0_ISR(void) interrupt 1
-C251 COMPILER V5.60.0,  main                                                               10/05/26  20:35:52  PAGE 2   
+C251 COMPILER V5.60.0,  main                                                               10/05/26  21:26:27  PAGE 2   
 
    59          {
    60   1          tick_10ms++;               // 每 10ms +1
@@ -117,7 +117,7 @@ stmt  level    source
   105   1      
   106   1          while (1)
   107   1          {
-  108   2              USBLIB_OUT_Done();              //查询方式处理USB接收的数据
+  108   2              WDT_Clear();                    //清看门狗定时器
   109   2      
   110   2              //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
   111   2              // 在此添加主函数中用户主循环代码  
@@ -134,7 +134,7 @@ stmt  level    source
   122          {
   123   1          EnableAccessXFR();                  //使能访问扩展XFR
   124   1          AccessCodeFastest();                //设置最快速度访问程序代码
-C251 COMPILER V5.60.0,  main                                                               10/05/26  20:35:52  PAGE 3   
+C251 COMPILER V5.60.0,  main                                                               10/05/26  21:26:27  PAGE 3   
 
   125   1          AccessIXramFastest();               //设置最快速度访问内部XDATA
   126   1          IAP_SetTimeBase();                  //设置IAP等待参数,产生1us时基
@@ -153,62 +153,63 @@ stmt  level    source
   139   1          PORT3_Init();                       //P3口初始化
   140   1          PORT5_Init();                       //P5口初始化
   141   1          CLK_Init();                         //时钟模块初始化
-  142   1          delay_ms(1);
-  143   1          USBLIB_Init();                      //USB库初始化
-  144   1          delay_ms(1);
-  145   1          MATHLIB_Init();                     //MATH库初始化
-  146   1      
-  147   1          //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
-  148   1          // 在此添加用户初始化代码  
-  149   1          //<<AICUBE_USER_INITIAL_CODE_END>>
-  150   1      
-  151   1          EnableGlobalInt();                  //使能全局中断
-  152   1          USBLIB_WaitConfiged();              //等待USB完成配置
-  153   1      }
-  154          
-  155          ////////////////////////////////////////
-  156          // 微秒延时函数
-  157          // 入口参数: us (设置延时的微秒值)
-  158          // 函数返回: 无
-  159          ////////////////////////////////////////
-  160          void delay_us(uint16_t us)
-  161          {
-  162   1          do
-  163   1          {
-  164   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
-  165   2          } while (--us);
-  166   1      }
-  167          
+  142   1          WDT_Init();                         //看门狗初始化
+  143   1          delay_ms(1);
+  144   1          USBLIB_Init();                      //USB库初始化
+  145   1          delay_ms(1);
+  146   1          MATHLIB_Init();                     //MATH库初始化
+  147   1      
+  148   1          //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
+  149   1          // 在此添加用户初始化代码  
+  150   1          //<<AICUBE_USER_INITIAL_CODE_END>>
+  151   1      
+  152   1          EnableGlobalInt();                  //使能全局中断
+  153   1          USBLIB_WaitConfiged();              //等待USB完成配置
+  154   1      }
+  155          
+  156          ////////////////////////////////////////
+  157          // 微秒延时函数
+  158          // 入口参数: us (设置延时的微秒值)
+  159          // 函数返回: 无
+  160          ////////////////////////////////////////
+  161          void delay_us(uint16_t us)
+  162          {
+  163   1          do
+  164   1          {
+  165   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+  166   2          } while (--us);
+  167   1      }
   168          
-  169          ////////////////////////////////////////
-  170          // 毫秒延时函数
-  171          // 入口参数: ms (设置延时的毫秒值)
-  172          // 函数返回: 无
-  173          ////////////////////////////////////////
-  174          void delay_ms(uint16_t ms)
-  175          {
-  176   1          uint16_t i;
-  177   1      
-  178   1          do
-  179   1          {
-  180   2              i = MAIN_Fosc / 6000;
-  181   2              while (--i);
-  182   2          } while (--ms);
-  183   1      }
-  184          
+  169          
+  170          ////////////////////////////////////////
+  171          // 毫秒延时函数
+  172          // 入口参数: ms (设置延时的毫秒值)
+  173          // 函数返回: 无
+  174          ////////////////////////////////////////
+  175          void delay_ms(uint16_t ms)
+  176          {
+  177   1          uint16_t i;
+  178   1      
+  179   1          do
+  180   1          {
+  181   2              i = MAIN_Fosc / 6000;
+  182   2              while (--i);
+  183   2          } while (--ms);
+  184   1      }
   185          
-  186          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
-  187          // 在此添加用户函数实现代码  
-  188          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-  189          
+  186          
+  187          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  188          // 在此添加用户函数实现代码  
+  189          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
   190          
-C251 COMPILER V5.60.0,  main                                                               10/05/26  20:35:52  PAGE 4   
+C251 COMPILER V5.60.0,  main                                                               10/05/26  21:26:27  PAGE 4   
 
+  191          
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       332     ------
+  code size            =       335     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------

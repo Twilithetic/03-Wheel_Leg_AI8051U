@@ -163,7 +163,13 @@ set_usb_ispcmd("@STCISP#");  // 设置不停电下载命令（HID协议）
 
 ## 五、参考来源
 
-1. **USB 2.0 Specification** — Ch4: Data Flow Types, Ch9: USB Device Framework
+1. **USB 2.0 Specification** (文件: `USB 2.0 协议usb_20.pdf`)
+   - §4.8 (Page 50): *"USB devices are divided into device classes such as hub, **human interface**, printer, imaging, or mass storage device."*
+   - §4.8.1 (Page 50): *"Standard information ... includes vendor identification, **device class**, and power management capability."*
+   - §4.8.2.2 (Page 52): *"A **human interface device** such as a mouse, keyboard, tablet, or game controller"*
+   - §5.5 (Page 66): *"**Control transfers** allow access to different parts of a device."*
+   - §5.5.3 (Page 67): *"The allowable maximum control transfer data payload sizes for full-speed devices is 8, 16, 32, or **64 bytes**"*
+   - Page 30: *"This document is complemented and referenced by the **Universal Serial Bus Device Class Specifications**."*（说明 HID/CDC 细节在独立类规范中）
 2. **USB Device Class Definition for HID** — USB-IF HID 规范
 3. **USB Device Class Definition for CDC** — USB-IF CDC 规范（ACM 子类）
 4. **STC8H 系列单片机技术参考手册** — 第 129-137 页，USB ISP 下载章节

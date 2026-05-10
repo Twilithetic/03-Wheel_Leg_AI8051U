@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  port                                                               10/05/26  20:35:52  PAGE 1   
+C251 COMPILER V5.60.0,  port                                                               10/05/26  21:26:27  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE port
@@ -66,7 +66,7 @@ stmt  level    source
    55          ////////////////////////////////////////
    56          void PORT5_Init(void)
    57          {
-C251 COMPILER V5.60.0,  port                                                               10/05/26  20:35:52  PAGE 2   
+C251 COMPILER V5.60.0,  port                                                               10/05/26  21:26:27  PAGE 2   
 
    58   1          SetP5nInitLevelHigh(PIN_ALL);       //设置P5初始化电平
    59   1          SetP5nQuasiMode(PIN_5 | PIN_4 | PIN_3 | PIN_2 | PIN_1 | PIN_0); //设置P5.5,P5.4,P5.3,P5.2,P5.1,P5.0

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  clock                                                              10/05/26  20:35:52  PAGE 1   
+C251 COMPILER V5.60.0,  clock                                                              10/05/26  21:26:27  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE clock
@@ -66,7 +66,7 @@ stmt  level    source
    56   1      
    57   1          CLK_MCLK2_PLL();                    //选择PLL的输出时钟作为主时钟
    58   1      
-C251 COMPILER V5.60.0,  clock                                                              10/05/26  20:35:52  PAGE 2   
+C251 COMPILER V5.60.0,  clock                                                              10/05/26  21:26:27  PAGE 2   
 
    59   1          CLK_SYSCLK_Divider(4);              //设置系统时钟分频系数
    60   1      

@@ -1,13 +1,13 @@
 //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
 ////////////////////////////////////////
 // 在此添加用户文件头说明信息  
-// 文件名称: usblib.h
+// 文件名称: wdt.h
 ////////////////////////////////////////
 //<<AICUBE_USER_HEADER_REMARK_END>>
 
 
-#ifndef __USBLIB_H__
-#define __USBLIB_H__
+#ifndef __WDT_H__
+#define __WDT_H__
 
 
 //<<AICUBE_USER_DEFINE_BEGIN>>
@@ -16,9 +16,7 @@
 
 
 
-void USBLIB_Init(void);
-void USBLIB_WaitConfiged(void);
-void USBLIB_OUT_Callback(void);
+void WDT_Init(void);
 
 
 

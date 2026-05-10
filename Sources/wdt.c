@@ -1,11 +1,11 @@
 //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
 ////////////////////////////////////////
 // 在此添加用户文件头说明信息  
-// 文件名称: cre.c
+// 文件名称: wdt.c
 // 文件描述: 
 // 文件版本: V1.0
 // 修改记录:
-//   1. (2026-05-03) 创建文件
+//   1. (2026-05-10) 创建文件
 ////////////////////////////////////////
 //<<AICUBE_USER_HEADER_REMARK_END>>
 
@@ -25,28 +25,20 @@
 
 
 ////////////////////////////////////////
-// 自动追频初始化函数
+// 看门狗初初始化函数
 // 入口参数: 无
 // 函数返回: 无
 ////////////////////////////////////////
-void CRE_Init(void)
+void WDT_Init(void)
 {
-    uint32_t cnt;
-    uint32_t res;
+    WDT_IdlePause();                    //CPU处于IDLE模式时看门狗暂停计数
+    WDT_SetPrescale16();                //设置看门狗的时钟预分频
 
-    CLK_HIRC_44MHzBand();               //选择44MHz频段
+    WDT_Enable();                       //使能看门狗
 
-    CRE_OneStepMode();                  //设置单步追频模式
-    CRE_CalibCycle_1ms();               //设置追频周期
-
-    CRE_SetCalibCounter(cnt);           //设置自动追频的计数值
-    CRE_SetCalibError(res);             //设置自动追频的误差值
-
-    CRE_Enable();                       //启动自动追频
-
-    //<<AICUBE_USER_CRE_INITIAL_BEGIN>>
+    //<<AICUBE_USER_WDT_INITIAL_BEGIN>>
     // 在此添加用户初始化代码  
-    //<<AICUBE_USER_CRE_INITIAL_END>>
+    //<<AICUBE_USER_WDT_INITIAL_END>>
 }
 
 

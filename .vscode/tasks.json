@@ -26,46 +26,46 @@
                 }
             }
         },
-        {
-            "label": "🔨 Compile",
-            "detail": "仅编译 C → OBJ (builder.rs)",
-            "type": "process",
-            "command": "cargo",
-            "args": [
-                "+nightly",
-                "-Zscript",
-                "tools/builder.rs",
-                "compile"
-            ],
-            "options": { "cwd": "${workspaceFolder}" },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" },
-            "problemMatcher": {
-                "owner": "c251",
-                "pattern": {
-                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "severity": 3,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "label": "🔗 Link",
-            "detail": "仅链接 OBJ + LIB → HEX (builder.rs)",
-            "type": "process",
-            "command": "cargo",
-            "args": [
-                "+nightly",
-                "-Zscript",
-                "tools/builder.rs",
-                "link"
-            ],
-            "options": { "cwd": "${workspaceFolder}" },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
-        },
+        // {
+        //     "label": "🔨 Compile",
+        //     "detail": "仅编译 C → OBJ (builder.rs)",
+        //     "type": "process",
+        //     "command": "cargo",
+        //     "args": [
+        //         "+nightly",
+        //         "-Zscript",
+        //         "tools/builder.rs",
+        //         "compile"
+        //     ],
+        //     "options": { "cwd": "${workspaceFolder}" },
+        //     "group": "build",
+        //     "presentation": { "reveal": "always", "panel": "shared" },
+        //     "problemMatcher": {
+        //         "owner": "c251",
+        //         "pattern": {
+        //             "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
+        //             "file": 1,
+        //             "line": 2,
+        //             "severity": 3,
+        //             "message": 5
+        //         }
+        //     }
+        // },
+        // {
+        //     "label": "🔗 Link",
+        //     "detail": "仅链接 OBJ + LIB → HEX (builder.rs)",
+        //     "type": "process",
+        //     "command": "cargo",
+        //     "args": [
+        //         "+nightly",
+        //         "-Zscript",
+        //         "tools/builder.rs",
+        //         "link"
+        //     ],
+        //     "options": { "cwd": "${workspaceFolder}" },
+        //     "group": "build",
+        //     "presentation": { "reveal": "always", "panel": "shared" }
+        // },
         {
             "label": "🧹 Clean",
             "detail": "清理构建产物 (builder.rs)",
@@ -81,58 +81,58 @@
             "group": "build",
             "presentation": { "reveal": "always", "panel": "shared" }
         },
-        {
-            "label": "🔄 Rebuild",
-            "detail": "清理 + 重新构建 (builder.rs)",
-            "type": "process",
-            "command": "cargo",
-            "args": [
-                "+nightly",
-                "-Zscript",
-                "tools/builder.rs",
-                "rebuild"
-            ],
-            "options": { "cwd": "${workspaceFolder}" },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
-        },
-        {
-            "label": "🔥 Flash",
-            "detail": "烧录 HEX 到芯片 (builder.rs)",
-            "type": "process",
-            "command": "cargo",
-            "args": [
-                "+nightly",
-                "-Zscript",
-                "tools/builder.rs",
-                "flash"
-            ],
-            "options": { "cwd": "${workspaceFolder}" },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "dedicated" }
-        },
-        {
-            "label": "🔥 Build + Flash",
-            "detail": "编译 → 链接 → 烧录",
-            "dependsOn": ["🔨 Build", "🔥 Flash"],
-            "dependsOrder": "sequence",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "ℹ️  Project Info",
-            "detail": "显示项目信息 (builder.rs)",
-            "type": "process",
-            "command": "cargo",
-            "args": [
-                "+nightly",
-                "-Zscript",
-                "tools/builder.rs",
-                "info"
-            ],
-            "options": { "cwd": "${workspaceFolder}" },
-            "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
-        }
+        // {
+        //     "label": "🔄 Rebuild",
+        //     "detail": "清理 + 重新构建 (builder.rs)",
+        //     "type": "process",
+        //     "command": "cargo",
+        //     "args": [
+        //         "+nightly",
+        //         "-Zscript",
+        //         "tools/builder.rs",
+        //         "rebuild"
+        //     ],
+        //     "options": { "cwd": "${workspaceFolder}" },
+        //     "group": "build",
+        //     "presentation": { "reveal": "always", "panel": "shared" }
+        // },
+        // {
+        //     "label": "🔥 Flash",
+        //     "detail": "烧录 HEX 到芯片 (builder.rs)",
+        //     "type": "process",
+        //     "command": "cargo",
+        //     "args": [
+        //         "+nightly",
+        //         "-Zscript",
+        //         "tools/builder.rs",
+        //         "flash"
+        //     ],
+        //     "options": { "cwd": "${workspaceFolder}" },
+        //     "group": "build",
+        //     "presentation": { "reveal": "always", "panel": "dedicated" }
+        // },
+        // {
+        //     "label": "🔥 Build + Flash",
+        //     "detail": "编译 → 链接 → 烧录",
+        //     "dependsOn": ["🔨 Build", "🔥 Flash"],
+        //     "dependsOrder": "sequence",
+        //     "group": "build",
+        //     "problemMatcher": []
+        // },
+        // {
+        //     "label": "ℹ️  Project Info",
+        //     "detail": "显示项目信息 (builder.rs)",
+        //     "type": "process",
+        //     "command": "cargo",
+        //     "args": [
+        //         "+nightly",
+        //         "-Zscript",
+        //         "tools/builder.rs",
+        //         "info"
+        //     ],
+        //     "options": { "cwd": "${workspaceFolder}" },
+        //     "group": "build",
+        //     "presentation": { "reveal": "always", "panel": "shared" }
+        // }
     ]
 }

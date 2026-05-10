@@ -1,6 +1,7 @@
 ".\Objects\main.obj",
 ".\Objects\port.obj",
 ".\Objects\clock.obj",
+".\Objects\wdt.obj",
 ".\Objects\usblib.obj",
 ".\Objects\mathlib.obj",
 ".\Sources\lib\ai8051u_32_mdu32.lib",

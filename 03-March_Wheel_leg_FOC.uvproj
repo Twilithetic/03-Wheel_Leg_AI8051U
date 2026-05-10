@@ -343,6 +343,11 @@
               <FilePath>.\Sources\clock.c</FilePath>
             </File>
             <File>
+              <FileName>wdt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sources\wdt.c</FilePath>
+            </File>
+            <File>
               <FileName>usblib.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sources\usblib.c</FilePath>

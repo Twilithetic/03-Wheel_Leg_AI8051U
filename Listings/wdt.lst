@@ -1,21 +1,21 @@
-C251 COMPILER V5.60.0,  mathlib                                                            10/05/26  21:26:27  PAGE 1   
+C251 COMPILER V5.60.0,  wdt                                                                10/05/26  21:26:27  PAGE 1   
 
 
-C251 COMPILER V5.60.0, COMPILATION OF MODULE mathlib
-OBJECT MODULE PLACED IN .\Objects\mathlib.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\mathlib.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Lis
-                    -tings\mathlib.lst) OBJECT(.\Objects\mathlib.obj) 
+C251 COMPILER V5.60.0, COMPILATION OF MODULE wdt
+OBJECT MODULE PLACED IN .\Objects\wdt.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\wdt.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
+                    -s\wdt.lst) OBJECT(.\Objects\wdt.obj) 
 
 stmt  level    source
 
     1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
     2          ////////////////////////////////////////
     3          // 在此添加用户文件头说明信息  
-    4          // 文件名称: mathlib.c
+    4          // 文件名称: wdt.c
     5          // 文件描述: 
     6          // 文件版本: V1.0
     7          // 修改记录:
-    8          //   1. (2026-05-03) 创建文件
+    8          //   1. (2026-05-10) 创建文件
     9          ////////////////////////////////////////
    10          //<<AICUBE_USER_HEADER_REMARK_END>>
    11          
@@ -35,40 +35,43 @@ stmt  level    source
    25          
    26          
    27          ////////////////////////////////////////
-   28          // 数学库初始化函数
+   28          // 看门狗初初始化函数
    29          // 入口参数: 无
    30          // 函数返回: 无
    31          ////////////////////////////////////////
-   32          void MATHLIB_Init(void)
+   32          void WDT_Init(void)
    33          {
-   34   1          TFPU_CLK_SYSCLK();                  //选择系统时钟作为TFPU时钟
-   35   1      
-   36   1          //<<AICUBE_USER_MATHLIB_INITIAL_BEGIN>>
-   37   1          // 在此添加用户初始化代码  
-   38   1          //<<AICUBE_USER_MATHLIB_INITIAL_END>>
-   39   1      }
-   40          
-   41          
-   42          
-   43          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
-   44          // 在此添加用户函数实现代码  
-   45          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-   46          
-   47          
+   34   1          WDT_IdlePause();                    //CPU处于IDLE模式时看门狗暂停计数
+   35   1          WDT_SetPrescale16();                //设置看门狗的时钟预分频
+   36   1      
+   37   1          WDT_Enable();                       //使能看门狗
+   38   1      
+   39   1          //<<AICUBE_USER_WDT_INITIAL_BEGIN>>
+   40   1          // 在此添加用户初始化代码  
+   41   1          //<<AICUBE_USER_WDT_INITIAL_END>>
+   42   1      }
+   43          
+   44          
+   45          
+   46          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+   47          // 在此添加用户函数实现代码  
+   48          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+   49          
+   50          
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =         4     ------
+  code size            =        15     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
   pdata size           =    ------     ------
+C251 COMPILER V5.60.0,  wdt                                                                10/05/26  21:26:27  PAGE 2   
+
   xdata size           =    ------     ------
   xdata-const size     =    ------     ------
   edata size           =    ------     ------
-C251 COMPILER V5.60.0,  mathlib                                                            10/05/26  21:26:27  PAGE 2   
-
   bit size             =    ------     ------
   ebit size            =    ------     ------
   bitaddressable size  =    ------     ------
