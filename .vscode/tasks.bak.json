@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🔨 Build",
+            "detail": "编译 + 链接 (Makefile)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "-j4" ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": {
+                "owner": "c251",
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "🧹 Clean",
+            "detail": "清理构建产物 (Makefile)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "clean" ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            "label": "🔄 Rebuild",
+            "detail": "清理 + 重新构建 (Makefile)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "rebuild", "-j4" ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" }
+        }
+    ]
+}

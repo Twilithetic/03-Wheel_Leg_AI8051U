@@ -2,17 +2,34 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🔨 Build",
-            "detail": "编译 + 链接 (Makefile)",
+            "label": "🔨 Build (builder.rs)",
+            "detail": "编译 + 链接 (cargo script → C251/L251)",
             "type": "shell",
-            "command": "make",
-            "args": [ "-j4" ],
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools\\builder.rs",
+                "build"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}",
-                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
             },
-            "group": { "kind": "build", "isDefault": true },
-            "presentation": { "reveal": "always", "panel": "shared" },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
             "problemMatcher": {
                 "owner": "c251",
                 "pattern": {
@@ -25,30 +42,87 @@
             }
         },
         {
-            "label": "🧹 Clean",
-            "detail": "清理构建产物 (Makefile)",
+            "label": "🧹 Clean (builder.rs)",
+            "detail": "清理构建产物",
             "type": "shell",
-            "command": "make",
-            "args": [ "clean" ],
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools\\builder.rs",
+                "clean"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}",
-                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
             },
             "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
         },
         {
-            "label": "🔄 Rebuild",
-            "detail": "清理 + 重新构建 (Makefile)",
+            "label": "🔄 Rebuild (builder.rs)",
+            "detail": "清理 + 重新构建",
             "type": "shell",
-            "command": "make",
-            "args": [ "rebuild", "-j4" ],
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools\\builder.rs",
+                "rebuild"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}",
-                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
             },
             "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "📋 项目信息 (builder.rs)",
+            "detail": "显示芯片、源文件、库文件等信息",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "+nightly",
+                "-Zscript",
+                "tools\\builder.rs",
+                "info"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": [
+                "$python"
+            ]
         }
     ]
 }

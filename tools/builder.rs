@@ -55,11 +55,23 @@ const TFPU_LIB:  &str = "Sources\\lib\\ai8051u_32_tfpu.LIB";
 const USB_LIB:   &str = "Sources\\lib\\stc_usb_cdc_32g_xdata.LIB";
 const TARGET: &str = "Objects\\03-March_Wheel_leg_FOC.hex";
 
-// C251 编译选项
-// LARGE = Large 内存模型
-// INCDIR 通过代码动态添加
+// C251 编译选项（与 .uvproj 配置完全一致）
+//   LARGE             — MemoryModel=4（大内存模型：默认变量在 XDATA）
+//   ROM(LARGE)        — RomSize=3（大 ROM：16MB 代码空间，LJMP/LCALL/LCALL）
+//   INTR2             — uFrame4=1（4 字节中断帧，库用此模式编译，必须匹配！）
+//   OPTIMIZE(7,SPEED) — Optim=7 + SizSpd=1（优化侧重速度）
+//   WARNINGLEVEL(2)   — wLevel=2
+//   DEBUG             — 包含调试信息
+//   SYMBOLS           — 生成符号表
+//   注：uSrcBin=1 是 CPU 模式（Source 251 native），不是命令行 SRC 选项！
+//       SRC 选项会阻止 .obj 生成，因此不包含在内。
+//   INCDIR 通过代码动态添加
 const C251_FLAGS: &[&str] = &[
     "LARGE",
+    "ROM(LARGE)",
+    "INTR2",
+    "OPTIMIZE(7, SPEED)",
+    "WARNINGLEVEL(2)",
     "DEBUG",
     "SYMBOLS",
 ];

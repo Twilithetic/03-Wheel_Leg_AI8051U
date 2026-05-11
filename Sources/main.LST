@@ -1,11 +1,10 @@
-C251 COMPILER V5.60.0,  main                                                               11/05/26  19:58:12  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               11/05/26  22:47:45  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
-OBJECT MODULE PLACED IN D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\main.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Sources\main.c LARGE INCDIR
-                    -(D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Sources\inc) INCDIR(D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Sources\inc\s
-                    -tc) OBJECT(D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\main.obj) 
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\main.c LARGE ROM(LARGE) INTR2 SRC OPTIMIZE(7,SPEED) WARNINGLEV
+                    -EL(2) DEBUG SYMBOLS INCDIR(Sources\inc) INCDIR(Sources\inc\stc) 
 
 stmt  level    source
 
@@ -66,9 +65,9 @@ stmt  level    source
    55   2          }
    56   1      }
    57          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
-C251 COMPILER V5.60.0,  main                                                               11/05/26  19:58:12  PAGE 2   
-
    58          
+C251 COMPILER V5.60.0,  main                                                               11/05/26  22:47:45  PAGE 2   
+
    59          
    60          
    61          ////////////////////////////////////////
@@ -134,9 +133,9 @@ stmt  level    source
   118          // 毫秒延时函数
   119          // 入口参数: ms (设置延时的毫秒值)
   120          // 函数返回: 无
-C251 COMPILER V5.60.0,  main                                                               11/05/26  19:58:12  PAGE 3   
-
   121          ////////////////////////////////////////
+C251 COMPILER V5.60.0,  main                                                               11/05/26  22:47:45  PAGE 3   
+
   122          void delay_ms(uint16_t ms)
   123          {
   124   1          uint16_t i;
@@ -158,7 +157,7 @@ stmt  level    source
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       255     ------
+  code size            =       259     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
@@ -173,7 +172,7 @@ Module Information          Static   Overlayable
   far data size        =    ------     ------
   huge data size       =    ------     ------
   const size           =    ------     ------
-  hconst size          =         9     ------
+  hconst size          =         2     ------
 End of Module Information.
 
 

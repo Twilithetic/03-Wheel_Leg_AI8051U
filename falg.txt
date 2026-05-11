@@ -1,0 +1,3 @@
+(C251)compiler control string：XSMALL INTR2 DEBUG
+(A251)Assembler control string: MODSRC INTR2 SET (XSMALL) DEBUG EP
+(L251 Locate)Linker control string: TO "stc32g_cdc_intemupt_demo"CASE

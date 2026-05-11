@@ -1,0 +1,809 @@
+$NOMACRO
+$MODSRC
+$MODEL(4)
+$INTR2
+$CASE
+
+;
+; 'Sources\main.SRC' generated from 'Sources\main.c'
+; COMPILER INVOKED BY:
+;        C:\Keil_v5\C251\BIN\C251.EXE Sources\main.c LARGE ROM(LARGE) INTR2 SRC OPTIMIZE(7,SPEED) WARNINGLEVEL(2) DEBUG SYMBOLS INCDIR(Sources\inc) INCDIR(Sources\inc\stc) 
+;
+                NAME main
+
+        EXTRN         CODE : NEAR (sprintf)
+        EXTRN         XDATA : BYTE (?sprintf?BYTE)
+        EXTRN         XDATA : BYTE (OutNumber)
+        EXTRN         XDATA : BYTE (UsbOutBuffer)
+        EXTRN         CODE : NEAR (USB_SendData)
+        EXTRN         CODE : NEAR (usb_init)
+        EXTRN         CODE : NEAR (set_usb_OUT_callback)
+        EXTRN         CODE : NEAR (?C?STARTUP)
+
+                 ?HC?MAIN  SEGMENT  HCONST  
+      ?PR?TIMER0_ISR?MAIN  SEGMENT  CODE  
+                 ?PR?IV?1  SEGMENT  CODE OFFS 0BH
+            ?PR?MAIN?MAIN  SEGMENT  CODE  
+     ?PR?TIMER0_INIT?MAIN  SEGMENT  CODE  
+              ?PR?_M?MAIN  SEGMENT  CODE  
+        ?PR?DELAY_MS?MAIN  SEGMENT  CODE  
+        ?PR?DELAY_US?MAIN  SEGMENT  CODE  
+    ?PR?USB_CALLBACK?MAIN  SEGMENT  CODE  
+                 ?XD?MAIN  SEGMENT  XDATA  
+             ?C_INITHDATA  SEGMENT  HCONST  
+
+        RSEG       ?XD?MAIN
+       tick_10ms:  DSW  1
+
+
+        RSEG       ?HC?MAIN
+
+?SC_0000:         DB  '0' ,000H
+
+;---- Initialization of 'tick_10ms':
+
+        RSEG       ?C_INITHDATA
+        DW  00002H
+        DB  BYTE2 (tick_10ms+0)
+        DW  WORD0 (tick_10ms+0)
+        DW  00000H
+;---- End of Runtime initialization ----
+
+;--- special function registers and bits:
+           T2_CT  BIT   08EH.3
+            P0M0  DATA  094H
+           SPDAT  DATA  0CFH
+            ACC6  BIT   0E0H.6
+           T1_CT  BIT   089H.6
+            ACC5  BIT   0E0H.5
+           T0_CT  BIT   089H.2
+            ACC4  BIT   0E0H.4
+            ?PSW  DATA  0D0H
+            ACC3  BIT   0E0H.3
+           PCMPH  BIT   0B6H.5
+            ACC2  BIT   0E0H.2
+        ENUSBRST  BIT   0F4H.6
+            ACC1  BIT   0E0H.1
+              B7  BIT   0F0H.7
+           LINEN  BIT   097H.0
+           EAXFR  BIT   0BAH.7
+            ACC0  BIT   0E0H.0
+              B6  BIT   0F0H.6
+              F1  BIT   0D0H.1
+              B5  BIT   0F0H.5
+         IRCBAND  DATA  09DH
+             ?F0  BIT   0D0H.5
+           CMPOE  BIT   0E6H.1
+              B4  BIT   0F0H.4
+           CMPEN  BIT   0E6H.7
+              B3  BIT   0F0H.3
+           AUXR2  DATA  097H
+              B2  BIT   0F0H.2
+        IAP_TRIG  DATA  0C6H
+           SWBS2  BIT   0C7H.3
+              B1  BIT   0F0H.1
+              B0  BIT   0F0H.0
+             TXD  BIT   0B0H.1
+           CMPIF  BIT   0E6H.6
+           SADDR  DATA  0A9H
+           CKCON  DATA  0EAH
+             RXD  BIT   0B0H.0
+           IAPEN  BIT   0C7H.7
+           DMAIR  DATA  0EDH
+           S1BRT  BIT   08EH.0
+           PPCAH  BIT   0B7H.7
+           S4REN  BIT   0FDH.4
+           S3REN  BIT   0ACH.4
+           SADEN  DATA  0B9H
+             SPH  DATA  085H
+           S2REN  BIT   09AH.4
+             PSH  BIT   0B7H.4
+        WDT_FLAG  BIT   0C1H.7
+        AUXINTIF  DATA  0EFH
+         CAN2_S1  BIT   0BBH.1
+           S1_S1  BIT   0A2H.7
+         CAN2_S0  BIT   0BBH.0
+           S4CON  DATA  0FDH
+           S1_S0  BIT   0A2H.6
+           S3CON  DATA  0ACH
+             DPS  DATA  0E3H
+           PI2SH  BIT   0EEH.3
+           CANEN  BIT   097H.1
+           S2CON  DATA  09AH
+          VRTRIM  DATA  0A6H
+             POF  BIT   087H.4
+             REN  BIT   098H.4
+           DFREC  BIT   0F4H.2
+           S4BUF  DATA  0FEH
+           SMOD0  BIT   087H.6
+           S3BUF  DATA  0ADH
+           T4x12  BIT   0DDH.5
+           T1_M1  BIT   089H.5
+           S2BUF  DATA  09BH
+          CMPO_S  BIT   0BAH.3
+          EN_WDT  BIT   0C1H.5
+           T3x12  BIT   0DDH.1
+           S4ST4  BIT   0FDH.6
+           T1_M0  BIT   089H.4
+           T0_M1  BIT   089H.1
+           T2x12  BIT   08EH.2
+           T0_M0  BIT   089H.0
+           T1x12  BIT   08EH.6
+           S3ST3  BIT   0ACH.6
+             IPH  DATA  0B7H
+           PADCH  BIT   0B7H.5
+          SPSTAT  DATA  0CDH
+            ?DPL  DATA  082H
+           T0x12  BIT   08EH.7
+        ADC_RESL  DATA  0BEH
+             PIE  BIT   0E6H.5
+           CANFD  BIT   097H.4
+           T3T4M  DATA  0DDH
+           T4T3M  DATA  0DDH
+            ?DPH  DATA  083H
+             PX4  BIT   0B5H.4
+             NIE  BIT   0E6H.4
+             T4R  BIT   0DDH.7
+           S4SM2  BIT   0FDH.5
+             IDL  BIT   087H.0
+          IRTRIM  DATA  09FH
+           S3SM2  BIT   0ACH.5
+             PX1  BIT   0B8H.2
+              ?Z  BIT   0D1H.1
+             T3R  BIT   0DDH.3
+             T2R  BIT   08EH.4
+           S2SM2  BIT   09AH.5
+             PX0  BIT   0B8H.0
+       WDT_CONTR  DATA  0C1H
+           S4SM0  BIT   0FDH.7
+             TR1  BIT   088H.6
+           S2SM1  BIT   09AH.6
+           S3SM0  BIT   0ACH.7
+           PI2CH  BIT   0B6H.6
+        S2SPI_S1  BIT   0BBH.5
+             PS4  BIT   0DFH.1
+             TR0  BIT   088H.4
+           S2SM0  BIT   09AH.7
+        S2SPI_S0  BIT   0BBH.4
+        S1SPI_S1  BIT   0BBH.3
+        IAP_DATA  DATA  0C2H
+            ?RS1  BIT   0D0H.4
+             PS3  BIT   0DFH.0
+           S4TB8  BIT   0FDH.3
+           S3TB8  BIT   0ACH.3
+             PS2  BIT   0B5H.0
+             PT1  BIT   0B8H.3
+        S1SPI_S0  BIT   0BBH.2
+            ?RS0  BIT   0D0H.3
+           S2TB8  BIT   09AH.3
+             PT0  BIT   0B8H.1
+             T4L  DATA  0D3H
+             TL4  DATA  0D3H
+           S4RB8  BIT   0FDH.2
+          EXTRAM  BIT   08EH.1
+           S3RB8  BIT   0ACH.2
+             T3L  DATA  0D5H
+             TL3  DATA  0D5H
+          RESFMT  BIT   0DEH.5
+            WTST  DATA  0E9H
+             SM2  BIT   098H.5
+           S2RB8  BIT   09AH.2
+        CMD_FAIL  BIT   0C7H.4
+             T2L  DATA  0D7H
+             TL2  DATA  0D7H
+             TL1  DATA  08BH
+             EX4  BIT   08FH.6
+             SM1  BIT   098H.6
+          SPI_S1  BIT   0A2H.3
+             TL0  DATA  08AH
+             EX3  BIT   08FH.5
+             SM0  BIT   098H.7
+          SPI_S0  BIT   0A2H.2
+          PPWMBH  BIT   0B6H.3
+             T4H  DATA  0D2H
+             TH4  DATA  0D2H
+             EX2  BIT   08FH.4
+          PPWMAH  BIT   0B6H.2
+              ?P  BIT   0D0H.0
+             T3H  DATA  0D4H
+             TH3  DATA  0D4H
+             IT1  BIT   088H.2
+             TB8  BIT   098H.3
+             EX1  BIT   0A8H.2
+             T2H  DATA  0D6H
+             TH2  DATA  0D6H
+             IT0  BIT   088H.0
+             TH1  DATA  08DH
+          USBCKS  BIT   09DH.7
+             EX0  BIT   0A8H.0
+             ET4  BIT   0AFH.6
+               N  BIT   0D1H.5
+             TH0  DATA  08CH
+             RB8  BIT   098H.2
+             ET3  BIT   0AFH.5
+             ES4  BIT   0AFH.4
+             IP3  DATA  0DFH
+          CMPRES  BIT   0E6H.0
+          USBCON  DATA  0F4H
+             TF1  BIT   088H.7
+             ES3  BIT   0AFH.3
+             ET2  BIT   0AFH.2
+             IP2  DATA  0B5H
+          RSTCFG  DATA  0FFH
+             TF0  BIT   088H.5
+             ET1  BIT   0A8H.3
+             ES2  BIT   0AFH.0
+             ET0  BIT   0A8H.1
+          LIN_S1  BIT   0A2H.1
+          DISFLT  BIT   0E7H.6
+          LIN_S0  BIT   0A2H.0
+            MSTR  BIT   0CEH.4
+            ?ACC  DATA  0E0H
+          USBCLK  DATA  0DCH
+          USBDAT  DATA  0ECH
+          RAMEXE  BIT   097H.5
+        ADC_FLAG  BIT   0BCH.5
+       IAP_CONTR  DATA  0C7H
+          USBADR  DATA  0FCH
+            AUXR  DATA  08EH
+              ?B  DATA  0F0H
+             IE2  DATA  0AFH
+            SWBS  BIT   0C7H.6
+             IE1  BIT   088H.3
+            MXAX  DATA  0EBH
+             GF1  BIT   087H.3
+             IE0  BIT   088H.1
+        HIRCSEL1  BIT   09DH.1
+       BUS_SPEED  DATA  0A1H
+             P77  BIT   0F8H.7
+             GF0  BIT   087H.2
+        HIRCSEL0  BIT   09DH.0
+            PSPI  BIT   0B5H.1
+             P67  BIT   0E8H.7
+             P76  BIT   0F8H.6
+             P57  BIT   0C8H.7
+             P66  BIT   0E8H.6
+             P75  BIT   0F8H.5
+            PUSB  BIT   0B5H.7
+             P47  BIT   0C0H.7
+             P56  BIT   0C8H.6
+             P65  BIT   0E8H.5
+             P74  BIT   0F8H.4
+             P37  BIT   0B0H.7
+            S4_S  BIT   0BAH.2
+             P46  BIT   0C0H.6
+             P55  BIT   0C8H.5
+            PRTC  BIT   0DFH.2
+             P64  BIT   0E8H.4
+             P73  BIT   0F8H.3
+            DPXL  DATA  084H
+             P27  BIT   0A0H.7
+             P36  BIT   0B0H.6
+            S3_S  BIT   0BAH.1
+       ADC_START  BIT   0BCH.6
+             P45  BIT   0C0H.5
+             P54  BIT   0C8H.4
+             P63  BIT   0E8H.3
+            PUEN  BIT   0F4H.4
+             P72  BIT   0F8H.2
+             P17  BIT   090H.7
+          CANSEL  BIT   097H.3
+             P26  BIT   0A0H.6
+             P35  BIT   0B0H.5
+            S2_S  BIT   0BAH.0
+       ADC_POWER  BIT   0BCH.7
+       ADC_EPWMT  BIT   0BCH.4
+             P44  BIT   0C0H.4
+             P53  BIT   0C8H.3
+             P62  BIT   0E8H.2
+             P71  BIT   0F8H.1
+             P07  BIT   080H.7
+             P16  BIT   090H.6
+             P25  BIT   0A0H.5
+          CAN_S1  BIT   0A2H.5
+             P34  BIT   0B0H.4
+            PLVD  BIT   0B8H.6
+             P43  BIT   0C0H.3
+             P52  BIT   0C8H.2
+            SSIG  BIT   0CEH.7
+            SPEN  BIT   0CEH.6
+             P61  BIT   0E8H.1
+             P70  BIT   0F8H.0
+             P06  BIT   080H.6
+             P15  BIT   090H.5
+             P24  BIT   0A0H.4
+          CAN_S0  BIT   0A2H.4
+             P33  BIT   0B0H.3
+             P42  BIT   0C0H.2
+             P51  BIT   0C8H.1
+            WCOL  BIT   0CDH.6
+             P60  BIT   0E8H.0
+          P47RST  BIT   0FFH.4
+             P05  BIT   080H.5
+            TCON  DATA  088H
+            TMOD  DATA  089H
+             P14  BIT   090H.4
+             P23  BIT   0A0H.3
+             P32  BIT   0B0H.2
+             P41  BIT   0C0H.1
+             P50  BIT   0C8H.0
+             P04  BIT   080H.4
+            SMOD  BIT   087H.7
+             P13  BIT   090H.3
+            SCON  DATA  098H
+             P22  BIT   0A0H.2
+             P31  BIT   0B0H.1
+             P40  BIT   0C0H.0
+             P03  BIT   080H.3
+             P12  BIT   090H.2
+             P21  BIT   0A0H.1
+             P30  BIT   0B0H.0
+          I2S_S1  BIT   0BBH.7
+            SPIF  BIT   0CDH.7
+          T4CLKO  BIT   0DDH.4
+         IAP_TPS  DATA  0F5H
+             P02  BIT   080H.2
+             P11  BIT   090H.1
+             P20  BIT   0A0H.0
+            ESPI  BIT   0AFH.1
+          I2S_S0  BIT   0BBH.6
+         CLR_WDT  BIT   0C1H.4
+          T3CLKO  BIT   0DDH.0
+             P01  BIT   080H.1
+            PCON  DATA  087H
+          S1M0x6  BIT   08EH.5
+          T2CLKO  BIT   08FH.2
+             P10  BIT   090H.0
+            SBUF  DATA  099H
+            PCMP  BIT   0B5H.5
+       ADC_CONTR  DATA  0BCH
+             P00  BIT   080H.0
+          T1CLKO  BIT   08FH.1
+            EUSB  BIT   0AFH.7
+          INT4IF  BIT   0EFH.6
+          T0CLKO  BIT   08FH.0
+            CPOL  BIT   0CEH.3
+          INT3IF  BIT   0EFH.5
+          INT2IF  BIT   0EFH.4
+            LVDF  BIT   087H.5
+            ELVD  BIT   0A8H.6
+           ?PSW1  DATA  0D1H
+         IDL_WDT  BIT   0C1H.3
+            DORD  BIT   0CEH.5
+              WR  BIT   0B0H.6
+          CMPCR2  DATA  0E7H
+          CMPCR1  DATA  0E6H
+            PDEN  BIT   0F4H.3
+         RAMTINY  BIT   097H.7
+            SPR1  BIT   0CEH.1
+         LIRTRIM  DATA  09EH
+            SPR0  BIT   0CEH.0
+            PX4H  BIT   0B6H.4
+            PPCA  BIT   0B8H.7
+           SWRST  BIT   0C7H.5
+             ?OV  BIT   0D0H.2
+            S4TI  BIT   0FDH.1
+            S3TI  BIT   0ACH.1
+       IAP_ADDRL  DATA  0C4H
+             ?SP  DATA  081H
+            S2TI  BIT   09AH.1
+              PS  BIT   0B8H.4
+          I2C_S1  BIT   0BAH.5
+         QSPI_S1  BIT   0BFH.1
+            PS2M  BIT   0F4H.5
+            S4RI  BIT   0FDH.0
+            S3RI  BIT   0ACH.0
+            PX1H  BIT   0B7H.2
+          I2C_S0  BIT   0BAH.4
+         QSPI_S0  BIT   0BFH.0
+            S2RI  BIT   09AH.0
+            PX0H  BIT   0B7H.0
+       IAP_ADDRH  DATA  0C3H
+            PS4H  BIT   0EEH.1
+            PI2S  BIT   0DFH.3
+         INVCMPO  BIT   0E7H.7
+            PS3H  BIT   0EEH.0
+            PS2H  BIT   0B6H.0
+            PT1H  BIT   0B7H.3
+              TI  BIT   098H.1
+            INT1  BIT   0B0H.3
+            PT0H  BIT   0B7H.1
+            CPHA  BIT   0CEH.2
+       IAP_ADDRE  DATA  0F6H
+            INT0  BIT   0B0H.2
+              CY  BIT   0D0H.7
+              RI  BIT   098H.0
+          ADCCFG  DATA  0DEH
+          CAN2EN  BIT   097H.2
+              IP  DATA  0B8H
+            PADC  BIT   0B8H.5
+              ES  BIT   0A8H.4
+            T4IF  BIT   0EFH.2
+         INTCLKO  DATA  08FH
+            T3IF  BIT   0EFH.1
+              RD  BIT   0B0H.7
+            T2IF  BIT   0EFH.0
+              TA  DATA  0AEH
+            IP3H  DATA  0EEH
+              PD  BIT   087H.1
+            IP2H  DATA  0B6H
+         ADC_RES  DATA  0BDH
+              DP  BIT   0F4H.1
+              DM  BIT   0F4H.0
+         CPUMODE  BIT   097H.6
+         IAP_CMD  DATA  0C5H
+            PI2C  BIT   0B5H.6
+           P_SW4  DATA  0BFH
+              IE  DATA  0A8H
+            EADC  BIT   0A8H.5
+           P_SW3  DATA  0BBH
+           P_SW2  DATA  0BAH
+           P_SW1  DATA  0A2H
+           ENLVR  BIT   0FFH.6
+         T1_GATE  BIT   089H.7
+           PPWMB  BIT   0B5H.3
+           SPCTL  DATA  0CEH
+         T0_GATE  BIT   089H.3
+           WKTCL  DATA  0AAH
+           PPWMA  BIT   0B5H.2
+              P7  DATA  0F8H
+             ?EA  BIT   0A8H.7
+           PSPIH  BIT   0B6H.1
+            P7M1  DATA  0E1H
+              P6  DATA  0E8H
+              T1  BIT   0B0H.5
+              P5  DATA  0C8H
+            P6M1  DATA  0CBH
+            P7M0  DATA  0E2H
+              T0  BIT   0B0H.4
+           PUSBH  BIT   0B6H.7
+              P4  DATA  0C0H
+            P5M1  DATA  0C9H
+            P6M0  DATA  0CCH
+             ?AC  BIT   0D0H.6
+           WKTCH  DATA  0ABH
+              P3  DATA  0B0H
+            P4M1  DATA  0B3H
+            P5M0  DATA  0CAH
+           PRTCH  BIT   0EEH.2
+              P2  DATA  0A0H
+            P3M1  DATA  0B1H
+            P4M0  DATA  0B4H
+              P1  DATA  090H
+            P2M1  DATA  095H
+            P3M0  DATA  0B2H
+              P0  DATA  080H
+            P1M1  DATA  091H
+            P2M0  DATA  096H
+         USBCKS2  BIT   09DH.6
+           PLVDH  BIT   0B7H.6
+           T4_CT  BIT   0DDH.6
+            P1M0  DATA  092H
+            P0M1  DATA  093H
+           T3_CT  BIT   0DDH.2
+            ACC7  BIT   0E0H.7
+           ENUSB  BIT   0F4H.7
+             ACC  DATA  0E0H
+             PSW  DATA  0D0H
+             DPL  DATA  082H
+             DPH  DATA  083H
+               B  DATA  0F0H
+              SP  DATA  081H
+            PSW1  DATA  0D1H
+               Z  BIT   0D1H.1
+              EA  BIT   0A8H.7
+              OV  BIT   0D0H.2
+               P  BIT   0D0H.0
+              F0  BIT   0D0H.5
+             RS1  BIT   0D0H.4
+             RS0  BIT   0D0H.3
+              AC  BIT   0D0H.6
+;--- end of special function registers and bits.
+
+        PUBLIC        Timer0_ISR
+        PUBLIC        main
+        PUBLIC        Timer0_Init
+        PUBLIC        _m
+        PUBLIC        delay_ms
+        PUBLIC        delay_us
+        PUBLIC        usb_callback
+        PUBLIC        tick_10ms
+
+; line 1: //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+; line 2: ////////////////////////////////////////
+; line 3: // 在此添加用户文件头说明信息  
+; line 4: // 文件名称: main.c
+; line 5: // 文件描述: 
+; line 6: // 文件版本: V1.0
+; line 7: // 修改记录:
+; line 8: //   1. (2026-05-03) 创建文件
+; line 9: ////////////////////////////////////////
+; line 10: //<<AICUBE_USER_HEADER_REMARK_END>>
+; line 11: 
+; line 12: 
+; line 13: #include "config.h"                     //默认已包含stdio.h、intrins.h等头文件
+; line 14: void usb_callback();
+; line 15: // ==================== 全局变量 ====================
+; line 16: volatile unsigned int tick_10ms = 0;   // 10ms 计数器
+; line 17: 
+; line 18: // ==================== T0 初始化 ====================
+; line 19: void Timer0_Init(void)
+
+        RSEG       ?PR?TIMER0_INIT?MAIN
+        Timer0_Init PROC
+; line 20: {
+; line 21:     // 1. 设置为模式 0（16 位自动重装载）
+; line 22:     TMOD &= 0xF0;              // 清除 T0 控制字段
+        ANL      TMOD,#0F0H
+; line 23:     TMOD |= 0x00;              // GATE=0, C/T=0, M1=0, M0=0
+        MOV      A,TMOD                         ; A=R11
+        MOV      TMOD,A                         ; A=R11
+; line 24:     
+; line 25:     // 2. 设置重装载值（目标：10ms 中断）
+; line 26:     //    系统时钟 = 24MHz (默认 HIRC)
+; line 27:     //    TM0PS = 11 → 预分频 12 → 定时器时钟 = 2MHz
+; line 28:     //    65536 - 20000 = 45536 = 0xB1E0
+; line 29:     TL0 = 0xE0;                // 低字节先写
+        MOV      TL0,#0E0H
+; line 30:     TH0 = 0xB1;                // 高字节
+        MOV      TH0,#0B1H
+; line 31:     
+; line 32:     // 3. 设置 8 位预分频器（EAXFR 已在 SYS_Init 中打开，无需重复操作）
+; line 33:     TM0PS = 11;                // 预分频 ÷ 12
+        MOV      A,#0BH                         ; A=R11
+        MOV      WR6,#0FEA0H
+        MOV      WR4,#07EH
+        MOV      @DR4,R11                       ; A=R11
+; line 34:     
+; line 35:     // 4. 1T 模式（不分频，速度最快）
+; line 36:     AUXR |= 0x80;              // T0x12 = 1
+        ORL      AUXR,#080H
+; line 37:     
+; line 38:     // 5. 开中断
+; line 39:     ET0 = 1;                   // 允许 T0 中断
+        SETB     ET0
+; line 40:     EA  = 1;                   // 开总中断
+        SETB     ?EA
+; line 41:     
+; line 42:     // 6. 启动定时器
+; line 43:     TR0 = 1;                   // T0 开始计数
+        SETB     TR0
+; line 44: }
+        RET      
+        ENDP
+
+        RSEG       ?PR?IV?1
+        LJMP     Timer0_ISR
+
+        RSEG       ?PR?TIMER0_ISR?MAIN
+        Timer0_ISR PROC
+; line 45: 
+; line 46: // ==================== T0 中断服务程序 ====================
+; line 47: void Timer0_ISR(void) interrupt 1
+        PUSH     WR6
+        PUSH     PSW1
+        PUSH     DPH                            ; WORD0(DR56)=DPTR
+        PUSH     DPL                            ; WORD0(DR56)=DPTR
+; line 48: {
+; line 49:     tick_10ms++;               // 每 10ms +1
+        MOV      DPTR,#WORD0 tick_10ms
+        MOV      WR6,@DR56                      ; WORD0(DR56)=DPTR
+        INC      WR6,#01H
+        MOV      @DR56,WR6                      ; WORD0(DR56)=DPTR
+; line 50:     
+; line 51:     if (tick_10ms >= 10)      // 1 秒到了（10ms × 100 = 1000ms）
+        MOV      DPTR,#WORD0 tick_10ms
+        MOV      WR6,@DR56                      ; WORD0(DR56)=DPTR
+        CMP      WR6,#0AH
+        JC       ?C0001
+; line 52:     {
+; line 53:         tick_10ms = 0;
+        XRL      WR6,WR6
+        MOV      DPTR,#WORD0 tick_10ms
+        MOV      @DR56,WR6                      ; WORD0(DR56)=DPTR
+; line 54:         P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
+        CPL      P42
+; line 55:     }
+?C0001:
+        POP      DPL                            ; WORD0(DR56)=DPTR
+        POP      DPH                            ; WORD0(DR56)=DPTR
+        POP      PSW1
+        POP      WR6
+        RETI     
+        ENDP
+
+        RSEG       ?PR?MAIN?MAIN
+        main PROC
+; line 56: }
+; line 57: //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+; line 58: 
+; line 59: 
+; line 60: 
+; line 61: ////////////////////////////////////////
+; line 62: // 项目主函数
+; line 63: // 入口参数: 无
+; line 64: // 函数返回: 无
+; line 65: ////////////////////////////////////////
+; line 66: void main(void)
+        LCALL    _m
+        SUB      DR0,DR0
+        MOV      WR6,#WORD0 ?SC_0000
+        MOV      WR4,#WORD2 ?SC_0000
+        LJMP     sprintf
+        ENDP
+
+        RSEG       ?PR?_M?MAIN
+        _m PROC
+; line 67: {
+; line 68:     EAXFR = 1;			//允许访问扩展的特殊寄存器，XFR
+        SETB     EAXFR
+; line 69: 	WTST = 0;				//设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运行
+        MOV      WTST,#00H
+; line 70: 	CKCON = 0;			//设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额外的等待时间 
+        MOV      CKCON,#00H
+; line 71:     P0M1 = 0x00;   P0M0 = 0x00;
+        MOV      P0M1,#00H
+        MOV      P0M0,#00H
+; line 72:     P1M1 = 0x00;   P1M0 = 0x00;
+        MOV      P1M1,#00H
+        MOV      P1M0,#00H
+; line 73:     P2M1 = 0x00;   P2M0 = 0x00;
+        MOV      P2M1,#00H
+        MOV      P2M0,#00H
+; line 74:     P3M1 = 0x00;   P3M0 = 0x00;
+        MOV      P3M1,#00H
+        MOV      P3M0,#00H
+; line 75:     P4M1 = 0x00;   P4M0 = 0x00;
+        MOV      P4M1,#00H
+        MOV      P4M0,#00H
+; line 76:     P5M1 = 0x00;   P5M0 = 0x00;
+        MOV      P5M1,#00H
+        MOV      P5M0,#00H
+; line 77:     P6M1 = 0x00;   P6M0 = 0x00;
+        MOV      P6M1,#00H
+        MOV      P6M0,#00H
+; line 78:     P7M1 = 0x00;   P7M0 = 0x00;
+        MOV      P7M1,#00H
+        MOV      P7M0,#00H
+; line 79:     
+; line 80:     usb_init();                                     //USB CDC 接口配置
+        LCALL    usb_init
+; line 81:     set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
+        MOV      WR6,#WORD0 usb_callback
+        LCALL    set_usb_OUT_callback
+; line 82:     //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
+; line 83:     EA = 1;
+        SETB     ?EA
+; line 84:     // LED 初始状态：亮
+; line 85:     P42 = 0;
+        CLR      P42
+; line 86:     // 启动定时器
+; line 87:     // Timer0_Init();
+; line 88:     //<<AICUBE_USER_MAIN_CODE_END>>
+; line 89: 
+; line 90:     while (1)
+; line 91:     {
+; line 92: 
+; line 93:     }
+?C0002:
+        SJMP     ?C0002
+        ENDP
+
+        RSEG       ?PR?USB_CALLBACK?MAIN
+        usb_callback PROC
+; line 94: }
+; line 95: 
+; line 96: void usb_callback()
+; line 97: {
+; line 98:     USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样返回, 用于测试）
+        MOV      WR2,#WORD0 UsbOutBuffer
+        MOV      WR0,#WORD2 UsbOutBuffer
+        MOV      DPTR,#WORD0 OutNumber
+        MOVX     A,@DPTR                        ; A=R11
+        MOVZ     WR6,R11                        ; A=R11
+        LJMP     USB_SendData
+        ENDP
+
+        RSEG       ?PR?DELAY_US?MAIN
+        delay_us PROC
+; line 99: }
+; line 100: 
+; line 101: 
+; line 102: 
+; line 103: ////////////////////////////////////////
+; line 104: // 微秒延时函数
+; line 105: // 入口参数: us (设置延时的微秒值)
+; line 106: // 函数返回: 无
+; line 107: ////////////////////////////////////////
+; line 108: void delay_us(uint16_t us)
+        MOV      WR4,WR6
+;---- Variable 'us' assigned to Register 'WR4' ----
+; line 109: {
+; line 110:     do
+?C0006:
+; line 111:     {
+; line 112:         NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+        NOP      
+; line 113:     } while (--us);
+        MOV      WR6,WR4
+        DEC      WR6,#01H
+        MOV      WR4,WR6
+        JNE      ?C0006
+; line 114: }
+        RET      
+        ENDP
+
+        RSEG       ?PR?DELAY_MS?MAIN
+        delay_ms PROC
+; line 115: 
+; line 116: 
+; line 117: ////////////////////////////////////////
+; line 118: // 毫秒延时函数
+; line 119: // 入口参数: ms (设置延时的毫秒值)
+; line 120: // 函数返回: 无
+; line 121: ////////////////////////////////////////
+; line 122: void delay_ms(uint16_t ms)
+        MOV      WR4,WR6
+;---- Variable 'ms' assigned to Register 'WR4' ----
+; line 123: {
+; line 124:     uint16_t i;
+; line 125: 
+; line 126:     do
+?C0010:
+; line 127:     {
+; line 128:         i = MAIN_Fosc / 6000;
+        MOV      WR6,#01770H
+;---- Variable 'i' assigned to Register 'WR6' ----
+; line 129:         while (--i);
+?C0014:
+        MOV      WR2,WR6
+        DEC      WR2,#01H
+        MOV      WR6,WR2
+        JNE      ?C0014
+; line 130:     } while (--ms);
+        MOV      WR2,WR4
+        DEC      WR2,#01H
+        MOV      WR4,WR2
+        JNE      ?C0010
+; line 131: }
+        RET      
+        ENDP
+; line 132: 
+; line 133: 
+; line 134: //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+; line 135: // 在此添加用户函数实现代码  
+; line 136: //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+; line 137: 
+; line 138: 
+
+        END
+

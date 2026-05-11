@@ -1,4 +1,4 @@
-L251 LINKER/LOCATER V4.66.93.0                                                          05/11/2026  20:02:09  PAGE 1
+L251 LINKER/LOCATER V4.66.93.0                                                          05/11/2026  22:56:32  PAGE 1
 
 
 L251 LINKER/LOCATER V4.66.93.0, INVOKED BY:
@@ -7,7 +7,7 @@ C:\KEIL_V5\C251\BIN\L251.EXE OBJECTS\MAIN.OBJ, SOURCES\LIB\STC_USB_CDC_32G_XDATA
 
 
 CPU MODE:     251 SOURCE MODE
-INTR FRAME:   4 BYTES SAVED ON INTERRUPT
+INTR FRAME:   2 BYTES SAVED ON INTERRUPT
 MEMORY MODEL: LARGE WITH FLOATING POINT ARITHMETIC
 
 
@@ -61,13 +61,13 @@ ACTIVE MEMORY CLASSES OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
 BASE        START       END         USED      MEMORY CLASS
 ==========================================================
 000000H     FF0000H     FFFFFFH     000031H   HCONST
-FF0000H     FF0000H     FFFFFFH     00200EH   CODE
+FF0000H     FF0000H     FFFFFFH     002012H   CODE
 010000H     010000H     01FFFFH     00018DH   XDATA
 000020H.0   000020H.0   00002FH.7   000000H.3 BIT
 FF0000H     FF0000H     FFFFFFH     000004H   CONST
 000000H     000000H     00FFFFH     000100H   EDATA
 000000H     000000H     00007FH     000008H   DATA
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 2
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 2
 
 
 
@@ -135,7 +135,7 @@ FF1453H   FF149CH   00004AH   BYTE   INSEG    CODE           ?PR?USB_RESET?USB
 FF149DH   FF14E5H   000049H   BYTE   INSEG    CODE           ?PR?_M?MAIN
 FF14E6H   FF152DH   000048H   BYTE   INSEG    CODE           ?PR?USB_GET_INTERFACE?USB_REQ_STD
 FF152EH   FF1540H   000013H   BYTE   UNIT     CODE           ?C_C51STARTUP
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 3
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 3
 
 
 FF1541H   FF1571H   000031H   BYTE   UNIT     CODE           ?C_C51STARTUP?2
@@ -161,70 +161,70 @@ FF199FH   FF19D5H   000037H   BYTE   INSEG    CODE           ?PR?SEG7_SHOWCODE?U
 FF19D6H   FF1A0AH   000035H   BYTE   INSEG    CODE           ?PR?SEG7_SHOWFLOAT?UTIL
 FF1A0BH   FF1A3EH   000034H   BYTE   INSEG    CODE           ?PR?USB_GET_LINE_CODING?USB_REQ_CLASS
 FF1A3FH   FF1A72H   000034H   BYTE   INSEG    CODE           ?PR?USB_SET_LINE_CODING?USB_REQ_CLASS
-FF1A73H   FF1AA0H   00002EH   BYTE   INSEG    CODE           ?PR?TIMER0_ISR?MAIN
-FF1AA1H   FF1ACBH   00002BH   BYTE   INSEG    CODE           ?PR?USB_IN_EP2?USB
-FF1ACCH   FF1AF5H   00002AH   BYTE   INSEG    CODE           ?PR?USB_SET_INTERFACE?USB_REQ_STD
-FF1AF6H   FF1B1EH   000029H   BYTE   INSEG    CODE           ?PR?DELAY_US?MAIN
-FF1B1FH   FF1B47H   000029H   BYTE   INSEG    CODE           ?PR?USB_WRITE_FIFO?_?USB
-FF1B48H   FF1B70H   000029H   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLUP?UTIL
-FF1B71H   FF1B95H   000025H   BYTE   INSEG    CODE           ?PR?MEMCPY?_?MEMCPY
-FF1B96H   FF1BB9H   000024H   BYTE   INSEG    CODE           ?PR?TIMER0_INIT?MAIN
-FF1BBAH   FF1BDCH   000023H   BYTE   INSEG    CODE           ?PR?OLED12864_SETADDRESSMODE?UTIL
-FF1BDDH   FF1BFFH   000023H   BYTE   INSEG    CODE           ?PR?OLED12864_SETCONTRAST?UTIL
-FF1C00H   FF1C22H   000023H   BYTE   INSEG    CODE           ?PR?LCD12864_REVERSELINE?UTIL
-FF1C23H   FF1C3FH   00001DH   BYTE   INSEG    CODE           ?PR?SLEEP_US?UTIL
-FF1C40H   FF1C5BH   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_SCROLLSTART?UTIL
-FF1C5CH   FF1C77H   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYON?UTIL
-FF1C78H   FF1C93H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLRIGHT?UTIL
-FF1C94H   FF1CAFH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_AUTOWRAPON?UTIL
-FF1CB0H   FF1CCBH   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_VERTICALMIRROR?UTIL
-FF1CCCH   FF1CE7H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORRETURNHOME?UTIL
-FF1CE8H   FF1D03H   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYENTIRE?UTIL
-FF1D04H   FF1D1FH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYON?UTIL
-FF1D20H   FF1D3BH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORMOVERIGHT?UTIL
-FF1D3CH   FF1D57H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORON?UTIL
-FF1D58H   FF1D72H   00001BH   BYTE   INSEG    CODE           ?PR?USB_REQ_CLASS?USB_REQ_CLASS
-FF1D73H   FF1D8DH   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYOFF?UTIL
-FF1D8EH   FF1DA8H   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_AUTOWRAPOFF?UTIL
-FF1DA9H   FF1DC3H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_SCROLLSTOP?UTIL
-FF1DC4H   FF1DDEH   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYOFF?UTIL
-FF1DDFH   FF1DF9H   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLLEFT?UTIL
-FF1DFAH   FF1E14H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_HORIZONTALMIRROR?UTIL
-FF1E15H   FF1E2FH   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYCONTENT?UTIL
-FF1E30H   FF1E4AH   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSOROFF?UTIL
-FF1E4BH   FF1E65H   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORMOVELEFT?UTIL
-FF1E66H   FF1E7EH   000019H   BYTE   INSEG    CODE           ?PR?USB_BULK_INTR_OUT?USB
-FF1E7FH   FF1E97H   000019H   BYTE   INSEG    CODE           ?PR?OLED12864_SETHEADER?UTIL
-FF1E98H   FF1EB0H   000019H   BYTE   INSEG    CODE           ?PR?LCD12864_SETHEADER?UTIL
-FF1EB1H   FF1EC9H   000019H   BYTE   INSEG    CODE           ?PR?SEG7_SETHEADER?UTIL
-FF1ECAH   FF1EE1H   000018H   BYTE   INSEG    CODE           ?PR?USB_OUT_DONE?USB
-FF1EE2H   FF1EF9H   000018H   BYTE   INSEG    CODE           ?PR?SLEEP_MS?UTIL
-FF1EFAH   FF1F11H   000018H   BYTE   UNIT     CODE           ?PR?AI8051U_32_MDU32
-FF1F12H   FF1F28H   000017H   BYTE   INSEG    CODE           ?PR?DELAY_MS?MAIN
-FF1F29H   FF1F3EH   000016H   BYTE   INSEG    CODE           ?PR?USB_SET_CTRL_LINE_STATE?USB_REQ_CLASS
-FF1F3FH   FF1F54H   000016H   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYCLEAR?UTIL
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 4
+FF1A73H   FF1AA4H   000032H   BYTE   INSEG    CODE           ?PR?TIMER0_ISR?MAIN
+FF1AA5H   FF1ACFH   00002BH   BYTE   INSEG    CODE           ?PR?USB_IN_EP2?USB
+FF1AD0H   FF1AF9H   00002AH   BYTE   INSEG    CODE           ?PR?USB_SET_INTERFACE?USB_REQ_STD
+FF1AFAH   FF1B22H   000029H   BYTE   INSEG    CODE           ?PR?DELAY_US?MAIN
+FF1B23H   FF1B4BH   000029H   BYTE   INSEG    CODE           ?PR?USB_WRITE_FIFO?_?USB
+FF1B4CH   FF1B74H   000029H   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLUP?UTIL
+FF1B75H   FF1B99H   000025H   BYTE   INSEG    CODE           ?PR?MEMCPY?_?MEMCPY
+FF1B9AH   FF1BBDH   000024H   BYTE   INSEG    CODE           ?PR?TIMER0_INIT?MAIN
+FF1BBEH   FF1BE0H   000023H   BYTE   INSEG    CODE           ?PR?OLED12864_SETADDRESSMODE?UTIL
+FF1BE1H   FF1C03H   000023H   BYTE   INSEG    CODE           ?PR?OLED12864_SETCONTRAST?UTIL
+FF1C04H   FF1C26H   000023H   BYTE   INSEG    CODE           ?PR?LCD12864_REVERSELINE?UTIL
+FF1C27H   FF1C43H   00001DH   BYTE   INSEG    CODE           ?PR?SLEEP_US?UTIL
+FF1C44H   FF1C5FH   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_SCROLLSTART?UTIL
+FF1C60H   FF1C7BH   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYON?UTIL
+FF1C7CH   FF1C97H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLRIGHT?UTIL
+FF1C98H   FF1CB3H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_AUTOWRAPON?UTIL
+FF1CB4H   FF1CCFH   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_VERTICALMIRROR?UTIL
+FF1CD0H   FF1CEBH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORRETURNHOME?UTIL
+FF1CECH   FF1D07H   00001CH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYENTIRE?UTIL
+FF1D08H   FF1D23H   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYON?UTIL
+FF1D24H   FF1D3FH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORMOVERIGHT?UTIL
+FF1D40H   FF1D5BH   00001CH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORON?UTIL
+FF1D5CH   FF1D76H   00001BH   BYTE   INSEG    CODE           ?PR?USB_REQ_CLASS?USB_REQ_CLASS
+FF1D77H   FF1D91H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYOFF?UTIL
+FF1D92H   FF1DACH   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_AUTOWRAPOFF?UTIL
+FF1DADH   FF1DC7H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_SCROLLSTOP?UTIL
+FF1DC8H   FF1DE2H   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYOFF?UTIL
+FF1DE3H   FF1DFDH   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_SCROLLLEFT?UTIL
+FF1DFEH   FF1E18H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_HORIZONTALMIRROR?UTIL
+FF1E19H   FF1E33H   00001BH   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYCONTENT?UTIL
+FF1E34H   FF1E4EH   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSOROFF?UTIL
+FF1E4FH   FF1E69H   00001BH   BYTE   INSEG    CODE           ?PR?LCD12864_CURSORMOVELEFT?UTIL
+FF1E6AH   FF1E82H   000019H   BYTE   INSEG    CODE           ?PR?USB_BULK_INTR_OUT?USB
+FF1E83H   FF1E9BH   000019H   BYTE   INSEG    CODE           ?PR?OLED12864_SETHEADER?UTIL
+FF1E9CH   FF1EB4H   000019H   BYTE   INSEG    CODE           ?PR?LCD12864_SETHEADER?UTIL
+FF1EB5H   FF1ECDH   000019H   BYTE   INSEG    CODE           ?PR?SEG7_SETHEADER?UTIL
+FF1ECEH   FF1EE5H   000018H   BYTE   INSEG    CODE           ?PR?USB_OUT_DONE?USB
+FF1EE6H   FF1EFDH   000018H   BYTE   INSEG    CODE           ?PR?SLEEP_MS?UTIL
+FF1EFEH   FF1F15H   000018H   BYTE   UNIT     CODE           ?PR?AI8051U_32_MDU32
+FF1F16H   FF1F2CH   000017H   BYTE   INSEG    CODE           ?PR?DELAY_MS?MAIN
+FF1F2DH   FF1F42H   000016H   BYTE   INSEG    CODE           ?PR?USB_SET_CTRL_LINE_STATE?USB_REQ_CLASS
+FF1F43H   FF1F58H   000016H   BYTE   INSEG    CODE           ?PR?LCD12864_DISPLAYCLEAR?UTIL
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 4
 
 
-FF1F55H   FF1F6AH   000016H   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYREVERSE?UTIL
-FF1F6BH   FF1F7FH   000015H   BYTE   INSEG    CODE           ?PR?USB_BULK_INTR_IN?USB
-FF1F80H   FF1F90H   000011H   BYTE   INSEG    CODE           ?PR?USB_CALLBACK?MAIN
-FF1F91H   FF1FA1H   000011H   BYTE   INSEG    CODE           ?PR?USB_SETUP_IN?USB
-FF1FA2H   FF1FB1H   000010H   BYTE   INSEG    CODE           ?PR?MAIN?MAIN
-FF1FB2H   FF1FBFH   00000EH   BYTE   INSEG    CODE           ?PR?USB_SETUP_OUT?USB
-FF1FC0H   FF1FCDH   00000EH   BYTE   INSEG    CODE           ?PR?USB_SETUP_STALL?USB
-FF1FCEH   FF1FDBH   00000EH   BYTE   INSEG    CODE           ?PR?STRLEN?_?STRLEN
-FF1FDCH   FF1FE8H   00000DH   BYTE   INSEG    CODE           ?PR?USB_SETUP_STATUS?USB
-FF1FE9H   FF1FF3H   00000BH   BYTE   INSEG    CODE           ?PR?USB_IN?USB
-FF1FF4H   FF1FFEH   00000BH   BYTE   INSEG    CODE           ?PR?SET_USB_ISPCMD?USB
-FF1FFFH   FF2005H   000007H   BYTE   INSEG    CODE           ?PR?SET_USB_OUT_CALLBACK?USB
-FF2006H   FF2008H   000003H   BYTE   INSEG    CODE           ?PR?USB_SET_DESCRIPTOR?USB_REQ_STD
-FF2009H   FF200BH   000003H   BYTE   INSEG    CODE           ?PR?USB_SYNCH_FRAME?USB_REQ_STD
-FF200CH   FF200EH   000003H   BYTE   INSEG    CODE           ?PR?USB_REQ_VENDOR?USB_REQ_VENDOR
-FF200FH   FF2012H   000004H   BYTE   UNIT     CONST          ?CO?PRINTF
-FF2013H   FF2038H   000026H   BYTE   UNIT     HCONST         ?C_INITHDATA
-FF2039H   FF2041H   000009H   BYTE   UNIT     HCONST         ?HC?USB
-FF2042H   FF2043H   000002H   BYTE   UNIT     HCONST         ?HC?MAIN
+FF1F59H   FF1F6EH   000016H   BYTE   INSEG    CODE           ?PR?OLED12864_DISPLAYREVERSE?UTIL
+FF1F6FH   FF1F83H   000015H   BYTE   INSEG    CODE           ?PR?USB_BULK_INTR_IN?USB
+FF1F84H   FF1F94H   000011H   BYTE   INSEG    CODE           ?PR?USB_CALLBACK?MAIN
+FF1F95H   FF1FA5H   000011H   BYTE   INSEG    CODE           ?PR?USB_SETUP_IN?USB
+FF1FA6H   FF1FB5H   000010H   BYTE   INSEG    CODE           ?PR?MAIN?MAIN
+FF1FB6H   FF1FC3H   00000EH   BYTE   INSEG    CODE           ?PR?USB_SETUP_OUT?USB
+FF1FC4H   FF1FD1H   00000EH   BYTE   INSEG    CODE           ?PR?USB_SETUP_STALL?USB
+FF1FD2H   FF1FDFH   00000EH   BYTE   INSEG    CODE           ?PR?STRLEN?_?STRLEN
+FF1FE0H   FF1FECH   00000DH   BYTE   INSEG    CODE           ?PR?USB_SETUP_STATUS?USB
+FF1FEDH   FF1FF7H   00000BH   BYTE   INSEG    CODE           ?PR?USB_IN?USB
+FF1FF8H   FF2002H   00000BH   BYTE   INSEG    CODE           ?PR?SET_USB_ISPCMD?USB
+FF2003H   FF2009H   000007H   BYTE   INSEG    CODE           ?PR?SET_USB_OUT_CALLBACK?USB
+FF200AH   FF200CH   000003H   BYTE   INSEG    CODE           ?PR?USB_SET_DESCRIPTOR?USB_REQ_STD
+FF200DH   FF200FH   000003H   BYTE   INSEG    CODE           ?PR?USB_SYNCH_FRAME?USB_REQ_STD
+FF2010H   FF2012H   000003H   BYTE   INSEG    CODE           ?PR?USB_REQ_VENDOR?USB_REQ_VENDOR
+FF2013H   FF2016H   000004H   BYTE   UNIT     CONST          ?CO?PRINTF
+FF2017H   FF203CH   000026H   BYTE   UNIT     HCONST         ?C_INITHDATA
+FF203DH   FF2045H   000009H   BYTE   UNIT     HCONST         ?HC?USB
+FF2046H   FF2047H   000002H   BYTE   UNIT     HCONST         ?HC?MAIN
 
 
 
@@ -246,14 +246,14 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF081FH   CODE     ---       ?C?FPUNDERFLOW
       00FF07A6H   CODE     ---       ?C?FTNPWR
       00FF1541H   CODE     ---       ?C?INITHDATA
-      00FF2037H   HCONST   WORD      ?C?INITHDATA_END
-      00FF1EFEH   CODE     ---       ?C?LIMUL
-      00FF1EFAH   CODE     ---       ?C?LMUL
+      00FF203BH   HCONST   WORD      ?C?INITHDATA_END
+      00FF1F02H   CODE     ---       ?C?LIMUL
+      00FF1EFEH   CODE     ---       ?C?LMUL
       00FF013DH   CODE     ---       ?C?PRNFMT
-      00FF1F0EH   CODE     ---       ?C?SLDIV
+      00FF1F12H   CODE     ---       ?C?SLDIV
       00FF0000H   CODE     ---       ?C?STARTUP
-      00FF1F04H   CODE     ---       ?C?ULDIV
-      00FF1F08H   CODE     ---       ?C?ULIDIV
+      00FF1F08H   CODE     ---       ?C?ULDIV
+      00FF1F0CH   CODE     ---       ?C?ULIDIV
       00000001H   NUMBER   ---       ?C?XDATASEG
       00FF0000H   CODE     ---       ?C_STARTUP
       00010130H   XDATA    BYTE      ?printf_usb?BYTE
@@ -271,7 +271,7 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000020H.1 BIT      BIT       bUsbFeatureReady
       00000020H.2 BIT      BIT       bUsbInBusy
       00000020H.0 BIT      BIT       bUsbOutReady
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 5
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 5
 
 
 *SFR* 000000F1H   DATA     BYTE      CANICR
@@ -279,8 +279,8 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
 *SFR* 000000E6H   DATA     BYTE      CMPCR1
 *SFR* 000000E7H   DATA     BYTE      CMPCR2
       00FF0FA6H   CODE     ---       CONFIGDESC
-      00FF1F12H   CODE     ---       delay_ms
-      00FF1AF6H   CODE     ---       delay_us
+      00FF1F16H   CODE     ---       delay_ms
+      00FF1AFAH   CODE     ---       delay_us
       00FF0F94H   CODE     ---       DEVICEDESC
       00010092H   XDATA    BYTE      DeviceState
 *SFR* 000000EDH   DATA     BYTE      DMAIR
@@ -302,20 +302,20 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
 *SFR* 000000B7H   DATA     BYTE      IPH
 *SFR* 0000009DH   DATA     BYTE      IRCBAND
       00FF0F90H   CODE     ---       LANGIDDESC
-      00FF1D8EH   CODE     ---       LCD12864_AutoWrapOff
-      00FF1C94H   CODE     ---       LCD12864_AutoWrapOn
-      00FF1E4BH   CODE     ---       LCD12864_CursorMoveLeft
-      00FF1D20H   CODE     ---       LCD12864_CursorMoveRight
-      00FF1E30H   CODE     ---       LCD12864_CursorOff
-      00FF1D3CH   CODE     ---       LCD12864_CursorOn
-      00FF1CCCH   CODE     ---       LCD12864_CursorReturnHome
-      00FF1F3FH   CODE     ---       LCD12864_DisplayClear
-      00FF1DC4H   CODE     ---       LCD12864_DisplayOff
-      00FF1D04H   CODE     ---       LCD12864_DisplayOn
-      00FF1C00H   CODE     ---       LCD12864_ReverseLine
-      00FF1DDFH   CODE     ---       LCD12864_ScrollLeft
-      00FF1C78H   CODE     ---       LCD12864_ScrollRight
-      00FF1B48H   CODE     ---       LCD12864_ScrollUp
+      00FF1D92H   CODE     ---       LCD12864_AutoWrapOff
+      00FF1C98H   CODE     ---       LCD12864_AutoWrapOn
+      00FF1E4FH   CODE     ---       LCD12864_CursorMoveLeft
+      00FF1D24H   CODE     ---       LCD12864_CursorMoveRight
+      00FF1E34H   CODE     ---       LCD12864_CursorOff
+      00FF1D40H   CODE     ---       LCD12864_CursorOn
+      00FF1CD0H   CODE     ---       LCD12864_CursorReturnHome
+      00FF1F43H   CODE     ---       LCD12864_DisplayClear
+      00FF1DC8H   CODE     ---       LCD12864_DisplayOff
+      00FF1D08H   CODE     ---       LCD12864_DisplayOn
+      00FF1C04H   CODE     ---       LCD12864_ReverseLine
+      00FF1DE3H   CODE     ---       LCD12864_ScrollLeft
+      00FF1C7CH   CODE     ---       LCD12864_ScrollRight
+      00FF1B4CH   CODE     ---       LCD12864_ScrollUp
       00FF12D3H   CODE     ---       LCD12864_ShowPicture
       00FF16C5H   CODE     ---       LCD12864_ShowString
       00FF1706H   CODE     ---       LED40_ClrBit
@@ -328,27 +328,27 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF15B9H   CODE     ---       LED64_SetPort
       0001016BH   XDATA    ---       LineCoding
 *SFR* 000000F9H   DATA     BYTE      LINICR
-      00FF1FA2H   CODE     ---       main
+      00FF1FA6H   CODE     ---       main
       00FF0FEDH   CODE     ---       MANUFACTDESC
-      00FF1B71H   CODE     ---       memcpy?_
-      00FF1E15H   CODE     ---       OLED12864_DisplayContent
-      00FF1CE8H   CODE     ---       OLED12864_DisplayEntire
-      00FF1D73H   CODE     ---       OLED12864_DisplayOff
-      00FF1C5CH   CODE     ---       OLED12864_DisplayOn
-      00FF1F55H   CODE     ---       OLED12864_DisplayReverse
-      00FF1DFAH   CODE     ---       OLED12864_HorizontalMirror
+      00FF1B75H   CODE     ---       memcpy?_
+      00FF1E19H   CODE     ---       OLED12864_DisplayContent
+      00FF1CECH   CODE     ---       OLED12864_DisplayEntire
+      00FF1D77H   CODE     ---       OLED12864_DisplayOff
+      00FF1C60H   CODE     ---       OLED12864_DisplayOn
+      00FF1F59H   CODE     ---       OLED12864_DisplayReverse
+      00FF1DFEH   CODE     ---       OLED12864_HorizontalMirror
       00FF18B9H   CODE     ---       OLED12864_ScrollLeft
       00FF1806H   CODE     ---       OLED12864_ScrollRight
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 6
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 6
 
 
-      00FF1C40H   CODE     ---       OLED12864_ScrollStart
-      00FF1DA9H   CODE     ---       OLED12864_ScrollStop
+      00FF1C44H   CODE     ---       OLED12864_ScrollStart
+      00FF1DADH   CODE     ---       OLED12864_ScrollStop
       00FF1842H   CODE     ---       OLED12864_ScrollUp
-      00FF1BBAH   CODE     ---       OLED12864_SetAddressMode
-      00FF1BDDH   CODE     ---       OLED12864_SetContrast
+      00FF1BBEH   CODE     ---       OLED12864_SetAddressMode
+      00FF1BE1H   CODE     ---       OLED12864_SetContrast
       00FF1683H   CODE     ---       OLED12864_ShowPicture
-      00FF1CB0H   CODE     ---       OLED12864_VerticalMirror
+      00FF1CB4H   CODE     ---       OLED12864_VerticalMirror
       000100DBH   XDATA    BYTE      OutEpState
       00010008H   XDATA    BYTE      OutNumber
 *SFR* 00000080H   DATA     BYTE      P0
@@ -399,30 +399,30 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF1408H   CODE     ---       SEG7_ShowLong
       00FF121AH   CODE     ---       SEG7_ShowString
       00FF0003H   CODE     ---       set_usb_IN_callback
-      00FF1FF4H   CODE     ---       set_usb_ispcmd
-      00FF1FFFH   CODE     ---       set_usb_OUT_callback
+      00FF1FF8H   CODE     ---       set_usb_ispcmd
+      00FF2003H   CODE     ---       set_usb_OUT_callback
       00010000H   XDATA    ---       Setup
-      00FF1EE2H   CODE     ---       sleep_ms
-      00FF1C23H   CODE     ---       sleep_us
+      00FF1EE6H   CODE     ---       sleep_ms
+      00FF1C27H   CODE     ---       sleep_us
 *SFR* 000000CEH   DATA     BYTE      SPCTL
       00FF00CEH   CODE     NEAR LAB  sprintf
 *SFR* 000000CDH   DATA     BYTE      SPSTAT
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 7
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 7
 
 
-      00FF1FCEH   CODE     ---       strlen?_
+      00FF1FD2H   CODE     ---       strlen?_
 *SFR* 000000DDH   DATA     BYTE      T4T3M
 *SFR* 00000088H   DATA     BYTE      TCON
 *SFR* 0000008CH   DATA     BYTE      TH0
       00010188H   XDATA    WORD      tick_10ms
-      00FF1B96H   CODE     ---       Timer0_Init
+      00FF1B9AH   CODE     ---       Timer0_Init
       00FF1A73H   CODE     ---       Timer0_ISR
 *SFR* 0000008AH   DATA     BYTE      TL0
 *SFR* 00000089H   DATA     BYTE      TMOD
 *SFR* 00000088H.4 DATA     BIT       TR0
-      00FF1F6BH   CODE     ---       usb_bulk_intr_in
-      00FF1E66H   CODE     ---       usb_bulk_intr_out
-      00FF1F80H   CODE     ---       usb_callback
+      00FF1F6FH   CODE     ---       usb_bulk_intr_in
+      00FF1E6AH   CODE     ---       usb_bulk_intr_out
+      00FF1F84H   CODE     ---       usb_callback
       00FF0DA8H   CODE     ---       usb_clear_feature
       00FF1075H   CODE     ---       usb_ctrl_in
       00FF115DH   CODE     ---       usb_ctrl_out
@@ -431,38 +431,38 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF14E6H   CODE     ---       usb_get_interface
       00FF1A0BH   CODE     ---       usb_get_line_coding
       00FF082EH   CODE     ---       usb_get_status
-      00FF1FE9H   CODE     ---       usb_IN
+      00FF1FEDH   CODE     ---       usb_IN
       00010090H   XDATA    ---       usb_IN_callback
       00FF1788H   CODE     ---       usb_in_ep1
-      00FF1AA1H   CODE     ---       usb_in_ep2
+      00FF1AA5H   CODE     ---       usb_in_ep2
       00FF0B03H   CODE     ---       usb_init
       00FF0FF5H   CODE     ---       usb_isr
       0001000AH   XDATA    ---       usb_OUT_callback
-      00FF1ECAH   CODE     ---       usb_OUT_done
+      00FF1ECEH   CODE     ---       usb_OUT_done
       00FF093DH   CODE     ---       usb_out_ep1
       00FF18F4H   CODE     ---       usb_read_fifo?_
       00FF1967H   CODE     ---       usb_read_reg
-      00FF1D58H   CODE     ---       usb_req_class
+      00FF1D5CH   CODE     ---       usb_req_class
       00FF1277H   CODE     ---       usb_req_std
-      00FF200CH   CODE     ---       usb_req_vendor
+      00FF2010H   CODE     ---       usb_req_vendor
       00FF1453H   CODE     ---       usb_reset
       00FF00C9H   CODE     ---       usb_resume
       00FF000EH   CODE     ---       USB_SendData
       00FF1324H   CODE     ---       usb_set_address
       00FF0D01H   CODE     ---       usb_set_configuration
-      00FF1F29H   CODE     ---       usb_set_ctrl_line_state
-      00FF2006H   CODE     ---       usb_set_descriptor
+      00FF1F2DH   CODE     ---       usb_set_ctrl_line_state
+      00FF200AH   CODE     ---       usb_set_descriptor
       00FF0E4CH   CODE     ---       usb_set_feature
-      00FF1ACCH   CODE     ---       usb_set_interface
+      00FF1AD0H   CODE     ---       usb_set_interface
       00FF1A3FH   CODE     ---       usb_set_line_coding
       00FF0EE0H   CODE     ---       usb_setup
-      00FF1F91H   CODE     ---       usb_setup_in
-      00FF1FB2H   CODE     ---       usb_setup_out
-      00FF1FC0H   CODE     ---       usb_setup_stall
-      00FF1FDCH   CODE     ---       usb_setup_status
+      00FF1F95H   CODE     ---       usb_setup_in
+      00FF1FB6H   CODE     ---       usb_setup_out
+      00FF1FC4H   CODE     ---       usb_setup_stall
+      00FF1FE0H   CODE     ---       usb_setup_status
       00FF000AH   CODE     ---       usb_suspend
-      00FF2009H   CODE     ---       usb_synch_frame
-      00FF1B1FH   CODE     ---       usb_write_fifo?_
+      00FF200DH   CODE     ---       usb_synch_frame
+      00FF1B23H   CODE     ---       usb_write_fifo?_
       00FF187EH   CODE     ---       usb_write_reg
 *SFR* 000000FCH   DATA     BYTE      USBADR
 *SFR* 000000DCH   DATA     BYTE      USBCLK
@@ -475,7 +475,7 @@ PUBLIC SYMBOLS OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF00EEH   CODE     NEAR LAB  vsprintf
 *SFR* 000000C1H   DATA     BYTE      WDT_CONTR
 *SFR* 000000E9H   DATA     BYTE      WTST
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 8
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 8
 
 
 
@@ -487,12 +487,12 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       ====================================================
       ---         MODULE    ---      ---       main
       00FF1A73H   PUBLIC    CODE     ---       Timer0_ISR
-      00FF1FA2H   PUBLIC    CODE     ---       main
-      00FF1B96H   PUBLIC    CODE     ---       Timer0_Init
+      00FF1FA6H   PUBLIC    CODE     ---       main
+      00FF1B9AH   PUBLIC    CODE     ---       Timer0_Init
       00FF149DH   PUBLIC    CODE     ---       _m
-      00FF1F12H   PUBLIC    CODE     ---       delay_ms
-      00FF1AF6H   PUBLIC    CODE     ---       delay_us
-      00FF1F80H   PUBLIC    CODE     ---       usb_callback
+      00FF1F16H   PUBLIC    CODE     ---       delay_ms
+      00FF1AFAH   PUBLIC    CODE     ---       delay_us
+      00FF1F84H   PUBLIC    CODE     ---       usb_callback
       00010188H   PUBLIC    XDATA    WORD      tick_10ms
       00000094H   SFRSYM    DATA     BYTE      P0M0
       000000D0H   SFRSYM    DATA     BYTE      PSW
@@ -543,7 +543,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       000000A2H   SFRSYM    DATA     BYTE      P_SW1
       000000CEH   SFRSYM    DATA     BYTE      SPCTL
       000000F8H   SFRSYM    DATA     BYTE      P7
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 9
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 9
 
 
       000000A8H.7 SFRSYM    DATA     BIT       EA
@@ -570,31 +570,31 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000092H   SFRSYM    DATA     BYTE      P1M0
       00000093H   SFRSYM    DATA     BYTE      P0M1
 
-      00FF1B96H   BLOCK     CODE     ---       LVL=0
-      00FF1B96H   LINE      CODE     ---       #19
-      00FF1B96H   LINE      CODE     ---       #22
-      00FF1B99H   LINE      CODE     ---       #23
-      00FF1B9DH   LINE      CODE     ---       #29
-      00FF1BA0H   LINE      CODE     ---       #30
-      00FF1BA3H   LINE      CODE     ---       #33
-      00FF1BB0H   LINE      CODE     ---       #36
-      00FF1BB3H   LINE      CODE     ---       #39
-      00FF1BB5H   LINE      CODE     ---       #40
-      00FF1BB7H   LINE      CODE     ---       #43
-      00FF1BB9H   LINE      CODE     ---       #44
+      00FF1B9AH   BLOCK     CODE     ---       LVL=0
+      00FF1B9AH   LINE      CODE     ---       #19
+      00FF1B9AH   LINE      CODE     ---       #22
+      00FF1B9DH   LINE      CODE     ---       #23
+      00FF1BA1H   LINE      CODE     ---       #29
+      00FF1BA4H   LINE      CODE     ---       #30
+      00FF1BA7H   LINE      CODE     ---       #33
+      00FF1BB4H   LINE      CODE     ---       #36
+      00FF1BB7H   LINE      CODE     ---       #39
+      00FF1BB9H   LINE      CODE     ---       #40
+      00FF1BBBH   LINE      CODE     ---       #43
+      00FF1BBDH   LINE      CODE     ---       #44
       ---         BLOCKEND  ---      ---       LVL=0
 
       00FF1A73H   BLOCK     CODE     ---       LVL=0
       00FF1A73H   LINE      CODE     ---       #47
-      00FF1A79H   LINE      CODE     ---       #49
-      00FF1A84H   LINE      CODE     ---       #51
-      00FF1A90H   LINE      CODE     ---       #53
-      00FF1A98H   LINE      CODE     ---       #54
-      00FF1A9AH   LINE      CODE     ---       #55
+      00FF1A7BH   LINE      CODE     ---       #49
+      00FF1A86H   LINE      CODE     ---       #51
+      00FF1A92H   LINE      CODE     ---       #53
+      00FF1A9AH   LINE      CODE     ---       #54
+      00FF1A9CH   LINE      CODE     ---       #55
       ---         BLOCKEND  ---      ---       LVL=0
 
-      00FF1FA2H   BLOCK     CODE     ---       LVL=0
-      00FF1FA2H   LINE      CODE     ---       #66
+      00FF1FA6H   BLOCK     CODE     ---       LVL=0
+      00FF1FA6H   LINE      CODE     ---       #66
       ---         BLOCKEND  ---      ---       LVL=0
 
       00FF149DH   BLOCK     CODE     ---       LVL=0
@@ -611,7 +611,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF14CAH   LINE      CODE     ---       #77
       00FF14D0H   LINE      CODE     ---       #78
       00FF14D6H   LINE      CODE     ---       #80
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 10
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 10
 
 
       00FF14D9H   LINE      CODE     ---       #81
@@ -621,65 +621,65 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF14E4H   LINE      CODE     ---       #93
       ---         BLOCKEND  ---      ---       LVL=0
 
-      00FF1F80H   BLOCK     CODE     ---       LVL=0
-      00FF1F80H   LINE      CODE     ---       #96
-      00FF1F80H   LINE      CODE     ---       #98
+      00FF1F84H   BLOCK     CODE     ---       LVL=0
+      00FF1F84H   LINE      CODE     ---       #96
+      00FF1F84H   LINE      CODE     ---       #98
       ---         BLOCKEND  ---      ---       LVL=0
 
-      00FF1AF6H   BLOCK     CODE     ---       LVL=0
+      00FF1AFAH   BLOCK     CODE     ---       LVL=0
       WR4         REGSYM    ---      WORD      us
-      00FF1AF6H   LINE      CODE     ---       #108
-      00FF1AF8H   LINE      CODE     ---       #110
-      00FF1AF8H   LINE      CODE     ---       #112
-      00FF1B16H   LINE      CODE     ---       #113
-      00FF1B1EH   LINE      CODE     ---       #114
+      00FF1AFAH   LINE      CODE     ---       #108
+      00FF1AFCH   LINE      CODE     ---       #110
+      00FF1AFCH   LINE      CODE     ---       #112
+      00FF1B1AH   LINE      CODE     ---       #113
+      00FF1B22H   LINE      CODE     ---       #114
       ---         BLOCKEND  ---      ---       LVL=0
 
-      00FF1F12H   BLOCK     CODE     ---       LVL=0
+      00FF1F16H   BLOCK     CODE     ---       LVL=0
       WR4         REGSYM    ---      WORD      ms
-      00FF1F14H   BLOCK     CODE     NEAR LAB  LVL=1
+      00FF1F18H   BLOCK     CODE     NEAR LAB  LVL=1
       WR6         REGSYM    ---      WORD      i
       ---         BLOCKEND  ---      ---       LVL=1
-      00FF1F12H   LINE      CODE     ---       #122
-      00FF1F14H   LINE      CODE     ---       #123
-      00FF1F14H   LINE      CODE     ---       #126
-      00FF1F14H   LINE      CODE     ---       #128
-      00FF1F18H   LINE      CODE     ---       #129
-      00FF1F20H   LINE      CODE     ---       #130
-      00FF1F28H   LINE      CODE     ---       #131
+      00FF1F16H   LINE      CODE     ---       #122
+      00FF1F18H   LINE      CODE     ---       #123
+      00FF1F18H   LINE      CODE     ---       #126
+      00FF1F18H   LINE      CODE     ---       #128
+      00FF1F1CH   LINE      CODE     ---       #129
+      00FF1F24H   LINE      CODE     ---       #130
+      00FF1F2CH   LINE      CODE     ---       #131
       ---         BLOCKEND  ---      ---       LVL=0
 
       ---         MODULE    ---      ---       usb
       00FF0003H   PUBLIC    CODE     ---       set_usb_IN_callback
-      00FF1F91H   PUBLIC    CODE     ---       usb_setup_in
-      00FF1FB2H   PUBLIC    CODE     ---       usb_setup_out
+      00FF1F95H   PUBLIC    CODE     ---       usb_setup_in
+      00FF1FB6H   PUBLIC    CODE     ---       usb_setup_out
       00FF1075H   PUBLIC    CODE     ---       usb_ctrl_in
       00FF115DH   PUBLIC    CODE     ---       usb_ctrl_out
-      00FF1ECAH   PUBLIC    CODE     ---       usb_OUT_done
+      00FF1ECEH   PUBLIC    CODE     ---       usb_OUT_done
       00FF000AH   PUBLIC    CODE     ---       usb_suspend
-      00FF1F6BH   PUBLIC    CODE     ---       usb_bulk_intr_in
-      00FF1E66H   PUBLIC    CODE     ---       usb_bulk_intr_out
+      00FF1F6FH   PUBLIC    CODE     ---       usb_bulk_intr_in
+      00FF1E6AH   PUBLIC    CODE     ---       usb_bulk_intr_out
       00FF00C9H   PUBLIC    CODE     ---       usb_resume
-      00FF1FE9H   PUBLIC    CODE     ---       usb_IN
+      00FF1FEDH   PUBLIC    CODE     ---       usb_IN
       00FF18F4H   PUBLIC    CODE     ---       usb_read_fifo?_
       00FF1453H   PUBLIC    CODE     ---       usb_reset
       00FF000EH   PUBLIC    CODE     ---       USB_SendData
-      00FF1FF4H   PUBLIC    CODE     ---       set_usb_ispcmd
+      00FF1FF8H   PUBLIC    CODE     ---       set_usb_ispcmd
       00FF0EE0H   PUBLIC    CODE     ---       usb_setup
-      00FF1B1FH   PUBLIC    CODE     ---       usb_write_fifo?_
+      00FF1B23H   PUBLIC    CODE     ---       usb_write_fifo?_
       00FF0B03H   PUBLIC    CODE     ---       usb_init
-      00FF1FC0H   PUBLIC    CODE     ---       usb_setup_stall
-      00FF1FFFH   PUBLIC    CODE     ---       set_usb_OUT_callback
-      00FF1FDCH   PUBLIC    CODE     ---       usb_setup_status
+      00FF1FC4H   PUBLIC    CODE     ---       usb_setup_stall
+      00FF2003H   PUBLIC    CODE     ---       set_usb_OUT_callback
+      00FF1FE0H   PUBLIC    CODE     ---       usb_setup_status
       00FF1967H   PUBLIC    CODE     ---       usb_read_reg
       00FF1788H   PUBLIC    CODE     ---       usb_in_ep1
-      00FF1AA1H   PUBLIC    CODE     ---       usb_in_ep2
+      00FF1AA5H   PUBLIC    CODE     ---       usb_in_ep2
       00FF093DH   PUBLIC    CODE     ---       usb_out_ep1
       00FF187EH   PUBLIC    CODE     ---       usb_write_reg
       00FF0FF5H   PUBLIC    CODE     ---       usb_isr
       00010000H   PUBLIC    XDATA    ---       Setup
       00010008H   PUBLIC    XDATA    BYTE      OutNumber
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 11
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 11
 
 
       0001000AH   PUBLIC    XDATA    ---       usb_OUT_callback
@@ -746,13 +746,13 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000080H   SFRSYM    DATA     BYTE      P0
 
       ---         MODULE    ---      ---       usb_req_class
-      00FF1F29H   PUBLIC    CODE     ---       usb_set_ctrl_line_state
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 12
+      00FF1F2DH   PUBLIC    CODE     ---       usb_set_ctrl_line_state
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 12
 
 
       00FF1A0BH   PUBLIC    CODE     ---       usb_get_line_coding
       00FF1A3FH   PUBLIC    CODE     ---       usb_set_line_coding
-      00FF1D58H   PUBLIC    CODE     ---       usb_req_class
+      00FF1D5CH   PUBLIC    CODE     ---       usb_req_class
       0001016BH   PUBLIC    XDATA    ---       LineCoding
       000000D0H   SFRSYM    DATA     BYTE      PSW
       0000009DH   SFRSYM    DATA     BYTE      IRCBAND
@@ -800,11 +800,11 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       ---         MODULE    ---      ---       usb_req_std
       00FF14E6H   PUBLIC    CODE     ---       usb_get_interface
       00FF0DA8H   PUBLIC    CODE     ---       usb_clear_feature
-      00FF1ACCH   PUBLIC    CODE     ---       usb_set_interface
+      00FF1AD0H   PUBLIC    CODE     ---       usb_set_interface
       00FF0A39H   PUBLIC    CODE     ---       usb_get_descriptor
-      00FF2006H   PUBLIC    CODE     ---       usb_set_descriptor
+      00FF200AH   PUBLIC    CODE     ---       usb_set_descriptor
       00FF1277H   PUBLIC    CODE     ---       usb_req_std
-      00FF2009H   PUBLIC    CODE     ---       usb_synch_frame
+      00FF200DH   PUBLIC    CODE     ---       usb_synch_frame
       00FF1324H   PUBLIC    CODE     ---       usb_set_address
       00FF0E4CH   PUBLIC    CODE     ---       usb_set_feature
       00FF11BCH   PUBLIC    CODE     ---       usb_get_configuration
@@ -815,7 +815,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000097H   SFRSYM    DATA     BYTE      AUXR2
       000000EFH   SFRSYM    DATA     BYTE      AUXINTIF
       000000FDH   SFRSYM    DATA     BYTE      S4CON
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 13
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 13
 
 
       000000ACH   SFRSYM    DATA     BYTE      S3CON
@@ -857,7 +857,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000080H   SFRSYM    DATA     BYTE      P0
 
       ---         MODULE    ---      ---       usb_req_vendor
-      00FF200CH   PUBLIC    CODE     ---       usb_req_vendor
+      00FF2010H   PUBLIC    CODE     ---       usb_req_vendor
       000000D0H   SFRSYM    DATA     BYTE      PSW
       0000009DH   SFRSYM    DATA     BYTE      IRCBAND
       00000097H   SFRSYM    DATA     BYTE      AUXR2
@@ -883,7 +883,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       000000BCH   SFRSYM    DATA     BYTE      ADC_CONTR
       000000E7H   SFRSYM    DATA     BYTE      CMPCR2
       000000E6H   SFRSYM    DATA     BYTE      CMPCR1
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 14
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 14
 
 
       000000B8H   SFRSYM    DATA     BYTE      IP
@@ -905,57 +905,57 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000080H   SFRSYM    DATA     BYTE      P0
 
       ---         MODULE    ---      ---       util
-      00FF1F3FH   PUBLIC    CODE     ---       LCD12864_DisplayClear
+      00FF1F43H   PUBLIC    CODE     ---       LCD12864_DisplayClear
       00FF1806H   PUBLIC    CODE     ---       OLED12864_ScrollRight
-      00FF1D73H   PUBLIC    CODE     ---       OLED12864_DisplayOff
+      00FF1D77H   PUBLIC    CODE     ---       OLED12864_DisplayOff
       00FF18B9H   PUBLIC    CODE     ---       OLED12864_ScrollLeft
-      00FF1BBAH   PUBLIC    CODE     ---       OLED12864_SetAddressMode
-      00FF1BDDH   PUBLIC    CODE     ---       OLED12864_SetContrast
-      00FF1D8EH   PUBLIC    CODE     ---       LCD12864_AutoWrapOff
+      00FF1BBEH   PUBLIC    CODE     ---       OLED12864_SetAddressMode
+      00FF1BE1H   PUBLIC    CODE     ---       OLED12864_SetContrast
+      00FF1D92H   PUBLIC    CODE     ---       LCD12864_AutoWrapOff
       00FF1683H   PUBLIC    CODE     ---       OLED12864_ShowPicture
-      00FF1C40H   PUBLIC    CODE     ---       OLED12864_ScrollStart
+      00FF1C44H   PUBLIC    CODE     ---       OLED12864_ScrollStart
       00FF19D6H   PUBLIC    CODE     ---       SEG7_ShowFloat
       00FF121AH   PUBLIC    CODE     ---       SEG7_ShowString
       00FF199FH   PUBLIC    CODE     ---       SEG7_ShowCode
       00FF1372H   PUBLIC    CODE     ---       LED40_SendData
-      00FF1C5CH   PUBLIC    CODE     ---       OLED12864_DisplayOn
-      00FF1C00H   PUBLIC    CODE     ---       LCD12864_ReverseLine
-      00FF1DA9H   PUBLIC    CODE     ---       OLED12864_ScrollStop
+      00FF1C60H   PUBLIC    CODE     ---       OLED12864_DisplayOn
+      00FF1C04H   PUBLIC    CODE     ---       LCD12864_ReverseLine
+      00FF1DADH   PUBLIC    CODE     ---       OLED12864_ScrollStop
       00FF13BDH   PUBLIC    CODE     ---       LED64_SendData
       00FF1408H   PUBLIC    CODE     ---       SEG7_ShowLong
-      00FF1C78H   PUBLIC    CODE     ---       LCD12864_ScrollRight
-      00FF1C94H   PUBLIC    CODE     ---       LCD12864_AutoWrapOn
-      00FF1DC4H   PUBLIC    CODE     ---       LCD12864_DisplayOff
+      00FF1C7CH   PUBLIC    CODE     ---       LCD12864_ScrollRight
+      00FF1C98H   PUBLIC    CODE     ---       LCD12864_AutoWrapOn
+      00FF1DC8H   PUBLIC    CODE     ---       LCD12864_DisplayOff
       00FF192EH   PUBLIC    CODE     ---       reverse2
       00FF10F0H   PUBLIC    CODE     ---       reverse4
-      00FF1DDFH   PUBLIC    CODE     ---       LCD12864_ScrollLeft
-      00FF1DFAH   PUBLIC    CODE     ---       OLED12864_HorizontalMirror
+      00FF1DE3H   PUBLIC    CODE     ---       LCD12864_ScrollLeft
+      00FF1DFEH   PUBLIC    CODE     ---       OLED12864_HorizontalMirror
       00FF12D3H   PUBLIC    CODE     ---       LCD12864_ShowPicture
       00FF17C7H   PUBLIC    CODE     ---       printf_usb
       00FF1842H   PUBLIC    CODE     ---       OLED12864_ScrollUp
-      00FF1E15H   PUBLIC    CODE     ---       OLED12864_DisplayContent
-      00FF1F55H   PUBLIC    CODE     ---       OLED12864_DisplayReverse
-      00FF1CB0H   PUBLIC    CODE     ---       OLED12864_VerticalMirror
-      00FF1CCCH   PUBLIC    CODE     ---       LCD12864_CursorReturnHome
-      00FF1CE8H   PUBLIC    CODE     ---       OLED12864_DisplayEntire
-      00FF1D04H   PUBLIC    CODE     ---       LCD12864_DisplayOn
-      00FF1D20H   PUBLIC    CODE     ---       LCD12864_CursorMoveRight
+      00FF1E19H   PUBLIC    CODE     ---       OLED12864_DisplayContent
+      00FF1F59H   PUBLIC    CODE     ---       OLED12864_DisplayReverse
+      00FF1CB4H   PUBLIC    CODE     ---       OLED12864_VerticalMirror
+      00FF1CD0H   PUBLIC    CODE     ---       LCD12864_CursorReturnHome
+      00FF1CECH   PUBLIC    CODE     ---       OLED12864_DisplayEntire
+      00FF1D08H   PUBLIC    CODE     ---       LCD12864_DisplayOn
+      00FF1D24H   PUBLIC    CODE     ---       LCD12864_CursorMoveRight
       00FF16C5H   PUBLIC    CODE     ---       LCD12864_ShowString
-      00FF1E30H   PUBLIC    CODE     ---       LCD12864_CursorOff
-      00FF1EE2H   PUBLIC    CODE     ---       sleep_ms
+      00FF1E34H   PUBLIC    CODE     ---       LCD12864_CursorOff
+      00FF1EE6H   PUBLIC    CODE     ---       sleep_ms
       00FF1706H   PUBLIC    CODE     ---       LED40_ClrBit
       00FF1747H   PUBLIC    CODE     ---       LED64_ClrBit
-      00FF1E4BH   PUBLIC    CODE     ---       LCD12864_CursorMoveLeft
-      00FF1C23H   PUBLIC    CODE     ---       sleep_us
+      00FF1E4FH   PUBLIC    CODE     ---       LCD12864_CursorMoveLeft
+      00FF1C27H   PUBLIC    CODE     ---       sleep_us
       00FF15FDH   PUBLIC    CODE     ---       LED40_SetBit
       00FF1640H   PUBLIC    CODE     ---       LED64_SetBit
       00FF1575H   PUBLIC    CODE     ---       LED40_SetPort
-      00FF1B48H   PUBLIC    CODE     ---       LCD12864_ScrollUp
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 15
+      00FF1B4CH   PUBLIC    CODE     ---       LCD12864_ScrollUp
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 15
 
 
       00FF15B9H   PUBLIC    CODE     ---       LED64_SetPort
-      00FF1D3CH   PUBLIC    CODE     ---       LCD12864_CursorOn
+      00FF1D40H   PUBLIC    CODE     ---       LCD12864_CursorOn
       00010104H   PUBLIC    XDATA    BYTE      ?SEG7_ShowString?BYTE
       00010130H   PUBLIC    XDATA    BYTE      ?printf_usb?BYTE
       000000D0H   SFRSYM    DATA     BYTE      PSW
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       000000B7H   SFRSYM    DATA     BYTE      IPH
       000000CDH   SFRSYM    DATA     BYTE      SPSTAT
       000000DDH   SFRSYM    DATA     BYTE      T4T3M
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 16
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 16
 
 
       000000C1H   SFRSYM    DATA     BYTE      WDT_CONTR
@@ -1056,29 +1056,29 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00000080H   SFRSYM    DATA     BYTE      P0
 
       ---         MODULE    ---      ---       AI8051U_32_MDU32
-      00FF1EFEH   PUBLIC    CODE     ---       ?C?LIMUL
-      00FF1EFAH   PUBLIC    CODE     ---       ?C?LMUL
-      00FF1F0EH   PUBLIC    CODE     ---       ?C?SLDIV
-      00FF1F04H   PUBLIC    CODE     ---       ?C?ULDIV
-      00FF1F08H   PUBLIC    CODE     ---       ?C?ULIDIV
+      00FF1F02H   PUBLIC    CODE     ---       ?C?LIMUL
+      00FF1EFEH   PUBLIC    CODE     ---       ?C?LMUL
+      00FF1F12H   PUBLIC    CODE     ---       ?C?SLDIV
+      00FF1F08H   PUBLIC    CODE     ---       ?C?ULDIV
+      00FF1F0CH   PUBLIC    CODE     ---       ?C?ULIDIV
       000000EDH   SFRSYM    DATA     BYTE      DMAIR
       00000002H   SYMBOL    NUMBER   ---       DMA_LMUL
       00000006H   SYMBOL    NUMBER   ---       DMA_SLDIV
       00000004H   SYMBOL    NUMBER   ---       DMA_ULDIV
 
-      00FF1EFAH   BLOCK     CODE     NEAR LAB  LVL=0
-      00FF1EFAH   LINE      CODE     ---       #23
-      00FF1EFDH   LINE      CODE     ---       #24
-      00FF1EFEH   LINE      CODE     ---       #33
-      00FF1F00H   LINE      CODE     ---       #34
-      00FF1F03H   LINE      CODE     ---       #35
-      00FF1F04H   LINE      CODE     ---       #44
-      00FF1F07H   LINE      CODE     ---       #45
-      00FF1F08H   LINE      CODE     ---       #54
-      00FF1F0AH   LINE      CODE     ---       #55
-      00FF1F0DH   LINE      CODE     ---       #56
-      00FF1F0EH   LINE      CODE     ---       #65
-      00FF1F11H   LINE      CODE     ---       #66
+      00FF1EFEH   BLOCK     CODE     NEAR LAB  LVL=0
+      00FF1EFEH   LINE      CODE     ---       #23
+      00FF1F01H   LINE      CODE     ---       #24
+      00FF1F02H   LINE      CODE     ---       #33
+      00FF1F04H   LINE      CODE     ---       #34
+      00FF1F07H   LINE      CODE     ---       #35
+      00FF1F08H   LINE      CODE     ---       #44
+      00FF1F0BH   LINE      CODE     ---       #45
+      00FF1F0CH   LINE      CODE     ---       #54
+      00FF1F0EH   LINE      CODE     ---       #55
+      00FF1F11H   LINE      CODE     ---       #56
+      00FF1F12H   LINE      CODE     ---       #65
+      00FF1F15H   LINE      CODE     ---       #66
       ---         BLOCKEND  ---      ---       LVL=0
 
       ---         MODULE    ---      ---       SPRINTF
@@ -1087,7 +1087,7 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
 
       ---         MODULE    ---      ---       VSPRINTF
       0001017CH   PUBLIC    XDATA    ---       ?VSPRINTF?BYTE
-L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  20:02:09  PAGE 17
+L251 LINKER/LOCATER V4.66.93.0                                                        05/11/2026  22:56:32  PAGE 17
 
 
       00FF00EEH   PUBLIC    CODE     NEAR LAB  VSPRINTF
@@ -1124,13 +1124,19 @@ SYMBOL TABLE OF MODULE:  OBJECTS\03-MARCH_WHEEL_LEG_FOC.HEX (main)
       00FF1541H   PUBLIC    CODE     ---       ?C?INITHDATA
 
       ---         MODULE    ---      ---       STRLEN
-      00FF1FCEH   PUBLIC    CODE     ---       strlen?_
+      00FF1FD2H   PUBLIC    CODE     ---       strlen?_
 
       ---         MODULE    ---      ---       memcpy
-      00FF1B71H   PUBLIC    CODE     ---       memcpy?_
+      00FF1B75H   PUBLIC    CODE     ---       memcpy?_
 
       ---         MODULE    ---      ---       ?C?INITHDATA_END
-      00FF2037H   PUBLIC    HCONST   WORD      ?C?INITHDATA_END
+      00FF203BH   PUBLIC    HCONST   WORD      ?C?INITHDATA_END
 
-Program Size: data=8.3 edata+hdata=256 xdata=397 const=53 code=8206
-L251 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+
+
+*** WARNING L27: INCOMPATIBLE INTERRUPT FRAME SIZE
+    MODULE:  SOURCES\LIB\STC_USB_CDC_32G_XDATA.LIB (usb)
+    FRAME:   4 BYTES SAVED ON INTERRUPT
+
+Program Size: data=8.3 edata+hdata=256 xdata=397 const=53 code=8210
+L251 RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
