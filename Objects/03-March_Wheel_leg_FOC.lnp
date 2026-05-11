@@ -1,8 +1,4 @@
 ".\Objects\main.obj",
-".\Objects\port.obj",
-".\Objects\clock.obj",
-".\Objects\usblib.obj",
-".\Objects\mathlib.obj",
 ".\Sources\lib\ai8051u_32_mdu32.lib",
 ".\Sources\lib\ai8051u_32_tfpu.lib",
 ".\Sources\lib\stc_usb_cdc_32g_xdata.lib" 

@@ -11,16 +11,7 @@
 
 
 #include "config.h"                     //默认已包含stdio.h、intrins.h等头文件
-
-
-//<<AICUBE_USER_INCLUDE_BEGIN>>
-// 在此添加用户头文件包含  
-//<<AICUBE_USER_INCLUDE_END>>
-
-
-//<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
-// 在此添加用户全局变量定义、用户宏定义以及函数声明 
-
+void usb_callback();
 // ==================== 全局变量 ====================
 volatile unsigned int tick_10ms = 0;   // 10ms 计数器
 
@@ -74,14 +65,22 @@ void Timer0_ISR(void) interrupt 1
 ////////////////////////////////////////
 void main(void)
 {
-    //<<AICUBE_USER_MAIN_INITIAL_BEGIN>>
-    // 在此添加用户主函数初始化代码  
-    //<<AICUBE_USER_MAIN_INITIAL_END>>
-
-    SYS_Init();
-
-    //<<AICUBE_USER_MAIN_CODE_BEGIN>>
-    // 在此添加主函数中运行一次的用户代码  
+    EAXFR = 1;			//允许访问扩展的特殊寄存器，XFR
+	WTST = 0;				//设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运行
+	CKCON = 0;			//设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额外的等待时间 
+    P0M1 = 0x00;   P0M0 = 0x00;
+    P1M1 = 0x00;   P1M0 = 0x00;
+    P2M1 = 0x00;   P2M0 = 0x00;
+    P3M1 = 0x00;   P3M0 = 0x00;
+    P4M1 = 0x00;   P4M0 = 0x00;
+    P5M1 = 0x00;   P5M0 = 0x00;
+    P6M1 = 0x00;   P6M0 = 0x00;
+    P7M1 = 0x00;   P7M0 = 0x00;
+    
+    usb_init();                                     //USB CDC 接口配置
+    set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
+    //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
+    EA = 1;
     // LED 初始状态：亮
     P42 = 0;
     // 启动定时器
@@ -90,52 +89,16 @@ void main(void)
 
     while (1)
     {
-        USBLIB_OUT_Done();              //查询方式处理USB接收的数据
 
-        //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
-        // 在此添加主函数中用户主循环代码  
-        //<<AICUBE_USER_MAIN_LOOP_END>>
     }
 }
 
-////////////////////////////////////////
-// 系统初始化函数
-// 入口参数: 无
-// 函数返回: 无
-////////////////////////////////////////
-void SYS_Init(void)
+void usb_callback()
 {
-    EnableAccessXFR();                  //使能访问扩展XFR
-    AccessCodeFastest();                //设置最快速度访问程序代码
-    AccessIXramFastest();               //设置最快速度访问内部XDATA
-    IAP_SetTimeBase();                  //设置IAP等待参数,产生1us时基
-
-    //<<AICUBE_USER_PREINITIAL_CODE_BEGIN>>
-    // 在此添加用户预初始化代码  
-    //<<AICUBE_USER_PREINITIAL_CODE_END>>
-
-    P0M0 = 0x00; P0M1 = 0x00;           //初始化P0口为准双向口模式
-    P1M0 = 0x00; P1M1 = 0x00;           //初始化P1口为准双向口模式
-    P2M0 = 0x00; P2M1 = 0x00;           //初始化P2口为准双向口模式
-    P3M0 = 0x00; P3M1 = 0x00;           //初始化P3口为准双向口模式
-    P4M0 = 0x00; P4M1 = 0x00;           //初始化P4口为准双向口模式
-    P5M0 = 0x00; P5M1 = 0x00;           //初始化P5口为准双向口模式
-
-    PORT3_Init();                       //P3口初始化
-    PORT5_Init();                       //P5口初始化
-    CLK_Init();                         //时钟模块初始化
-    delay_ms(1);
-    USBLIB_Init();                      //USB库初始化
-    delay_ms(1);
-    MATHLIB_Init();                     //MATH库初始化
-
-    //<<AICUBE_USER_INITIAL_CODE_BEGIN>>
-    // 在此添加用户初始化代码  
-    //<<AICUBE_USER_INITIAL_CODE_END>>
-
-    EnableGlobalInt();                  //使能全局中断
-    USBLIB_WaitConfiged();              //等待USB完成配置
+    USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样返回, 用于测试）
 }
+
+
 
 ////////////////////////////////////////
 // 微秒延时函数

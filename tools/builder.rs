@@ -49,12 +49,20 @@ const INC_DIR: &str = "Sources\\inc";
 const STC_INC: &str = "Sources\\inc\\stc";
 const BUILD_DIR: &str = "Objects";
 
-// 库文件
-const USB_LIB: &str = "Sources\\lib\\stc_usb_cdc_32g_xdata.LIB";
+// 库文件（三件套，缺一不可！）
+const MDU32_LIB: &str = "Sources\\lib\\ai8051u_32_mdu32.LIB";
+const TFPU_LIB:  &str = "Sources\\lib\\ai8051u_32_tfpu.LIB";
+const USB_LIB:   &str = "Sources\\lib\\stc_usb_cdc_32g_xdata.LIB";
 const TARGET: &str = "Objects\\03-March_Wheel_leg_FOC.hex";
 
 // C251 编译选项
-const C251_FLAGS: &[&str] = &["LARGE", "DEBUG", "SYMBOLS"];
+// LARGE = Large 内存模型
+// INCDIR 通过代码动态添加
+const C251_FLAGS: &[&str] = &[
+    "LARGE",
+    "DEBUG",
+    "SYMBOLS",
+];
 
 // =========================== 辅助函数 ===========================
 
@@ -114,7 +122,7 @@ fn find_c_sources(dir: &str) -> Result<Vec<PathBuf>> {
 
 // =========================== 构建命令 ===========================
 
-/// 编译: 所有 .c → .obj
+/// 编译: 所有 .c → .obj（增量：只编译修改过的）
 fn compile() -> Result<()> {
     step("编译中...");
     ensure_dir(BUILD_DIR)?;
@@ -125,15 +133,33 @@ fn compile() -> Result<()> {
         bail!("未找到 .c 源文件 ({})", SRC_DIR);
     }
 
+    let mut compiled = 0u32;
+    let mut skipped  = 0u32;
+
     for src in &sources {
         let stem = src.file_stem().unwrap().to_string_lossy();
         let obj = format!("{}\\{}.obj", BUILD_DIR, stem);
         let src_path = src.to_string_lossy().to_string();
 
+        // ---- 增量编译：比较时间戳 ----
+        let src_meta = fs::metadata(src)?;
+        let src_time = src_meta.modified()?;
+        if let Ok(obj_meta) = fs::metadata(&obj) {
+            if let Ok(obj_time) = obj_meta.modified() {
+                if src_time <= obj_time {
+                    println!("  ⏭️  跳过 {} (已最新)", &src_path);
+                    skipped += 1;
+                    continue;
+                }
+            }
+        }
+
         println!("  {} → {}", src_path.dimmed(), obj.dimmed());
+        compiled += 1;
 
         let mut args: Vec<String> = vec![src_path.clone()];
         args.extend(C251_FLAGS.iter().map(|s| s.to_string()));
+        // INCDIR 必须作为单独参数，格式: INCDIR(path)
         args.push(format!("INCDIR({})", INC_DIR));
         args.push(format!("INCDIR({})", STC_INC));
         args.push(format!("OBJECT({})", obj));
@@ -142,7 +168,7 @@ fn compile() -> Result<()> {
         run_keil_tool(C251, &args)?;
     }
 
-    ok(&format!("编译完成 ({} 个文件)", sources.len()));
+    ok(&format!("编译完成 (编译 {} 个, 跳过 {} 个)", compiled, skipped));
     Ok(())
 }
 
@@ -172,10 +198,56 @@ fn link() -> Result<()> {
 
     obj_list.push(',');
     obj_list.push_str(USB_LIB);
+    obj_list.push(',');
+    obj_list.push_str(MDU32_LIB);
+    obj_list.push(',');
+    obj_list.push_str(TFPU_LIB);
+
+    // ---- 增量链接：HEX 比所有依赖都新？跳过 ----
+    let hex_path = Path::new(TARGET);
+    if hex_path.exists() {
+        let hex_time = fs::metadata(hex_path)?.modified()?;
+        let mut all_newer = true;
+        // 检查所有 .obj
+        for entry in fs::read_dir(BUILD_DIR)? {
+            let entry = entry?;
+            if entry.path().extension().map_or(false, |e| e == "obj") {
+                if fs::metadata(entry.path())?.modified()? > hex_time {
+                    all_newer = false;
+                    break;
+                }
+            }
+        }
+        // 检查所有 .lib
+        for lib in [USB_LIB, MDU32_LIB, TFPU_LIB] {
+            let lib_path = Path::new(lib);
+            if lib_path.exists() && fs::metadata(lib_path)?.modified()? > hex_time {
+                all_newer = false;
+                break;
+            }
+        }
+        if all_newer {
+            let size = fs::metadata(hex_path)?.len();
+            ok(&format!("链接跳过 (HEX 已最新, {} bytes)", size));
+            return Ok(());
+        }
+    }
 
     println!("  {} → {}", obj_list.dimmed(), TARGET.dimmed());
 
-    run_keil_tool(L251, &[&obj_list, "TO", TARGET])?;
+    // L251 链接器：通过 cmd /c 避免 Windows 参数引号问题
+    let linker_line = format!("{} {} TO {} REMOVEUNUSED NOOVERLAY", L251, obj_list, TARGET);
+    let output = Command::new("cmd")
+        .args(["/c", &linker_line])
+        .output()
+        .with_context(|| "执行 L251 失败")?;
+    let stdout = String::from_utf8_lossy(&output.stdout).to_string();
+    let stderr = String::from_utf8_lossy(&output.stderr).to_string();
+    let combined = format!("{}{}", stdout, stderr);
+    if combined.contains("*** ERROR") {
+        eprintln!("{}", combined);
+        bail!("{} 返回错误", "L251");
+    }
 
     // 确认 HEX 文件已生成
     if Path::new(TARGET).exists() {
@@ -251,6 +323,9 @@ fn show_info() -> Result<()> {
     }
     println!("  库文件:");
     println!("    {}", USB_LIB.dimmed());
+    println!("    {}", MDU32_LIB.dimmed());
+    println!("    {}", TFPU_LIB.dimmed());
+    println!("  C251 编译选项: {}", C251_FLAGS.join(", ").dimmed());
     println!("  头文件 (STC):");
     println!("    {}", STC_INC.dimmed());
     println!("  输出:     {}", TARGET.dimmed());

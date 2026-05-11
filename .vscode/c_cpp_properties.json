@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "AI8051U (Keil C251)",
+            "includePath": [
+                "${workspaceFolder}/Sources",
+                "${workspaceFolder}/Sources/inc",
+                "${workspaceFolder}/Sources/inc/stc",
+                "${workspaceFolder}/Sources/lib"
+            ],
+            "defines": [
+                "__C251__",
+                "FOSC=36000000UL",
+                "SYSCLK=36000000UL"
+            ],
+            "cStandard": "c99",
+            "intelliSenseMode": "gcc-x86",
+            "compilerPath": ""
+        }
+    ],
+    "version": 4
+}

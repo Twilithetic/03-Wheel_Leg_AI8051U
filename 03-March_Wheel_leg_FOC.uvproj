@@ -333,26 +333,6 @@
               <FilePath>.\Sources\main.c</FilePath>
             </File>
             <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\port.c</FilePath>
-            </File>
-            <File>
-              <FileName>clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\clock.c</FilePath>
-            </File>
-            <File>
-              <FileName>usblib.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\usblib.c</FilePath>
-            </File>
-            <File>
-              <FileName>mathlib.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\mathlib.c</FilePath>
-            </File>
-            <File>
               <FileName>ai8051u_32_mdu32.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\Sources\lib\ai8051u_32_mdu32.lib</FilePath>

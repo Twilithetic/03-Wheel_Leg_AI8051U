@@ -20,8 +20,6 @@
 
 C251       = C:\Keil_v5\C251\BIN\C251.EXE
 L251       = C:\Keil_v5\C251\BIN\L251.EXE
-# 烧录工具
-ISP_TOOL   = tools\AiCube-ISP-v6.96V-plus.exe
 
 # =========================== 目录 ===========================
 
@@ -49,20 +47,27 @@ TFPU_LIB  = $(LIB_DIR)\ai8051u_32_tfpu.lib
 
 TARGET    = $(BUILD_DIR)\03-March_Wheel_leg_FOC.hex
 
+# =========================== 链接辅助 ===========================
+# 把所有 .obj + .lib 拼成逗号分隔的字符串（L251 要求逗号分隔）
+comma := ,
+empty :=
+space := $(empty) $(empty)
+ALL_FILES = $(subst $(space),$(comma),$(OBJS) $(USB_LIB) $(MDU_LIB) $(TFPU_LIB))
+LINK_OPTS = REMOVEUNUSED NOOVERLAY
+
 # =========================== 编译选项 ===========================
 
-# C251 编译标志
-#   LARGE   — LARGE 内存模型 (16MB 地址空间)
-#   DEBUG   — 包含调试信息
-#   SYMBOLS — 生成符号表
 # C251 系统头文件路径（STC 官方芯片头文件，已复制到本地）
 STC_INC   = $(SRC_DIR)\inc\stc
 
-# C251 编译标志
-#   LARGE   — LARGE 内存模型 (16MB 地址空间)
-#   DEBUG   — 包含调试信息
-#   SYMBOLS — 生成符号表
-C251_FLAGS = LARGE DEBUG SYMBOLS INCDIR($(INC_DIR)) INCDIR($(STC_INC))
+# C251 编译标志（必须和 Keil 工程一致！）
+#   LARGE            — LARGE 内存模型
+#   ROM(LARGE)       — 16MB ROM 空间
+#   INTVECTOR(0xFF0000) — 中断向量基址 = FF:0000
+#   INTERRUPT(4)     — 🔑 中断帧 4 字节（和库匹配！）
+#   DEBUG            — 包含调试信息
+#   SYMBOLS          — 生成符号表
+C251_FLAGS = LARGE INTERRUPT(4) DEBUG SYMBOLS INCDIR($(INC_DIR)) INCDIR($(STC_INC))
 
 # =========================== 目标 ===========================
 
@@ -89,8 +94,9 @@ _ensure_build_dir:
 
 # ---- 链接 OBJ + LIB → HEX ----
 $(TARGET): $(OBJS) $(USB_LIB) $(MDU_LIB) $(TFPU_LIB)
-	@echo 🔗 链接 $< ...
-	$(L251) $<,$(USB_LIB) TO $@
+	@echo 🔗 链接...
+	$(L251) $(ALL_FILES) $(LINK_OPTS) TO $@
+	@echo ✅ 链接完成: $@
 
 # ---- 仅编译 ----
 compile: $(OBJS)
@@ -99,7 +105,7 @@ compile: $(OBJS)
 # ---- 仅链接 ----
 link: $(OBJS)
 	@echo 🔗 链接...
-	$(L251) $(OBJS),$(USB_LIB) TO $(TARGET)
+	$(L251) $(ALL_FILES) $(LINK_OPTS) TO $(TARGET)
 	@echo ✅ 链接完成: $(TARGET)
 
 # ---- 清理 ----

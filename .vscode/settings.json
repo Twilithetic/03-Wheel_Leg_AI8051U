@@ -1,3 +1,4 @@
 {
-    "EIDE.C51.INI.Path": "C:\\Keil_v5\\C251\\TOOLS.INI"
+    "EIDE.C51.INI.Path": "C:\\Keil_v5\\C251\\TOOLS.INI",
+    "C_Cpp.errorSquiggles": "disabled"
 }
