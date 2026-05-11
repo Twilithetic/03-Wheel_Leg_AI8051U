@@ -42,7 +42,6 @@
 
 #include "port.h"
 #include "clock.h"
-#include "wdt.h"
 #include "usblib.h"
 #include "mathlib.h"
 

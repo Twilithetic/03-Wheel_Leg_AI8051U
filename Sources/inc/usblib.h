@@ -18,7 +18,7 @@
 
 void USBLIB_Init(void);
 void USBLIB_WaitConfiged(void);
-void USBLIB_OUT_Callback(void);
+void USBLIB_OUT_Done(void);
 
 
 

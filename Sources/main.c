@@ -38,10 +38,8 @@ void Timer0_Init(void)
     TL0 = 0xE0;                // 低字节先写
     TH0 = 0xB1;                // 高字节
     
-    // 3. 设置 8 位预分频器 (需要先访问扩展寄存器)
-    EAXFR = 1;                 // 允许访问扩展 XFR
+    // 3. 设置 8 位预分频器（EAXFR 已在 SYS_Init 中打开，无需重复操作）
     TM0PS = 11;                // 预分频 ÷ 12
-    EAXFR = 0;
     
     // 4. 1T 模式（不分频，速度最快）
     AUXR |= 0x80;              // T0x12 = 1
@@ -84,28 +82,15 @@ void main(void)
 
     //<<AICUBE_USER_MAIN_CODE_BEGIN>>
     // 在此添加主函数中运行一次的用户代码  
-	// GPIO 初始化为准双向口
-    P0M1 = 0;   P0M0 = 0;
-    P1M1 = 0;   P1M0 = 0;
-    P2M1 = 0;   P2M0 = 0;
-    P3M1 = 0;   P3M0 = 0;
-    P4M1 = 0;   P4M0 = 0;
-    P5M1 = 0;   P5M0 = 0;
-    P6M1 = 0;   P6M0 = 0;
-    P7M1 = 0;   P7M0 = 0;
-    
-    // 初始化端口
-    P0 = 0xFF;  P1 = 0xFF;  P2 = 0xFF;
-    P3 = 0xFF;  P4 = 0xFF;  P5 = 0xFF;
     // LED 初始状态：亮
     P42 = 0;
     // 启动定时器
-    Timer0_Init();
+    // Timer0_Init();
     //<<AICUBE_USER_MAIN_CODE_END>>
 
     while (1)
     {
-        WDT_Clear();                    //清看门狗定时器
+        USBLIB_OUT_Done();              //查询方式处理USB接收的数据
 
         //<<AICUBE_USER_MAIN_LOOP_BEGIN>>
         // 在此添加主函数中用户主循环代码  
@@ -139,7 +124,6 @@ void SYS_Init(void)
     PORT3_Init();                       //P3口初始化
     PORT5_Init();                       //P5口初始化
     CLK_Init();                         //时钟模块初始化
-    WDT_Init();                         //看门狗初始化
     delay_ms(1);
     USBLIB_Init();                      //USB库初始化
     delay_ms(1);

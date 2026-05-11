@@ -343,11 +343,6 @@
               <FilePath>.\Sources\clock.c</FilePath>
             </File>
             <File>
-              <FileName>wdt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sources\wdt.c</FilePath>
-            </File>
-            <File>
               <FileName>usblib.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sources\usblib.c</FilePath>
@@ -368,9 +363,9 @@
               <FilePath>.\Sources\lib\ai8051u_32_tfpu.lib</FilePath>
             </File>
             <File>
-              <FileName>stc_usb_cdc_32g_xdata.lib</FileName>
+              <FileName>stc_usb_hid_32g_xdata.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Sources\lib\stc_usb_cdc_32g_xdata.lib</FilePath>
+              <FilePath>.\Sources\lib\stc_usb_hid_32g_xdata.lib</FilePath>
             </File>
           </Files>
         </Group>
