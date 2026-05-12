@@ -2,18 +2,32 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🔨 Build (UV4)",
-            "detail": "增量编译 → 日志直接输出到终端",
+            "label": "uv4-build",
+            "hide": true,
+            "detail": "UV4 增量编译",
             "type": "shell",
-            "command": "C:\\Keil_v5\\UV4\\UV4.exe -b 03-March_Wheel_leg_FOC.uvproj -j0 -t 03-March_Wheel_leg_FOC -l Objects\\build.log && type Objects\\build.log",
+            "command": "C:\\Keil_v5\\UV4\\UV4.exe",
+            "args": [
+                "-b",
+                "03-March_Wheel_leg_FOC.uvproj",
+                "-j0",
+                "-t", "03-March_Wheel_leg_FOC",
+                "-l", "Objects\\build.log"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}",
                 "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
             },
-            "group": { "kind": "build", "isDefault": true },
-            "presentation": { "reveal": "always", "panel": "shared" },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
             "problemMatcher": {
                 "owner": "c251",
+                "source": "Keil C251",
+                "fileLocation": "autoDetect",
                 "pattern": {
                     "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
                     "file": 1,
@@ -22,40 +36,107 @@
                     "message": 5
                 }
             }
+        },
+        {
+            "label": "uv4-rebuild",
+            "hide": true,
+            "detail": "UV4 完整重建",
+            "type": "shell",
+            "command": "C:\\Keil_v5\\UV4\\UV4.exe",
+            "args": [
+                "-r",
+                "03-March_Wheel_leg_FOC.uvproj",
+                "-j0",
+                "-t", "03-March_Wheel_leg_FOC",
+                "-l", "Objects\\build.log"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            },
+            "problemMatcher": {
+                "owner": "c251",
+                "source": "Keil C251",
+                "fileLocation": "autoDetect",
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "uv4-clean",
+            "hide": true,
+            "detail": "UV4 清理",
+            "type": "shell",
+            "command": "C:\\Keil_v5\\UV4\\UV4.exe",
+            "args": [
+                "-c",
+                "03-March_Wheel_leg_FOC.uvproj",
+                "-j0",
+                "-t", "03-March_Wheel_leg_FOC",
+                "-l", "Objects\\build.log"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "show-log",
+            "hide": true,
+            "detail": "显示构建日志",
+            "type": "shell",
+            "command": "type",
+            "args": ["Objects\\build.log"],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "🔨 Build (UV4)",
+            "detail": "增量编译 → 显示日志",
+            "dependsOn": ["uv4-build", "show-log"],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": { "close": false }
         },
         {
             "label": "🧹 Clean (UV4)",
-            "detail": "清理构建产物 → 日志直接输出到终端",
-            "type": "shell",
-            "command": "C:\\Keil_v5\\UV4\\UV4.exe -c 03-March_Wheel_leg_FOC.uvproj -j0 -t 03-March_Wheel_leg_FOC -l Objects\\build.log && type Objects\\build.log",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
-            },
+            "detail": "清理构建产物 → 显示日志",
+            "dependsOn": ["uv4-clean", "show-log"],
+            "dependsOrder": "sequence",
             "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" }
+            "presentation": { "close": false }
         },
         {
             "label": "🔄 Rebuild (UV4)",
-            "detail": "清理 + 完整重建 → 日志直接输出到终端",
-            "type": "shell",
-            "command": "C:\\Keil_v5\\UV4\\UV4.exe -r 03-March_Wheel_leg_FOC.uvproj -j0 -t 03-March_Wheel_leg_FOC -l Objects\\build.log && type Objects\\build.log",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
-            },
+            "detail": "清理 + 完整重建 → 显示日志",
+            "dependsOn": ["uv4-rebuild", "show-log"],
+            "dependsOrder": "sequence",
             "group": "build",
-            "presentation": { "reveal": "always", "panel": "shared" },
-            "problemMatcher": {
-                "owner": "c251",
-                "pattern": {
-                    "regexp": "^(.*)\\((\\d+)\\)\\s+(WARNING|ERROR)\\s+(C\\d+):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "severity": 3,
-                    "message": 5
-                }
-            }
+            "presentation": { "close": false }
         }
     ]
 }

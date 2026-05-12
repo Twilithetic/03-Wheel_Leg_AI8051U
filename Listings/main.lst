@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               12/05/26  09:11:13  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -66,7 +66,7 @@ stmt  level    source
    56   1      }
    57          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
    58          
-C251 COMPILER V5.60.0,  main                                                               12/05/26  09:11:13  PAGE 2   
+C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 2   
 
    59          
    60          
@@ -134,7 +134,7 @@ stmt  level    source
   119          // 入口参数: ms (设置延时的毫秒值)
   120          // 函数返回: 无
   121          ////////////////////////////////////////
-C251 COMPILER V5.60.0,  main                                                               12/05/26  09:11:13  PAGE 3   
+C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 3   
 
   122          void delay_ms(uint16_t ms)
   123          {

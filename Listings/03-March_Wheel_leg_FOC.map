@@ -1,4 +1,4 @@
-L251 LINKER/LOCATER V4.66.93.0                                                          05/12/2026  09:11:44  PAGE 1
+L251 LINKER/LOCATER V4.66.93.0                                                          05/12/2026  12:21:22  PAGE 1
 
 
 L251 LINKER/LOCATER V4.66.93.0, INVOKED BY:
@@ -67,7 +67,7 @@ BASE        START       END         USED      MEMORY CLASS
 FF0000H     FF0000H     FFFFFFH     00200EH   CODE
 010000H     010000H     01FFFFH     00018DH   XDATA
 000020H.0   000020H.0   00002FH.7   000000H.3 BIT
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 2
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 2
 
 
 FF0000H     FF0000H     FFFFFFH     000004H   CONST
@@ -135,7 +135,7 @@ FF13BDH   FF1407H   00004BH   BYTE   INSEG    CODE           ?PR?LED64_SENDDATA?
 FF1408H   FF1452H   00004BH   BYTE   INSEG    CODE           ?PR?SEG7_SHOWLONG?UTIL
 FF1453H   FF149CH   00004AH   BYTE   INSEG    CODE           ?PR?USB_RESET?USB
 FF149DH   FF14E5H   000049H   BYTE   INSEG    CODE           ?PR?_M?MAIN
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 3
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 3
 
 
 FF14E6H   FF152DH   000048H   BYTE   INSEG    CODE           ?PR?USB_GET_INTERFACE?USB_REQ_STD
@@ -203,7 +203,7 @@ FF1ECAH   FF1EE1H   000018H   BYTE   INSEG    CODE           ?PR?USB_OUT_DONE?US
 FF1EE2H   FF1EF9H   000018H   BYTE   INSEG    CODE           ?PR?SLEEP_MS?UTIL
 FF1EFAH   FF1F11H   000018H   BYTE   UNIT     CODE           ?PR?AI8051U_32_MDU32
 FF1F12H   FF1F28H   000017H   BYTE   INSEG    CODE           ?PR?DELAY_MS?MAIN
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 4
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 4
 
 
 FF1F29H   FF1F3EH   000016H   BYTE   INSEG    CODE           ?PR?USB_SET_CTRL_LINE_STATE?USB_REQ_CLASS
@@ -271,7 +271,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
 *SFR* 00000097H   DATA     BYTE      AUXR2
 *SFR* 000000F0H   DATA     BYTE      B
       00000020H.1 BIT      BIT       bUsbFeatureReady
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 5
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 5
 
 
       00000020H.2 BIT      BIT       bUsbInBusy
@@ -339,7 +339,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       00FF1C5CH   CODE     ---       OLED12864_DisplayOn
       00FF1F55H   CODE     ---       OLED12864_DisplayReverse
       00FF1DFAH   CODE     ---       OLED12864_HorizontalMirror
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 6
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 6
 
 
       00FF18B9H   CODE     ---       OLED12864_ScrollLeft
@@ -407,7 +407,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       00FF1EE2H   CODE     ---       sleep_ms
       00FF1C23H   CODE     ---       sleep_us
 *SFR* 000000CEH   DATA     BYTE      SPCTL
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 7
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 7
 
 
       00FF00CEH   CODE     NEAR LAB  sprintf
@@ -475,7 +475,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       0001004CH   XDATA    ---       UsbOutBuffer
       0001008CH   XDATA    ---       USER_STCISPCMD
       00FF00EEH   CODE     NEAR LAB  vsprintf
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 8
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 8
 
 
 *SFR* 000000C1H   DATA     BYTE      WDT_CONTR
@@ -543,7 +543,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       000000BBH   SFRSYM    DATA     BYTE      P_SW3
       000000BAH   SFRSYM    DATA     BYTE      P_SW2
       000000A2H   SFRSYM    DATA     BYTE      P_SW1
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 9
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 9
 
 
       000000CEH   SFRSYM    DATA     BYTE      SPCTL
@@ -611,7 +611,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       00FF14BEH   LINE      CODE     ---       #75
       00FF14C4H   LINE      CODE     ---       #76
       00FF14CAH   LINE      CODE     ---       #77
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 10
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 10
 
 
       00FF14D0H   LINE      CODE     ---       #78
@@ -679,7 +679,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       00FF093DH   PUBLIC    CODE     ---       usb_out_ep1
       00FF187EH   PUBLIC    CODE     ---       usb_write_reg
       00FF0FF5H   PUBLIC    CODE     ---       usb_isr
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 11
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 11
 
 
       00010000H   PUBLIC    XDATA    ---       Setup
@@ -747,7 +747,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       000000B2H   SFRSYM    DATA     BYTE      P3M0
       00000080H   SFRSYM    DATA     BYTE      P0
 
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 12
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 12
 
 
       ---         MODULE    ---      ---       usb_req_class
@@ -815,7 +815,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       000000D0H   SFRSYM    DATA     BYTE      PSW
       0000009DH   SFRSYM    DATA     BYTE      IRCBAND
       00000097H   SFRSYM    DATA     BYTE      AUXR2
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 13
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 13
 
 
       000000EFH   SFRSYM    DATA     BYTE      AUXINTIF
@@ -883,7 +883,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       000000F1H   SFRSYM    DATA     BYTE      CANICR
       00000087H   SFRSYM    DATA     BYTE      PCON
       000000BCH   SFRSYM    DATA     BYTE      ADC_CONTR
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 14
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 14
 
 
       000000E7H   SFRSYM    DATA     BYTE      CMPCR2
@@ -951,7 +951,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       00FF1C23H   PUBLIC    CODE     ---       sleep_us
       00FF15FDH   PUBLIC    CODE     ---       LED40_SetBit
       00FF1640H   PUBLIC    CODE     ---       LED64_SetBit
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 15
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 15
 
 
       00FF1575H   PUBLIC    CODE     ---       LED40_SetPort
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       000000ACH   SFRSYM    DATA     BYTE      S3CON
       0000009AH   SFRSYM    DATA     BYTE      S2CON
       000000B7H   SFRSYM    DATA     BYTE      IPH
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 16
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 16
 
 
       000000CDH   SFRSYM    DATA     BYTE      SPSTAT
@@ -1087,7 +1087,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\03-March_Wheel_leg_FOC (main)
       0001015CH   PUBLIC    XDATA    ---       ?SPRINTF?BYTE
       00FF00CEH   PUBLIC    CODE     NEAR LAB  SPRINTF
 
-L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  09:11:44  PAGE 17
+L251 LINKER/LOCATER V4.66.93.0                                                        05/12/2026  12:21:22  PAGE 17
 
 
       ---         MODULE    ---      ---       VSPRINTF
