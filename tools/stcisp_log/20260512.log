@@ -178,3 +178,101 @@
 --------------------
 [2026-05-12 12:21:26] : End
 --------------------------------------------------
+[2026-05-12 13:39:34] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 13:39:32
+*FILESIZE* : 23252 (0x005AD4)
+*CODESIZE* : 8260 (0x002044)
+*CHECKSUM* : 0x000B2EB8
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 13:39:36] : End
+--------------------------------------------------
+[2026-05-12 13:41:20] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 13:41:18
+*FILESIZE* : 23258 (0x005ADA)
+*CODESIZE* : 8263 (0x002047)
+*CHECKSUM* : 0x000B3145
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 13:41:22] : End
+--------------------------------------------------
+[2026-05-12 13:42:37] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 13:42:35
+*FILESIZE* : 23258 (0x005ADA)
+*CODESIZE* : 8263 (0x002047)
+*CHECKSUM* : 0x000B319F
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 13:42:39] : End
+--------------------------------------------------
+[2026-05-12 13:58:53] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 13:58:51
+*FILESIZE* : 23888 (0x005D50)
+*CODESIZE* : 8487 (0x002127)
+*CHECKSUM* : 0x000B7A7F
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 13:58:55] : End
+--------------------------------------------------
+[2026-05-12 14:00:21] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 14:00:19
+*FILESIZE* : 23894 (0x005D56)
+*CODESIZE* : 8490 (0x00212A)
+*CHECKSUM* : 0x000B7968
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 14:00:23] : End
+--------------------------------------------------
+[2026-05-12 15:24:16] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 15:24:15
+*FILESIZE* : 23894 (0x005D56)
+*CODESIZE* : 8490 (0x00212A)
+*CHECKSUM* : 0x000B7968
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 15:24:19] : End
+--------------------------------------------------
+[2026-05-12 15:25:13] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-March_Wheel_leg\03-Wheel_leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月12日, 15:25:11
+*FILESIZE* : 23894 (0x005D56)
+*CODESIZE* : 8490 (0x00212A)
+*CHECKSUM* : 0x000B7968
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-12 15:25:16] : End
+--------------------------------------------------

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               12/05/26  14:00:18  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -58,7 +58,7 @@ stmt  level    source
    48          {
    49   1          tick_10ms++;               // 每 10ms +1
    50   1          
-   51   1          if (tick_10ms >= 10)      // 1 秒到了（10ms × 100 = 1000ms）
+   51   1          if (tick_10ms >= 100)      // 1 秒到了（10ms × 100 = 1000ms）
    52   1          {
    53   2              tick_10ms = 0;
    54   2              P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
@@ -66,98 +66,155 @@ stmt  level    source
    56   1      }
    57          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
    58          
-C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 2   
+C251 COMPILER V5.60.0,  main                                                               12/05/26  14:00:18  PAGE 2   
 
-   59          
-   60          
-   61          ////////////////////////////////////////
-   62          // 项目主函数
-   63          // 入口参数: 无
-   64          // 函数返回: 无
-   65          ////////////////////////////////////////
-   66          void main(void)
-   67          {
-   68   1          EAXFR = 1;                  //允许访问扩展的特殊寄存器，XFR
-   69   1              WTST = 0;                               //设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运�
-             -��
-   70   1              CKCON = 0;                      //设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额�
-             -��的等待时间 
-   71   1          P0M1 = 0x00;   P0M0 = 0x00;
-   72   1          P1M1 = 0x00;   P1M0 = 0x00;
-   73   1          P2M1 = 0x00;   P2M0 = 0x00;
-   74   1          P3M1 = 0x00;   P3M0 = 0x00;
-   75   1          P4M1 = 0x00;   P4M0 = 0x00;
-   76   1          P5M1 = 0x00;   P5M0 = 0x00;
-   77   1          P6M1 = 0x00;   P6M0 = 0x00;
-   78   1          P7M1 = 0x00;   P7M0 = 0x00;
-   79   1          
-   80   1          usb_init();                                     //USB CDC 接口配置
-   81   1          set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
-   82   1          //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
-   83   1          EA = 1;
-   84   1          // LED 初始状态：亮
-   85   1          P42 = 0;
-   86   1          // 启动定时器
-   87   1          // Timer0_Init();
-   88   1          //<<AICUBE_USER_MAIN_CODE_END>>
-   89   1      
-   90   1          while (1)
-   91   1          {
-   92   2      
-   93   2          }
-   94   1      }
-   95          
-   96          void usb_callback()
-   97          {
-   98   1          USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样
-             -返回, 用于测试）
-   99   1      }
+   59          ////////////////////////////////////////
+   60          // 时钟初始化函数
+   61          // 入口参数: 无
+   62          // 函数返回: 无
+   63          ////////////////////////////////////////
+   64          void CLK_Init(void)
+   65          {
+   66   1          CLK_HSIOCK_Divider(1);              //设置高速外设时钟预分频系数
+   67   1          CLK_SPICLK_Divider(1);              //设置SPI时钟预分频系数
+   68   1          CLK_I2SCLK_Divider(1);              //设置I2S时钟预分频系数
+   69   1          CLK_PWMACLK_Divider(1);             //设置PWMA时钟预分频系数
+   70   1          CLK_PWMBCLK_Divider(1);             //设置PWMB时钟预分频系数
+   71   1          CLK_TFPUCLK_Divider(1);             //设置TFPU时钟预分频系数
+   72   1      
+   73   1          CLK_LIRC_Enable();                  //启动内部低速LIRC
+   74   1          CLK_LIRC_WaitStable();              //等待振荡器稳定
+   75   1      
+   76   1          CLK_IRC48M_Enable();                //启动内部48M高速IRC
+   77   1          CLK_IRC48M_WaitStable();            //等待振荡器稳定
+   78   1      
+   79   1          CLK_SYSCLK_Divider(10);             //切换主时钟前先将系统时钟降频
+   80   1      
+   81   1          HIRC_24M();                         //选择内部预置的频率
+   82   1      
+   83   1          CLK_MCLK_HIRC();                    //选择内部高精度HIRC作为PLL输入时钟
+   84   1          CLK_PLL_Output144MHz();             //选择PLL的144M作为PLL的输出时钟
+   85   1          CLK_PLL_PreDivider2();              //PLL输入时钟2分频
+   86   1          CLK_PLL_Enable();                   //启动PLL
+   87   1          delay_ms(1);                        //等待PLL锁频
+   88   1      
+   89   1          CLK_MCLK2_PLL();                    //选择PLL的输出时钟作为主时钟
+   90   1      
+   91   1          CLK_SYSCLK_Divider(4);              //设置系统时钟分频系数
+   92   1      
+   93   1          CLK_HSIOCK_MCLK();                  //选择MCLK主时钟作为高速外设时钟源
+   94   1      
+   95   1          //<<AICUBE_USER_CLOCK_INITIAL_BEGIN>>
+   96   1          // 在此添加用户初始化代码  
+   97   1          //<<AICUBE_USER_CLOCK_INITIAL_END>>
+   98   1      }
+   99          
   100          
-  101          
-  102          
-  103          ////////////////////////////////////////
-  104          // 微秒延时函数
-  105          // 入口参数: us (设置延时的微秒值)
-  106          // 函数返回: 无
-  107          ////////////////////////////////////////
-  108          void delay_us(uint16_t us)
-  109          {
-  110   1          do
-  111   1          {
-  112   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
-  113   2          } while (--us);
-  114   1      }
-  115          
-  116          
-  117          ////////////////////////////////////////
-  118          // 毫秒延时函数
-  119          // 入口参数: ms (设置延时的毫秒值)
-  120          // 函数返回: 无
-  121          ////////////////////////////////////////
-C251 COMPILER V5.60.0,  main                                                               12/05/26  12:18:24  PAGE 3   
+  101          ////////////////////////////////////////
+  102          // 项目主函数
+  103          // 入口参数: 无
+  104          // 函数返回: 无
+  105          ////////////////////////////////////////
+  106          void main(void)
+  107          {
+  108   1          EAXFR = 1;                  //允许访问扩展的特殊寄存器，XFR
+  109   1              WTST = 0;                               //设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运�
+             -��
+  110   1              CKCON = 0;                      //设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额�
+             -��的等待时间 
+  111   1          P0M1 = 0x00;   P0M0 = 0x00;
+  112   1          P1M1 = 0x00;   P1M0 = 0x00;
+  113   1          P2M1 = 0x00;   P2M0 = 0x00;
+  114   1          P3M1 = 0x00;   P3M0 = 0x00;
+  115   1          P4M1 = 0x00;   P4M0 = 0x00;
+  116   1          P5M1 = 0x00;   P5M0 = 0x00;
+  117   1          P6M1 = 0x00;   P6M0 = 0x00;
+  118   1          P7M1 = 0x00;   P7M0 = 0x00;
+  119   1          CLK_Init();
+  120   1          USBLIB_Init();                                     //USB CDC 接口配置
+  121   1          
+  122   1          //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
+C251 COMPILER V5.60.0,  main                                                               12/05/26  14:00:18  PAGE 3   
 
-  122          void delay_ms(uint16_t ms)
-  123          {
-  124   1          uint16_t i;
-  125   1      
-  126   1          do
-  127   1          {
-  128   2              i = MAIN_Fosc / 6000;
-  129   2              while (--i);
-  130   2          } while (--ms);
-  131   1      }
-  132          
-  133          
-  134          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
-  135          // 在此添加用户函数实现代码  
-  136          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-  137          
-  138          
+  123   1          EA = 1;
+  124   1          // LED 初始状态：亮
+  125   1          P42 = 0;
+  126   1          // 启动定时器
+  127   1          Timer0_Init();
+  128   1          //<<AICUBE_USER_MAIN_CODE_END>>
+  129   1      
+  130   1          while (1)
+  131   1          {
+  132   2      
+  133   2          }
+  134   1      }
+  135          
+  136          ////////////////////////////////////////
+  137          // USB库初始化函数
+  138          // 入口参数: 无
+  139          // 函数返回: 无
+  140          ////////////////////////////////////////
+  141          void USBLIB_Init(void)
+  142          {
+  143   1          usb_init();                         //初始化USB模块
+  144   1          set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
+  145   1      
+  146   1          //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
+  147   1          // 在此添加用户初始化代码  
+  148   1          //<<AICUBE_USER_USBLIB_INITIAL_END>>
+  149   1      }
+  150          
+  151          void usb_callback()
+  152          {
+  153   1          USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样
+             -返回, 用于测试）
+  154   1      }
+  155          
+  156          
+  157          
+  158          ////////////////////////////////////////
+  159          // 微秒延时函数
+  160          // 入口参数: us (设置延时的微秒值)
+  161          // 函数返回: 无
+  162          ////////////////////////////////////////
+  163          void delay_us(uint16_t us)
+  164          {
+  165   1          do
+  166   1          {
+  167   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+  168   2          } while (--us);
+  169   1      }
+  170          
+  171          
+  172          ////////////////////////////////////////
+  173          // 毫秒延时函数
+  174          // 入口参数: ms (设置延时的毫秒值)
+  175          // 函数返回: 无
+  176          ////////////////////////////////////////
+  177          void delay_ms(uint16_t ms)
+  178          {
+  179   1          uint16_t i;
+  180   1      
+  181   1          do
+  182   1          {
+  183   2              i = MAIN_Fosc / 6000;
+  184   2              while (--i);
+  185   2          } while (--ms);
+  186   1      }
+  187          
+C251 COMPILER V5.60.0,  main                                                               12/05/26  14:00:18  PAGE 4   
+
+  188          
+  189          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  190          // 在此添加用户函数实现代码  
+  191          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  192          
+  193          
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       255     ------
+  code size            =       485     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------

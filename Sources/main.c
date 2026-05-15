@@ -48,7 +48,7 @@ void Timer0_ISR(void) interrupt 1
 {
     tick_10ms++;               // 每 10ms +1
     
-    if (tick_10ms >= 10)      // 1 秒到了（10ms × 100 = 1000ms）
+    if (tick_10ms >= 100)      // 1 秒到了（10ms × 100 = 1000ms）
     {
         tick_10ms = 0;
         P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
@@ -56,6 +56,46 @@ void Timer0_ISR(void) interrupt 1
 }
 //<<AICUBE_USER_GLOBAL_DEFINE_END>>
 
+////////////////////////////////////////
+// 时钟初始化函数
+// 入口参数: 无
+// 函数返回: 无
+////////////////////////////////////////
+void CLK_Init(void)
+{
+    CLK_HSIOCK_Divider(1);              //设置高速外设时钟预分频系数
+    CLK_SPICLK_Divider(1);              //设置SPI时钟预分频系数
+    CLK_I2SCLK_Divider(1);              //设置I2S时钟预分频系数
+    CLK_PWMACLK_Divider(1);             //设置PWMA时钟预分频系数
+    CLK_PWMBCLK_Divider(1);             //设置PWMB时钟预分频系数
+    CLK_TFPUCLK_Divider(1);             //设置TFPU时钟预分频系数
+
+    CLK_LIRC_Enable();                  //启动内部低速LIRC
+    CLK_LIRC_WaitStable();              //等待振荡器稳定
+
+    CLK_IRC48M_Enable();                //启动内部48M高速IRC
+    CLK_IRC48M_WaitStable();            //等待振荡器稳定
+
+    CLK_SYSCLK_Divider(10);             //切换主时钟前先将系统时钟降频
+
+    HIRC_24M();                         //选择内部预置的频率
+
+    CLK_MCLK_HIRC();                    //选择内部高精度HIRC作为PLL输入时钟
+    CLK_PLL_Output144MHz();             //选择PLL的144M作为PLL的输出时钟
+    CLK_PLL_PreDivider2();              //PLL输入时钟2分频
+    CLK_PLL_Enable();                   //启动PLL
+    delay_ms(1);                        //等待PLL锁频
+
+    CLK_MCLK2_PLL();                    //选择PLL的输出时钟作为主时钟
+
+    CLK_SYSCLK_Divider(4);              //设置系统时钟分频系数
+
+    CLK_HSIOCK_MCLK();                  //选择MCLK主时钟作为高速外设时钟源
+
+    //<<AICUBE_USER_CLOCK_INITIAL_BEGIN>>
+    // 在此添加用户初始化代码  
+    //<<AICUBE_USER_CLOCK_INITIAL_END>>
+}
 
 
 ////////////////////////////////////////
@@ -76,21 +116,40 @@ void main(void)
     P5M1 = 0x00;   P5M0 = 0x00;
     P6M1 = 0x00;   P6M0 = 0x00;
     P7M1 = 0x00;   P7M0 = 0x00;
+    CLK_Init();
+    USBLIB_Init();                                     //USB CDC 接口配置
     
-    usb_init();                                     //USB CDC 接口配置
-    set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
     //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
     EA = 1;
     // LED 初始状态：亮
     P42 = 0;
     // 启动定时器
-    // Timer0_Init();
-    //<<AICUBE_USER_MAIN_CODE_END>>
-
+    Timer0_Init();
+    //<<AICUBE_USER_MAIN_CODE_END>>、
+    // DRV8311H配置 
+    // GAIN: 1V/A (Pin to Hi-Z)
+    // SLEW: 180V/us 
+    // MODE: 3xPWM Mode and 9A OCP LEVEL
+    // t_dead = 425ns, t_pd= 550ns
     while (1)
     {
 
     }
+}
+
+////////////////////////////////////////
+// USB库初始化函数
+// 入口参数: 无
+// 函数返回: 无
+////////////////////////////////////////
+void USBLIB_Init(void)
+{
+    usb_init();                         //初始化USB模块
+    set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
+
+    //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
+    // 在此添加用户初始化代码  
+    //<<AICUBE_USER_USBLIB_INITIAL_END>>
 }
 
 void usb_callback()
