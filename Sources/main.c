@@ -58,6 +58,7 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
         duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
         if (duty > 999) duty = 0;
         HSPWM_UpdateDuty(PWMB_CH5, duty);
+        printf("Hello USB!\r\n");  // 输出到 USB 虚拟串口
     }
 
     //<<AICUBE_USER_TIMER2_ISR_CODE1_END>>

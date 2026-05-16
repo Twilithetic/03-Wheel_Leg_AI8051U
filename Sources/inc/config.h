@@ -23,6 +23,8 @@
 #define SYSCLK                  FOSC
 #define MAIN_Fosc               FOSC
 
+#define PRINTF_USB                      //printf输出重定向到USB口
+
 #include <ai8051u.h>
 #include <stdio.h>
 #include <string.h>
