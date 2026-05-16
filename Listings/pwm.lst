@@ -1,0 +1,312 @@
+C251 COMPILER V5.60.0,  pwm                                                                16/05/26  20:46:53  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE pwm
+OBJECT MODULE PLACED IN .\Objects\pwm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\pwm.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
+                    -s\pwm.lst) OBJECT(.\Objects\pwm.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: pwm.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-16) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          
+   27          ////////////////////////////////////////
+   28          // PWMB初始化函数
+   29          // 入口参数: 无
+   30          // 函数返回: 无
+   31          ////////////////////////////////////////
+   32          void PWMB_Init(void)
+   33          {
+   34   1          PWMB_C5SwitchP50();                 //设置PWMB通道5数据端口: PWM5 (P5.0)
+   35   1          PWMB_C6SwitchP51();                 //设置PWMB通道6数据端口: PWM6 (P5.1)
+   36   1          PWMB_C7SwitchP52();                 //设置PWMB通道7数据端口: PWM7 (P5.2)
+   37   1      
+   38   1          HSPWMB_Disable();                   //关闭高速模式，使用同步方式进行初始化
+   39   1          PWMB_InternalClockMode();           //选择内部时钟模式
+   40   1          PWMB_SetClockDivider(0);            //设置16位预分频
+   41   1          PWMB_SetReload16(999);              //设置16位重载值
+   42   1          PWMB_BufferARR();                   //使能重载值寄存器预装载功能
+   43   1          PWMB_SetCounter(0);                 //初始化计数值
+   44   1      
+   45   1          PWMB_CC5PDisable();                 //关闭通道
+   46   1          PWMB_CC5Output();                   //使能通道输出功能
+   47   1          PWMB_CC5PEnable();                  //打开通道
+   48   1          PWM_UpdateDuty(PWMB_CH5, 500);      //设置通道的PWM占空比
+   49   1          PWMB_OC5REFPWMMode1();              //设置通道输出参考信号为PWM模式1信号
+   50   1          PWMB_BufferCCR5();                  //使能CCRn预装载功能
+   51   1          PWMB_CC5PNonInverted();             //设置正极通道输出高电平有效
+   52   1          PWMB_EnablePWM5POutput();           //使能正极通道输出
+   53   1      
+   54   1          PWMB_CC6PDisable();                 //关闭通道
+   55   1          PWMB_CC6Output();                   //使能通道输出功能
+   56   1          PWMB_CC6PEnable();                  //打开通道
+   57   1          PWM_UpdateDuty(PWMB_CH6, 500);      //设置通道的PWM占空比
+   58   1          PWMB_OC6REFPWMMode1();              //设置通道输出参考信号为PWM模式1信号
+C251 COMPILER V5.60.0,  pwm                                                                16/05/26  20:46:53  PAGE 2   
+
+   59   1          PWMB_BufferCCR6();                  //使能CCRn预装载功能
+   60   1          PWMB_CC6PNonInverted();             //设置正极通道输出高电平有效
+   61   1          PWMB_EnablePWM6POutput();           //使能正极通道输出
+   62   1      
+   63   1          PWMB_CC7PDisable();                 //关闭通道
+   64   1          PWMB_CC7Output();                   //使能通道输出功能
+   65   1          PWMB_CC7PEnable();                  //打开通道
+   66   1          PWM_UpdateDuty(PWMB_CH7, 500);      //设置通道的PWM占空比
+   67   1          PWMB_OC7REFPWMMode1();              //设置通道输出参考信号为PWM模式1信号
+   68   1          PWMB_BufferCCR7();                  //使能CCRn预装载功能
+   69   1          PWMB_CC7PNonInverted();             //设置正极通道输出高电平有效
+   70   1          PWMB_EnablePWM7POutput();           //使能正极通道输出
+   71   1      
+   72   1          PWMB_EnableMainOutput();            //使能PWM主输出
+   73   1      
+   74   1          HSPWMB_Enable();                    //使能高速模式
+   75   1          HSPWMB_DisableInt();                //关闭高速模式下的PWM中断
+   76   1      
+   77   1          HSPWMB_Run();                       //PWMB开始运行
+   78   1      
+   79   1      
+   80   1      
+   81   1          //<<AICUBE_USER_PWM1_INITIAL_BEGIN>>
+   82   1          // 在此添加用户初始化代码  
+   83   1          //<<AICUBE_USER_PWM1_INITIAL_END>>
+   84   1      }
+   85          
+   86          ////////////////////////////////////////
+   87          // 设置PWM通道输出占空比
+   88          // 入口参数: PWMx: (目标PWM组和通道索引)
+   89          //           nCompare: (PWM占空比值)
+   90          // 函数返回: 无
+   91          ////////////////////////////////////////
+   92          void PWM_UpdateDuty(uint8_t PWMx, uint16_t nCompare)
+   93          {
+   94   1          switch (PWMx)
+   95   1          {
+   96   2          case PWMA_CH1:
+   97   2              PWMA_SetCCR1Value(nCompare);    //设置通道比较值
+   98   2              break;
+   99   2          case PWMA_CH2:
+  100   2              PWMA_SetCCR2Value(nCompare);    //设置通道比较值
+  101   2              break;
+  102   2          case PWMA_CH3:
+  103   2              PWMA_SetCCR3Value(nCompare);    //设置通道比较值
+  104   2              break;
+  105   2          case PWMA_CH4:
+  106   2              PWMA_SetCCR4Value(nCompare);    //设置通道比较值
+  107   2              break;
+  108   2          case PWMB_CH5:
+  109   2              PWMB_SetCCR5Value(nCompare);    //设置通道比较值
+  110   2              break;
+  111   2          case PWMB_CH6:
+  112   2              PWMB_SetCCR6Value(nCompare);    //设置通道比较值
+  113   2              break;
+  114   2          case PWMB_CH7:
+  115   2              PWMB_SetCCR7Value(nCompare);    //设置通道比较值
+  116   2              break;
+  117   2          case PWMB_CH8:
+  118   2              PWMB_SetCCR8Value(nCompare);    //设置通道比较值
+  119   2              break;
+  120   2          }
+  121   1      }
+  122          
+  123          ////////////////////////////////////////
+  124          // 读取PWM通道捕获值
+C251 COMPILER V5.60.0,  pwm                                                                16/05/26  20:46:53  PAGE 3   
+
+  125          // 入口参数: PWMx: (目标PWM组和通道索引)
+  126          // 函数返回: 捕获值
+  127          ////////////////////////////////////////
+  128          uint16_t PWM_ReadCapture(uint8_t PWMx)
+  129          {
+  130   1          uint16_t cap;
+  131   1      
+  132   1          switch (PWMx)
+  133   1          {
+  134   2          case PWMA_CH1:  cap = PWMA_ReadCCR1Value(); break;
+  135   2          case PWMA_CH2:  cap = PWMA_ReadCCR2Value(); break;
+  136   2          case PWMA_CH3:  cap = PWMA_ReadCCR3Value(); break;
+  137   2          case PWMA_CH4:  cap = PWMA_ReadCCR4Value(); break;
+  138   2          case PWMB_CH5:  cap = PWMB_ReadCCR5Value(); break;
+  139   2          case PWMB_CH6:  cap = PWMB_ReadCCR6Value(); break;
+  140   2          case PWMB_CH7:  cap = PWMB_ReadCCR7Value(); break;
+  141   2          case PWMB_CH8:  cap = PWMB_ReadCCR8Value(); break;
+  142   2          default: cap = 0;
+  143   2          }
+  144   1      
+  145   1          return cap;
+  146   1      }
+  147          
+  148          ////////////////////////////////////////
+  149          // 设置高速模式PWM通道输出占空比
+  150          // 入口参数: PWMx: (目标PWM组和通道索引)
+  151          //           nCompare: (PWM占空比值)
+  152          // 函数返回: 无
+  153          ////////////////////////////////////////
+  154          void HSPWM_UpdateDuty(uint8_t PWMx, uint16_t nCompare)
+  155          {
+  156   1          switch (PWMx)
+  157   1          {
+  158   2          case PWMA_CH1:
+  159   2              HSPWMA_SetCCR1Value(nCompare);  //设置通道比较值
+  160   2              break;
+  161   2          case PWMA_CH2:
+  162   2              HSPWMA_SetCCR2Value(nCompare);  //设置通道比较值
+  163   2              break;
+  164   2          case PWMA_CH3:
+  165   2              HSPWMA_SetCCR3Value(nCompare);  //设置通道比较值
+  166   2              break;
+  167   2          case PWMA_CH4:
+  168   2              HSPWMA_SetCCR4Value(nCompare);  //设置通道比较值
+  169   2              break;
+  170   2          case PWMB_CH5:
+  171   2              HSPWMB_SetCCR5Value(nCompare);  //设置通道比较值
+  172   2              break;
+  173   2          case PWMB_CH6:
+  174   2              HSPWMB_SetCCR6Value(nCompare);  //设置通道比较值
+  175   2              break;
+  176   2          case PWMB_CH7:
+  177   2              HSPWMB_SetCCR7Value(nCompare);  //设置通道比较值
+  178   2              break;
+  179   2          case PWMB_CH8:
+  180   2              HSPWMB_SetCCR8Value(nCompare);  //设置通道比较值
+  181   2              break;
+  182   2          }
+  183   1      }
+  184          
+  185          ////////////////////////////////////////
+  186          // 读取高速模式PWM通道捕获值
+  187          // 入口参数: PWMx: (目标PWM组和通道索引)
+  188          // 函数返回: 捕获值
+  189          ////////////////////////////////////////
+  190          uint16_t HSPWM_ReadCapture(uint8_t PWMx)
+C251 COMPILER V5.60.0,  pwm                                                                16/05/26  20:46:53  PAGE 4   
+
+  191          {
+  192   1          uint16_t cap;
+  193   1      
+  194   1          switch (PWMx)
+  195   1          {
+  196   2          case PWMA_CH1:  cap = HSPWMA_ReadCCR1Value();   break;
+  197   2          case PWMA_CH2:  cap = HSPWMA_ReadCCR2Value();   break;
+  198   2          case PWMA_CH3:  cap = HSPWMA_ReadCCR3Value();   break;
+  199   2          case PWMA_CH4:  cap = HSPWMA_ReadCCR4Value();   break;
+  200   2          case PWMB_CH5:  cap = HSPWMB_ReadCCR5Value();   break;
+  201   2          case PWMB_CH6:  cap = HSPWMB_ReadCCR6Value();   break;
+  202   2          case PWMB_CH7:  cap = HSPWMB_ReadCCR7Value();   break;
+  203   2          case PWMB_CH8:  cap = HSPWMB_ReadCCR8Value();   break;
+  204   2          default: cap = 0;
+  205   2          }
+  206   1      
+  207   1          return cap;
+  208   1      }
+  209          
+  210          ////////////////////////////////////////
+  211          // 异步方式读取PWMA特殊功能寄存器
+  212          // 入口参数: addr: (PWMA特殊功能寄存器的低7位)
+  213          // 函数返回: 寄存器的值
+  214          ////////////////////////////////////////;
+  215          uint8_t HSPWMA_ReadReg(uint8_t addr)
+  216          {
+  217   1          uint8_t dat;
+  218   1      
+  219   1          while (HSPWMA_CheckBusy());         //等待前一个异步读写完成
+  220   1          HSPWMA_AsyncRead(addr, dat);        //触发异步方式读取寄存器
+  221   1      
+  222   1          return dat;
+  223   1      }
+  224          
+  225          ////////////////////////////////////////
+  226          // 异步方式写PWMA特殊功能寄存器
+  227          // 入口参数: addr: (PWMA特殊功能寄存器的低7位)
+  228          //           dat: (待写入的数据)
+  229          // 函数返回: 无
+  230          ////////////////////////////////////////;
+  231          void HSPWMA_WriteReg(uint8_t addr, uint8_t dat)
+  232          {
+  233   1          while (HSPWMA_CheckBusy());         //等待前一个异步读写完成
+  234   1          HSPWMA_AsyncWrite(addr, dat);       //触发异步方式写寄存器
+  235   1      }
+  236          
+  237          ////////////////////////////////////////
+  238          // 异步方式读取PWMB特殊功能寄存器
+  239          // 入口参数: addr: (PWMB特殊功能寄存器的低7位)
+  240          // 函数返回: 寄存器的值
+  241          ////////////////////////////////////////;
+  242          uint8_t HSPWMB_ReadReg(uint8_t addr)
+  243          {
+  244   1          uint8_t dat;
+  245   1      
+  246   1          while (HSPWMB_CheckBusy());         //等待前一个异步读写完成
+  247   1          HSPWMB_AsyncRead(addr, dat);        //触发异步方式读取寄存器
+  248   1      
+  249   1          return dat;
+  250   1      }
+  251          
+  252          ////////////////////////////////////////
+  253          // 异步方式写PWMB特殊功能寄存器
+  254          // 入口参数: addr: (PWMB特殊功能寄存器的低7位)
+  255          //           dat: (待写入的数据)
+  256          // 函数返回: 无
+C251 COMPILER V5.60.0,  pwm                                                                16/05/26  20:46:53  PAGE 5   
+
+  257          ////////////////////////////////////////;
+  258          void HSPWMB_WriteReg(uint8_t addr, uint8_t dat)
+  259          {
+  260   1          while (HSPWMB_CheckBusy());         //等待前一个异步读写完成
+  261   1          HSPWMB_AsyncWrite(addr, dat);       //触发异步方式写寄存器
+  262   1      }
+  263          
+  264          
+  265          
+  266          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  267          // 在此添加用户函数实现代码  
+  268          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  269          
+  270          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =      1561     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

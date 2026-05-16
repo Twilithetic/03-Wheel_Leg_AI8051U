@@ -37,6 +37,7 @@
 
 //<<AICUBE_USER_INCLUDE_BEGIN>>
 // 在此添加用户头文件包含  
+#include "drv8311.h"
 //<<AICUBE_USER_INCLUDE_END>>
 
 
@@ -44,6 +45,7 @@
 #include "clock.h"
 #include "usblib.h"
 #include "mathlib.h"
+#include "pwm.h"
 
 void SYS_Init(void);
 void delay_us(uint16_t us);

@@ -323,6 +323,13 @@
       <Groups>
         <Group>
           <GroupName>User Sources</GroupName>
+          <Files>
+            <File>
+              <FileName>drv8311.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sources\drv8311.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>AiCube</GroupName>
@@ -346,6 +353,11 @@
               <FileName>stc_usb_cdc_32g_xdata.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\Sources\lib\stc_usb_cdc_32g_xdata.lib</FilePath>
+            </File>
+            <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sources\pwm.c</FilePath>
             </File>
           </Files>
         </Group>

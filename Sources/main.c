@@ -13,7 +13,53 @@
 #include "config.h"                     //默认已包含stdio.h、intrins.h等头文件
 void usb_callback();
 // ==================== 全局变量 ====================
-volatile unsigned int tick_10ms = 0;   // 10ms 计数器
+volatile unsigned int tick_1s = 0;   // 10ms 计数器
+volatile unsigned int tick_1ms = 0;   // 10ms 计数器
+
+void TIMER2_Init(void)
+{
+#define T2_PSCR                 (1)
+#define T2_RELOAD               (65536 - (float)SYSCLK / (T2_PSCR + 1) * 1000 / 1000000) //定时周期1000微秒
+
+    TIMER2_TimerMode();                 //设置定时器2为定时模式
+    TIMER2_1TMode();                    //设置定时器2为1T模式
+    TIMER2_EnableInt();                 //使能定时器2中断
+    TIMER2_SetPrescale(T2_PSCR);        //设置定时器2的8位预分频
+    TIMER2_SetReload16(T2_RELOAD);      //设置定时器2的16位重载值
+    TIMER2_Run();                       //定时器2开始运行
+
+    //<<AICUBE_USER_TIMER2_INITIAL_BEGIN>>
+    // 在此添加用户初始化代码  
+    //<<AICUBE_USER_TIMER2_INITIAL_END>>
+}
+
+
+////////////////////////////////////////
+// 定时器2中断服务程序
+// 入口参数: 无
+// 函数返回: 无
+////////////////////////////////////////
+void TIMER2_ISR(void) interrupt TMR2_VECTOR
+{
+    //<<AICUBE_USER_TIMER2_ISR_CODE1_BEGIN>>
+    // 在此添加中断函数用户代码  
+    // 这个时钟1ms
+    tick_1s++;               // 每 10ms +1
+    tick_1ms++;
+    
+    if (tick_1s >= 1000)      // 1 秒到了（10ms × 100 = 1000ms）
+    {
+        tick_1s = 0;
+        P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
+    }
+
+    if (tick_1s >= 1000)      // 1 秒到了（10ms × 100 = 1000ms）
+    {
+        HSPWM_UpdateDuty(PWMB_CH5, HSPWM_ReadCapture(PWMB_CH5) + 100)
+    }
+
+    //<<AICUBE_USER_TIMER2_ISR_CODE1_END>>
+}
 
 // ==================== T0 初始化 ====================
 void Timer0_Init(void)
@@ -46,13 +92,13 @@ void Timer0_Init(void)
 // ==================== T0 中断服务程序 ====================
 void Timer0_ISR(void) interrupt 1
 {
-    tick_10ms++;               // 每 10ms +1
+    // tick_1s++;               // 每 10ms +1
     
-    if (tick_10ms >= 100)      // 1 秒到了（10ms × 100 = 1000ms）
-    {
-        tick_10ms = 0;
-        P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
-    }
+    // if (tick_1s >= 100)      // 1 秒到了（10ms × 100 = 1000ms）
+    // {
+    //     tick_1s = 0;
+    //     P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
+    // }
 }
 //<<AICUBE_USER_GLOBAL_DEFINE_END>>
 
@@ -119,12 +165,18 @@ void main(void)
     CLK_Init();
     USBLIB_Init();                                     //USB CDC 接口配置
     
+    
     //set_usb_ispcmd(0);  //禁用不停电下载功能会提升传输速度
     EA = 1;
     // LED 初始状态：亮
     P42 = 0;
     // 启动定时器
-    Timer0_Init();
+    // 芯片外设初始化
+    PORT5_Init();
+    // 外设控制初始化
+    DRV8311_init();
+    // 启动任务
+    TIMER2_Init();
     //<<AICUBE_USER_MAIN_CODE_END>>、
     // DRV8311H配置 
     // GAIN: 1V/A (Pin to Hi-Z)
@@ -135,6 +187,30 @@ void main(void)
     {
 
     }
+}
+
+////////////////////////////////////////
+// P5口初始化函数
+// 入口参数: 无
+// 函数返回: 无
+////////////////////////////////////////
+void PORT5_Init(void)
+{
+    SetP5nInitLevelHigh(PIN_ALL);       //设置P5初始化电平
+    SetP5nQuasiMode(PIN_7 | PIN_6 | PIN_5 | PIN_4); //设置P5.7,P5.6,P5.5,P5.4为准双向口模式
+    SetP5nPushPullMode(PIN_3 | PIN_2 | PIN_1 | PIN_0); //设置P5.3,P5.2,P5.1,P5.0为推挽输出模式
+    SetP5nAutoMode(PIN_ALL);            //设置P5自动配置端口模式
+
+    DisableP5nPullUp(PIN_ALL);          //关闭P5内部上拉电阻
+    DisableP5nPullDown(PIN_ALL);        //关闭P5内部下拉电阻
+    EnableP5nSchmitt(PIN_ALL);          //使能P5施密特触发
+    SetP5nSlewRateFast(PIN_ALL);        //设置P5快速翻转速度
+    SetP5nDrivingStrong(PIN_ALL);       //设置P5增强驱动能力
+    SetP5nAnalogInput(PIN_ALL);         //使能P5模拟信号输入功能
+
+    //<<AICUBE_USER_PORT5_INITIAL_BEGIN>>
+    // 在此添加用户初始化代码  
+    //<<AICUBE_USER_PORT5_INITIAL_END>>
 }
 
 ////////////////////////////////////////
