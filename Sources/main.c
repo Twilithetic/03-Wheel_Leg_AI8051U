@@ -130,7 +130,7 @@ void main(void)
     // GAIN: 1V/A (Pin to Hi-Z)
     // SLEW: 180V/us 
     // MODE: 3xPWM Mode and 9A OCP LEVEL
-    // t_dead = 425ns, t_pd= 550ns
+    // t_dead = 425ns, t_pd= 550ns 加上两个180V/us = 1.107us
     while (1)
     {
 
