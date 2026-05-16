@@ -47,60 +47,22 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
     tick_1s++;               // 每 10ms +1
     tick_1ms++;
     
-    if (tick_1s >= 1000)      // 1 秒到了（10ms × 100 = 1000ms）
+    if (tick_1s >= 1000)      // 1 秒到了（1ms × 1000 = 1000ms）
     {
+        uint16_t duty;         // C90: 变量声明必须放在 block 开头
+
         tick_1s = 0;
         P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
-    }
 
-    if (tick_1s >= 1000)      // 1 秒到了（10ms × 100 = 1000ms）
-    {
-        HSPWM_UpdateDuty(PWMB_CH5, HSPWM_ReadCapture(PWMB_CH5) + 100)
+        // 占空比 +100，溢出回 0
+        duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
+        if (duty > 999) duty = 0;
+        HSPWM_UpdateDuty(PWMB_CH5, duty);
     }
 
     //<<AICUBE_USER_TIMER2_ISR_CODE1_END>>
 }
 
-// ==================== T0 初始化 ====================
-void Timer0_Init(void)
-{
-    // 1. 设置为模式 0（16 位自动重装载）
-    TMOD &= 0xF0;              // 清除 T0 控制字段
-    TMOD |= 0x00;              // GATE=0, C/T=0, M1=0, M0=0
-    
-    // 2. 设置重装载值（目标：10ms 中断）
-    //    系统时钟 = 24MHz (默认 HIRC)
-    //    TM0PS = 11 → 预分频 12 → 定时器时钟 = 2MHz
-    //    65536 - 20000 = 45536 = 0xB1E0
-    TL0 = 0xE0;                // 低字节先写
-    TH0 = 0xB1;                // 高字节
-    
-    // 3. 设置 8 位预分频器（EAXFR 已在 SYS_Init 中打开，无需重复操作）
-    TM0PS = 11;                // 预分频 ÷ 12
-    
-    // 4. 1T 模式（不分频，速度最快）
-    AUXR |= 0x80;              // T0x12 = 1
-    
-    // 5. 开中断
-    ET0 = 1;                   // 允许 T0 中断
-    EA  = 1;                   // 开总中断
-    
-    // 6. 启动定时器
-    TR0 = 1;                   // T0 开始计数
-}
-
-// ==================== T0 中断服务程序 ====================
-void Timer0_ISR(void) interrupt 1
-{
-    // tick_1s++;               // 每 10ms +1
-    
-    // if (tick_1s >= 100)      // 1 秒到了（10ms × 100 = 1000ms）
-    // {
-    //     tick_1s = 0;
-    //     P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
-    // }
-}
-//<<AICUBE_USER_GLOBAL_DEFINE_END>>
 
 ////////////////////////////////////////
 // 时钟初始化函数

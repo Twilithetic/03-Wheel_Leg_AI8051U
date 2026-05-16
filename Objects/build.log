@@ -2,7 +2,7 @@ Build started: Project: 03-March_Wheel_leg_FOC
 Build target '03-March_Wheel_leg_FOC'
 compiling main.c...
 ÿþlinking...
-ÿProgram Size: data=8.3 edata+hdata=256 xdata=399 const=60 code=10139
+ÿProgram Size: data=8.3 edata+hdata=256 xdata=399 const=60 code=10160
 þcreating hex file from ".\Objects\03-March_Wheel_leg_FOC"...
 ÿþ".\Objects\03-March_Wheel_leg_FOC" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
