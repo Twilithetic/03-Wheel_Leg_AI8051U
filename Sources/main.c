@@ -136,6 +136,8 @@ void main(void)
     // 启动定时器
     // 芯片外设初始化
     PORT5_Init();
+    ADC_Init();
+    DMA_ADC_Trigger(); 
     // 外设控制初始化
     DRV8311_init();
     // 启动任务

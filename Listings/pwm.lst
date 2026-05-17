@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  pwm                                                                16/05/26  22:01:22  PAGE 1   
+C251 COMPILER V5.60.0,  pwm                                                                17/05/26  22:32:09  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE pwm
@@ -21,6 +21,8 @@ stmt  level    source
    11          
    12          
    13          #include "config.h"
+*** ERROR C123 IN LINE 29 OF \03-March_Wheel_leg\03-Wheel_leg_AI8051U\Sources\inc\adc.h: 'pu8ADCDMABuffer': allocation e
+             -xceeds 64K
    14          
    15          
    16          //<<AICUBE_USER_INCLUDE_BEGIN>>
@@ -64,10 +66,10 @@ stmt  level    source
    54   1          PWMB_CC6PDisable();                 //关闭通道
    55   1          PWMB_CC6Output();                   //使能通道输出功能
    56   1          PWMB_CC6PEnable();                  //打开通道
+C251 COMPILER V5.60.0,  pwm                                                                17/05/26  22:32:09  PAGE 2   
+
    57   1          PWM_UpdateDuty(PWMB_CH6, 500);      //设置通道的PWM占空比
    58   1          PWMB_OC6REFPWMMode1();              //设置通道输出参考信号为PWM模式1信号
-C251 COMPILER V5.60.0,  pwm                                                                16/05/26  22:01:22  PAGE 2   
-
    59   1          PWMB_BufferCCR6();                  //使能CCRn预装载功能
    60   1          PWMB_CC6PNonInverted();             //设置正极通道输出高电平有效
    61   1          PWMB_EnablePWM6POutput();           //使能正极通道输出
@@ -132,10 +134,10 @@ stmt  level    source
   120   2          }
   121   1      }
   122          
+C251 COMPILER V5.60.0,  pwm                                                                17/05/26  22:32:09  PAGE 3   
+
   123          ////////////////////////////////////////
   124          // 读取PWM通道捕获值
-C251 COMPILER V5.60.0,  pwm                                                                16/05/26  22:01:22  PAGE 3   
-
   125          // 入口参数: PWMx: (目标PWM组和通道索引)
   126          // 函数返回: 捕获值
   127          ////////////////////////////////////////
@@ -200,10 +202,10 @@ stmt  level    source
   186          // 读取高速模式PWM通道捕获值
   187          // 入口参数: PWMx: (目标PWM组和通道索引)
   188          // 函数返回: 捕获值
+C251 COMPILER V5.60.0,  pwm                                                                17/05/26  22:32:09  PAGE 4   
+
   189          ////////////////////////////////////////
   190          uint16_t HSPWM_ReadCapture(uint8_t PWMx)
-C251 COMPILER V5.60.0,  pwm                                                                16/05/26  22:01:22  PAGE 4   
-
   191          {
   192   1          uint16_t cap;
   193   1      
@@ -268,10 +270,10 @@ stmt  level    source
   252          ////////////////////////////////////////
   253          // 异步方式写PWMB特殊功能寄存器
   254          // 入口参数: addr: (PWMB特殊功能寄存器的低7位)
+C251 COMPILER V5.60.0,  pwm                                                                17/05/26  22:32:09  PAGE 5   
+
   255          //           dat: (待写入的数据)
   256          // 函数返回: 无
-C251 COMPILER V5.60.0,  pwm                                                                16/05/26  22:01:22  PAGE 5   
-
   257          ////////////////////////////////////////;
   258          void HSPWMB_WriteReg(uint8_t addr, uint8_t dat)
   259          {
@@ -287,26 +289,4 @@ stmt  level    source
   269          
   270          
 
-
-Module Information          Static   Overlayable
-------------------------------------------------
-  code size            =      1561     ------
-  ecode size           =    ------     ------
-  data size            =    ------     ------
-  idata size           =    ------     ------
-  pdata size           =    ------     ------
-  xdata size           =    ------     ------
-  xdata-const size     =    ------     ------
-  edata size           =    ------     ------
-  bit size             =    ------     ------
-  ebit size            =    ------     ------
-  bitaddressable size  =    ------     ------
-  ebitaddressable size =    ------     ------
-  far data size        =    ------     ------
-  huge data size       =    ------     ------
-  const size           =    ------     ------
-  hconst size          =    ------     ------
-End of Module Information.
-
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

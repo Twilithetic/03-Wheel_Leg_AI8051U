@@ -48,6 +48,7 @@
 #include "usblib.h"
 #include "mathlib.h"
 #include "pwm.h"
+#include "adc.h"
 
 void SYS_Init(void);
 void delay_us(uint16_t us);
