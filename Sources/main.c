@@ -60,11 +60,11 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
         duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
         if (duty > 999) duty = 0;
         HSPWM_UpdateDuty(PWMB_CH5, duty);
-        printf("Hello USB!\r\n");  // 输出到 USB 虚拟串口
+        printf("ADC1=%u ADC2=%u ADC3=%u\r\n", adc1, adc2, adc3);  // 每秒输出 ADC 值到 USB 虚拟串口
     }
 
     if(tick_1ms >= 1){
-        adc1 = ADC_Convert(1);
+        adc1 = ADC_Convert(1);     
         adc2 = ADC_Convert(2);
         adc3 = ADC_Convert(3);
     }

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               18/05/26  14:17:07  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  15:37:45  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -66,14 +66,15 @@ stmt  level    source
    55   2      
    56   2              tick_1s = 0;
    57   2              P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
-C251 COMPILER V5.60.0,  main                                                               18/05/26  14:17:07  PAGE 2   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  15:37:45  PAGE 2   
 
    58   2      
    59   2              // 占空比 +100，溢出回 0
    60   2              duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
    61   2              if (duty > 999) duty = 0;
    62   2              HSPWM_UpdateDuty(PWMB_CH5, duty);
-   63   2              printf("Hello USB!\r\n");  // 输出到 USB 虚拟串口
+   63   2              printf("ADC1=%u ADC2=%u ADC3=%u\r\n", adc1, adc2, adc3);  // 每秒输出 ADC 值到 USB 虚拟�
+             -�口
    64   2          }
    65   1      
    66   1          if(tick_1ms >= 1){
@@ -133,9 +134,9 @@ stmt  level    source
   120          // 入口参数: 无
   121          // 函数返回: 无
   122          ////////////////////////////////////////
-  123          void main(void)
-C251 COMPILER V5.60.0,  main                                                               18/05/26  14:17:07  PAGE 3   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  15:37:45  PAGE 3   
 
+  123          void main(void)
   124          {
   125   1          EAXFR = 1;                  //允许访问扩展的特殊寄存器，XFR
   126   1              WTST = 0;                               //设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运�
@@ -201,9 +202,9 @@ stmt  level    source
   184   1          // 在此添加用户初始化代码  
   185   1          //<<AICUBE_USER_PORT5_INITIAL_END>>
   186   1      }
-  187          
-C251 COMPILER V5.60.0,  main                                                               18/05/26  14:17:07  PAGE 4   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  15:37:45  PAGE 4   
 
+  187          
   188          ////////////////////////////////////////
   189          // USB库初始化函数
   190          // 入口参数: 无
@@ -267,12 +268,12 @@ stmt  level    source
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       677     ------
+  code size            =       713     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
-  idata size           =    ------     ------
-C251 COMPILER V5.60.0,  main                                                               18/05/26  14:17:07  PAGE 5   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  15:37:45  PAGE 5   
 
+  idata size           =    ------     ------
   pdata size           =    ------     ------
   xdata size           =        10     ------
   xdata-const size     =    ------     ------
@@ -284,7 +285,7 @@ Module Information          Static   Overlayable
   far data size        =    ------     ------
   huge data size       =    ------     ------
   const size           =    ------     ------
-  hconst size          =        29     ------
+  hconst size          =        42     ------
 End of Module Information.
 
 
