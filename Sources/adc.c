@@ -23,7 +23,6 @@
 //<<AICUBE_USER_GLOBAL_DEFINE_END>>
 
 
-uint8_t xdata pu8ADCDMABuffer[ADC_DMASIZE]; //ADC DMA接收缓冲区数组
 
 ////////////////////////////////////////
 // ADC初始化函数
@@ -34,7 +33,7 @@ void ADC_Init(void)
 {
     ADC_SetClockDivider(0);             //设置ADC时钟
     ADC_ResultRightAlign();             //设置ADC结果右对齐(12位结果)
-    ADC_DisableRepeatConv();            //关闭ADC自动重复转换功能
+    ADC_SetRepeat2Times();              //ADC自动重复转换2次并取平均值
 
     ADC_SetCSSetupCycles(ADC_STPCYC);   //设置ADC通道选择建立时间
     ADC_SetCSHoldCycles(ADC_HLDCYC);    //设置ADC通道选择保持时间
@@ -44,18 +43,6 @@ void ADC_Init(void)
 
     ADC_ActiveChannel(0);               //选择ADC通道
     ADC_Enable();                       //使能ADC功能
-
-    DMA_ADC_SetAmount(ADC_DMAAMT - 1);  //设置ADC DMA扫描次数
-    DMA_ADC_SetAddress(pu8ADCDMABuffer); //设置ADC DMA缓冲区地址
-    DMA_ADC_SetInterval(ADC_DMAITV);    //设置ADC DMA扫描间隔时间（系统时钟）
-    DMA_ADC_SetChannels(0x0007);        //设置ADC DMA扫描通道
-    DMA_ADC_DisableRepeatConv();        //设置ADC DMA时每个通道重复转换次数
-    DMA_ADC_ClearFlag();                //清除ADC DMA中断标志
-    DMA_ADC_SetBusPriority(0);          //设置总线访问为最低优先级
-    DMA_ADC_SetIntPriority(0);          //设置中断为最低优先级
-    DMA_ADC_EnableInt();                //使能ADC DMA中断
-    DMA_ADC_Enable();                   //使能ADC DMA功能
-//  DMA_ADC_Trigger();                  //触发ADC DMA
 
     //<<AICUBE_USER_ADC_INITIAL_BEGIN>>
     // 在此添加用户初始化代码  
@@ -81,25 +68,7 @@ uint16_t ADC_Convert(uint8_t ch)
 }
 
 
-////////////////////////////////////////
-// ADC DMA中断服务程序
-// 入口参数: 无
-// 函数返回: 无
-////////////////////////////////////////
-void DMA_ADC_ISR(void)  // 扩展中断(>31)，去掉interrupt关键字，由汇编跳转
-{
-    //<<AICUBE_USER_ADC_ISR_CODE2_BEGIN>>
-    // 在此添加中断函数用户代码  
-    if (DMA_ADC_CheckFlag())            //判断ADC DMA中断
-    {
-        DMA_ADC_ClearFlag();            //清除ADC DMA中断标志
-    }
-    //<<AICUBE_USER_ADC_ISR_CODE2_END>>
-}
-
 
 //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
 // 在此添加用户函数实现代码  
 //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-
-

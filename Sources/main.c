@@ -33,7 +33,9 @@ void TIMER2_Init(void)
     //<<AICUBE_USER_TIMER2_INITIAL_END>>
 }
 
-
+uint16_t adc1;
+uint16_t adc2;
+uint16_t adc3;
 ////////////////////////////////////////
 // 定时器2中断服务程序
 // 入口参数: 无
@@ -47,7 +49,7 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
     tick_1s++;               // 每 10ms +1
     tick_1ms++;
     
-    if (tick_1s >= 10000)      // 1 秒到了（1ms × 1000 = 1000ms）
+    if (tick_1s >= 1000)      // 1 秒到了（1ms × 1000 = 1000ms）
     {
         uint16_t duty;         // C90: 变量声明必须放在 block 开头
 
@@ -59,6 +61,12 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
         if (duty > 999) duty = 0;
         HSPWM_UpdateDuty(PWMB_CH5, duty);
         printf("Hello USB!\r\n");  // 输出到 USB 虚拟串口
+    }
+
+    if(tick_1ms >= 1){
+        adc1 = ADC_Convert(1);
+        adc2 = ADC_Convert(2);
+        adc3 = ADC_Convert(3);
     }
 
     //<<AICUBE_USER_TIMER2_ISR_CODE1_END>>
@@ -137,7 +145,6 @@ void main(void)
     // 芯片外设初始化
     PORT5_Init();
     ADC_Init();
-    DMA_ADC_Trigger(); 
     // 外设控制初始化
     DRV8311_init();
     // 启动任务
@@ -150,10 +157,7 @@ void main(void)
     // t_dead = 425ns, t_pd= 550ns 加上两个180V/us = 1.107us
     while (1)
     {
-        // 直接读 pu8ADCDMABuffer[]，DMA 在后台自动更新
-        uint16_t adc0 = (pu8ADCDMABuffer[0] << 8) | pu8ADCDMABuffer[1];
-        uint16_t adc1 = (pu8ADCDMABuffer[6] << 8) | pu8ADCDMABuffer[7];
-        uint16_t adc2 = (pu8ADCDMABuffer[12] << 8) | pu8ADCDMABuffer[13];
+
     }
 }
 
