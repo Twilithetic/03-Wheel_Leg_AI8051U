@@ -1,0 +1,1 @@
+"Sources\mathlib.c" LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listings\mathlib.lst) OBJECT(.\Objects\mathlib.obj)

@@ -19,7 +19,7 @@
 #define ADC_HLDCYC              1       //ADC通道选择保持时间
 #define ADC_SMPCYC              11      //ADC通道采样时间
 #define ADC_DMAITV              0       //ADC DMA扫描间隔时间（系统时钟）
-#define ADC_DMAAMT              65536   //ADC DMA扫描次数
+#define ADC_DMAAMT              1       //ADC DMA扫描次数
 #define ADC_DMASIZE             (ADC_DMAAMT * (1 * 2 + 4) * 3) //ADC DMA缓冲区大小
 
 

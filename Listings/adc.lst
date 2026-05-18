@@ -1,0 +1,120 @@
+C251 COMPILER V5.60.0,  adc                                                                18/05/26  13:31:24  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE adc
+OBJECT MODULE PLACED IN .\Objects\adc.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\adc.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
+                    -s\adc.lst) OBJECT(.\Objects\adc.obj) 
+
+stmt  level    source
+
+    1          //<<AICUBE_USER_HEADER_REMARK_BEGIN>>
+    2          ////////////////////////////////////////
+    3          // 在此添加用户文件头说明信息  
+    4          // 文件名称: adc.c
+    5          // 文件描述: 
+    6          // 文件版本: V1.0
+    7          // 修改记录:
+    8          //   1. (2026-05-17) 创建文件
+    9          ////////////////////////////////////////
+   10          //<<AICUBE_USER_HEADER_REMARK_END>>
+   11          
+   12          
+   13          #include "config.h"
+   14          
+   15          
+   16          //<<AICUBE_USER_INCLUDE_BEGIN>>
+   17          // 在此添加用户头文件包含  
+   18          //<<AICUBE_USER_INCLUDE_END>>
+   19          
+   20          
+   21          //<<AICUBE_USER_GLOBAL_DEFINE_BEGIN>>
+   22          // 在此添加用户全局变量定义、用户宏定义以及函数声明  
+   23          //<<AICUBE_USER_GLOBAL_DEFINE_END>>
+   24          
+   25          
+   26          uint8_t xdata pu8ADCDMABuffer[ADC_DMASIZE]; //ADC DMA接收缓冲区数组
+   27          
+   28          ////////////////////////////////////////
+   29          // ADC初始化函数
+   30          // 入口参数: 无
+   31          // 函数返回: 无
+   32          ////////////////////////////////////////
+   33          void ADC_Init(void)
+   34          {
+   35   1          ADC_SetClockDivider(0);             //设置ADC时钟
+   36   1          ADC_ResultRightAlign();             //设置ADC结果右对齐(12位结果)
+   37   1          ADC_DisableRepeatConv();            //关闭ADC自动重复转换功能
+   38   1      
+   39   1          ADC_SetCSSetupCycles(ADC_STPCYC);   //设置ADC通道选择建立时间
+   40   1          ADC_SetCSHoldCycles(ADC_HLDCYC);    //设置ADC通道选择保持时间
+   41   1          ADC_SetSampleDutyCycles(ADC_SMPCYC); //设置ADC通道采样时间
+   42   1      
+   43   1          ADC_DisableETR();                   //禁止ADC外部触发功能
+   44   1      
+   45   1          ADC_ActiveChannel(0);               //选择ADC通道
+   46   1          ADC_Enable();                       //使能ADC功能
+   47   1      
+   48   1          DMA_ADC_SetAmount(ADC_DMAAMT - 1);  //设置ADC DMA扫描次数
+   49   1          DMA_ADC_SetAddress(pu8ADCDMABuffer); //设置ADC DMA缓冲区地址
+   50   1          DMA_ADC_SetInterval(ADC_DMAITV);    //设置ADC DMA扫描间隔时间（系统时钟）
+   51   1          DMA_ADC_SetChannels(0x0007);        //设置ADC DMA扫描通道
+   52   1          DMA_ADC_DisableRepeatConv();        //设置ADC DMA时每个通道重复转换次数
+   53   1          DMA_ADC_ClearFlag();                //清除ADC DMA中断标志
+   54   1          DMA_ADC_SetBusPriority(0);          //设置总线访问为最低优先级
+   55   1          DMA_ADC_SetIntPriority(0);          //设置中断为最低优先级
+   56   1          DMA_ADC_EnableInt();                //使能ADC DMA中断
+   57   1          DMA_ADC_Enable();                   //使能ADC DMA功能
+   58   1      //  DMA_ADC_Trigger();                  //触发ADC DMA
+C251 COMPILER V5.60.0,  adc                                                                18/05/26  13:31:24  PAGE 2   
+
+   59   1      
+   60   1          //<<AICUBE_USER_ADC_INITIAL_BEGIN>>
+   61   1          // 在此添加用户初始化代码  
+   62   1          //<<AICUBE_USER_ADC_INITIAL_END>>
+   63   1      }
+   64          
+   65          ////////////////////////////////////////
+   66          // 获取ADC转换结果函数
+   67          // 入口参数: ch (ADC通道选择)
+   68          // 函数返回: ADC转换结果
+   69          ////////////////////////////////////////
+   70          uint16_t ADC_Convert(uint8_t ch)
+   71          {
+   72   1          uint16_t res;                       //定义保存ADC结果的变量
+   73   1      
+   74   1          ADC_ActiveChannel(ch);              //选择ADC通道
+   75   1          ADC_Start();                        //开始ADC转换
+   76   1          while (!ADC_CheckFlag());           //等待ADC转换完成
+   77   1          ADC_ClearFlag();                    //清除ADC转换完成中断标志
+   78   1          res = ADC_ReadResult();             //读取ADC转换结果
+   79   1      
+   80   1          return res;                         //返回ADC结果
+   81   1      }
+   82          
+   83          
+   84          ////////////////////////////////////////
+   85          // ADC DMA中断服务程序
+   86          // 入口参数: 无
+   87          // 函数返回: 无
+   88          ////////////////////////////////////////
+   89          void DMA_ADC_ISR(void) interrupt DMA_ADC_VECTOR
+   90          {
+*** ERROR C168 IN LINE 90 OF Sources\adc.c: interrupt: value not in range 0 ... 31
+   91   1          //<<AICUBE_USER_ADC_ISR_CODE2_BEGIN>>
+   92   1          // 在此添加中断函数用户代码  
+   93   1          if (DMA_ADC_CheckFlag())            //判断ADC DMA中断
+   94   1          {
+   95   2              DMA_ADC_ClearFlag();            //清除ADC DMA中断标志
+   96   2          }
+   97   1          //<<AICUBE_USER_ADC_ISR_CODE2_END>>
+   98   1      }
+   99          
+  100          
+  101          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  102          // 在此添加用户函数实现代码  
+  103          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  104          
+  105          
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

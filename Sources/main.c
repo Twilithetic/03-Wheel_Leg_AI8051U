@@ -47,7 +47,7 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
     tick_1s++;               // 每 10ms +1
     tick_1ms++;
     
-    if (tick_1s >= 1000)      // 1 秒到了（1ms × 1000 = 1000ms）
+    if (tick_1s >= 10000)      // 1 秒到了（1ms × 1000 = 1000ms）
     {
         uint16_t duty;         // C90: 变量声明必须放在 block 开头
 
@@ -150,7 +150,10 @@ void main(void)
     // t_dead = 425ns, t_pd= 550ns 加上两个180V/us = 1.107us
     while (1)
     {
-
+        // 直接读 pu8ADCDMABuffer[]，DMA 在后台自动更新
+        uint16_t adc0 = (pu8ADCDMABuffer[0] << 8) | pu8ADCDMABuffer[1];
+        uint16_t adc1 = (pu8ADCDMABuffer[6] << 8) | pu8ADCDMABuffer[7];
+        uint16_t adc2 = (pu8ADCDMABuffer[12] << 8) | pu8ADCDMABuffer[13];
     }
 }
 

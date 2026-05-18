@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               17/05/26  22:32:09  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               18/05/26  13:31:24  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -21,8 +21,6 @@ stmt  level    source
    11          
    12          
    13          #include "config.h"                     //默认已包含stdio.h、intrins.h等头文件
-*** ERROR C123 IN LINE 29 OF \03-March_Wheel_leg\03-Wheel_leg_AI8051U\Sources\inc\adc.h: 'pu8ADCDMABuffer': allocation e
-             -xceeds 64K
    14          void usb_callback();
    15          // ==================== 全局变量 ====================
    16          volatile unsigned int tick_1s = 0;   // 10ms 计数器
@@ -60,16 +58,16 @@ stmt  level    source
    47   1          tick_1s++;               // 每 10ms +1
    48   1          tick_1ms++;
    49   1          
-   50   1          if (tick_1s >= 1000)      // 1 秒到了（1ms × 1000 = 1000ms）
+   50   1          if (tick_1s >= 10000)      // 1 秒到了（1ms × 1000 = 1000ms）
    51   1          {
    52   2              uint16_t duty;         // C90: 变量声明必须放在 block 开头
    53   2      
    54   2              tick_1s = 0;
    55   2              P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
-C251 COMPILER V5.60.0,  main                                                               17/05/26  22:32:09  PAGE 2   
-
    56   2      
    57   2              // 占空比 +100，溢出回 0
+C251 COMPILER V5.60.0,  main                                                               18/05/26  13:31:24  PAGE 2   
+
    58   2              duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
    59   2              if (duty > 999) duty = 0;
    60   2              HSPWM_UpdateDuty(PWMB_CH5, duty);
@@ -134,10 +132,10 @@ stmt  level    source
              -��
   119   1              CKCON = 0;                      //设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额�
              -��的等待时间 
-C251 COMPILER V5.60.0,  main                                                               17/05/26  22:32:09  PAGE 3   
-
   120   1          P0M1 = 0x00;   P0M0 = 0x00;
   121   1          P1M1 = 0x00;   P1M0 = 0x00;
+C251 COMPILER V5.60.0,  main                                                               18/05/26  13:31:24  PAGE 3   
+
   122   1          P2M1 = 0x00;   P2M0 = 0x00;
   123   1          P3M1 = 0x00;   P3M0 = 0x00;
   124   1          P4M1 = 0x00;   P4M0 = 0x00;
@@ -169,94 +167,121 @@ stmt  level    source
   150   1          // t_dead = 425ns, t_pd= 550ns 加上两个180V/us = 1.107us
   151   1          while (1)
   152   1          {
-  153   2      
-  154   2          }
-  155   1      }
-  156          
-  157          ////////////////////////////////////////
-  158          // P5口初始化函数
-  159          // 入口参数: 无
-  160          // 函数返回: 无
-  161          ////////////////////////////////////////
-  162          void PORT5_Init(void)
-  163          {
-  164   1          SetP5nInitLevelHigh(PIN_ALL);       //设置P5初始化电平
-  165   1          SetP5nQuasiMode(PIN_7 | PIN_6 | PIN_5 | PIN_4); //设置P5.7,P5.6,P5.5,P5.4为准双向口模式
-  166   1          SetP5nPushPullMode(PIN_3 | PIN_2 | PIN_1 | PIN_0); //设置P5.3,P5.2,P5.1,P5.0为推挽输出模式
-  167   1          SetP5nAutoMode(PIN_ALL);            //设置P5自动配置端口模式
-  168   1      
-  169   1          DisableP5nPullUp(PIN_ALL);          //关闭P5内部上拉电阻
-  170   1          DisableP5nPullDown(PIN_ALL);        //关闭P5内部下拉电阻
-  171   1          EnableP5nSchmitt(PIN_ALL);          //使能P5施密特触发
-  172   1          SetP5nSlewRateFast(PIN_ALL);        //设置P5快速翻转速度
-  173   1          SetP5nDrivingStrong(PIN_ALL);       //设置P5增强驱动能力
-  174   1          SetP5nAnalogInput(PIN_ALL);         //使能P5模拟信号输入功能
-  175   1      
-  176   1          //<<AICUBE_USER_PORT5_INITIAL_BEGIN>>
-  177   1          // 在此添加用户初始化代码  
-  178   1          //<<AICUBE_USER_PORT5_INITIAL_END>>
-  179   1      }
-  180          
-  181          ////////////////////////////////////////
-  182          // USB库初始化函数
-  183          // 入口参数: 无
-  184          // 函数返回: 无
-  185          ////////////////////////////////////////
-C251 COMPILER V5.60.0,  main                                                               17/05/26  22:32:09  PAGE 4   
+  153   2              // 直接读 pu8ADCDMABuffer[]，DMA 在后台自动更新
+  154   2              uint16_t adc0 = (pu8ADCDMABuffer[0] << 8) | pu8ADCDMABuffer[1];
+  155   2              uint16_t adc1 = (pu8ADCDMABuffer[6] << 8) | pu8ADCDMABuffer[7];
+  156   2              uint16_t adc2 = (pu8ADCDMABuffer[12] << 8) | pu8ADCDMABuffer[13];
+  157   2          }
+  158   1      }
+  159          
+  160          ////////////////////////////////////////
+  161          // P5口初始化函数
+  162          // 入口参数: 无
+  163          // 函数返回: 无
+  164          ////////////////////////////////////////
+  165          void PORT5_Init(void)
+  166          {
+  167   1          SetP5nInitLevelHigh(PIN_ALL);       //设置P5初始化电平
+  168   1          SetP5nQuasiMode(PIN_7 | PIN_6 | PIN_5 | PIN_4); //设置P5.7,P5.6,P5.5,P5.4为准双向口模式
+  169   1          SetP5nPushPullMode(PIN_3 | PIN_2 | PIN_1 | PIN_0); //设置P5.3,P5.2,P5.1,P5.0为推挽输出模式
+  170   1          SetP5nAutoMode(PIN_ALL);            //设置P5自动配置端口模式
+  171   1      
+  172   1          DisableP5nPullUp(PIN_ALL);          //关闭P5内部上拉电阻
+  173   1          DisableP5nPullDown(PIN_ALL);        //关闭P5内部下拉电阻
+  174   1          EnableP5nSchmitt(PIN_ALL);          //使能P5施密特触发
+  175   1          SetP5nSlewRateFast(PIN_ALL);        //设置P5快速翻转速度
+  176   1          SetP5nDrivingStrong(PIN_ALL);       //设置P5增强驱动能力
+  177   1          SetP5nAnalogInput(PIN_ALL);         //使能P5模拟信号输入功能
+  178   1      
+  179   1          //<<AICUBE_USER_PORT5_INITIAL_BEGIN>>
+  180   1          // 在此添加用户初始化代码  
+  181   1          //<<AICUBE_USER_PORT5_INITIAL_END>>
+  182   1      }
+  183          
+  184          ////////////////////////////////////////
+  185          // USB库初始化函数
+  186          // 入口参数: 无
+  187          // 函数返回: 无
+C251 COMPILER V5.60.0,  main                                                               18/05/26  13:31:24  PAGE 4   
 
-  186          void USBLIB_Init(void)
-  187          {
-  188   1          usb_init();                         //初始化USB模块
-  189   1          set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
-  190   1      
-  191   1          //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
-  192   1          // 在此添加用户初始化代码  
-  193   1          //<<AICUBE_USER_USBLIB_INITIAL_END>>
-  194   1      }
-  195          
-  196          void usb_callback()
-  197          {
-  198   1          USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样
+  188          ////////////////////////////////////////
+  189          void USBLIB_Init(void)
+  190          {
+  191   1          usb_init();                         //初始化USB模块
+  192   1          set_usb_OUT_callback(usb_callback);             //设置中断回调回调函数
+  193   1      
+  194   1          //<<AICUBE_USER_USBLIB_INITIAL_BEGIN>>
+  195   1          // 在此添加用户初始化代码  
+  196   1          //<<AICUBE_USER_USBLIB_INITIAL_END>>
+  197   1      }
+  198          
+  199          void usb_callback()
+  200          {
+  201   1          USB_SendData(UsbOutBuffer,OutNumber);           //发送数据缓冲区，长度（接收数据原样
              -返回, 用于测试）
-  199   1      }
-  200          
-  201          
-  202          
-  203          ////////////////////////////////////////
-  204          // 微秒延时函数
-  205          // 入口参数: us (设置延时的微秒值)
-  206          // 函数返回: 无
-  207          ////////////////////////////////////////
-  208          void delay_us(uint16_t us)
-  209          {
-  210   1          do
-  211   1          {
-  212   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
-  213   2          } while (--us);
-  214   1      }
-  215          
-  216          
-  217          ////////////////////////////////////////
-  218          // 毫秒延时函数
-  219          // 入口参数: ms (设置延时的毫秒值)
-  220          // 函数返回: 无
-  221          ////////////////////////////////////////
-  222          void delay_ms(uint16_t ms)
-  223          {
-  224   1          uint16_t i;
-  225   1      
-  226   1          do
-  227   1          {
-  228   2              i = MAIN_Fosc / 6000;
-  229   2              while (--i);
-  230   2          } while (--ms);
-  231   1      }
-  232          
-  233          
-  234          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
-  235          // 在此添加用户函数实现代码  
-  236          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
-  237          
-  238          
+  202   1      }
+  203          
+  204          
+  205          
+  206          ////////////////////////////////////////
+  207          // 微秒延时函数
+  208          // 入口参数: us (设置延时的微秒值)
+  209          // 函数返回: 无
+  210          ////////////////////////////////////////
+  211          void delay_us(uint16_t us)
+  212          {
+  213   1          do
+  214   1          {
+  215   2              NOP(30);                        //(MAIN_Fosc + 500000) / 1000000 - 6
+  216   2          } while (--us);
+  217   1      }
+  218          
+  219          
+  220          ////////////////////////////////////////
+  221          // 毫秒延时函数
+  222          // 入口参数: ms (设置延时的毫秒值)
+  223          // 函数返回: 无
+  224          ////////////////////////////////////////
+  225          void delay_ms(uint16_t ms)
+  226          {
+  227   1          uint16_t i;
+  228   1      
+  229   1          do
+  230   1          {
+  231   2              i = MAIN_Fosc / 6000;
+  232   2              while (--i);
+  233   2          } while (--ms);
+  234   1      }
+  235          
+  236          
+  237          //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
+  238          // 在此添加用户函数实现代码  
+  239          //<<AICUBE_USER_FUNCTION_IMPLEMENT_END>>
+  240          
+  241          
 
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       648     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =         4     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+C251 COMPILER V5.60.0,  main                                                               18/05/26  13:31:24  PAGE 5   
+
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        29     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

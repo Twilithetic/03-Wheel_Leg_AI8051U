@@ -52,6 +52,8 @@ void ADC_Init(void)
     DMA_ADC_DisableRepeatConv();        //设置ADC DMA时每个通道重复转换次数
     DMA_ADC_ClearFlag();                //清除ADC DMA中断标志
     DMA_ADC_SetBusPriority(0);          //设置总线访问为最低优先级
+    DMA_ADC_SetIntPriority(0);          //设置中断为最低优先级
+    DMA_ADC_EnableInt();                //使能ADC DMA中断
     DMA_ADC_Enable();                   //使能ADC DMA功能
 //  DMA_ADC_Trigger();                  //触发ADC DMA
 
@@ -78,6 +80,22 @@ uint16_t ADC_Convert(uint8_t ch)
     return res;                         //返回ADC结果
 }
 
+
+////////////////////////////////////////
+// ADC DMA中断服务程序
+// 入口参数: 无
+// 函数返回: 无
+////////////////////////////////////////
+void DMA_ADC_ISR(void)  // 扩展中断(>31)，去掉interrupt关键字，由汇编跳转
+{
+    //<<AICUBE_USER_ADC_ISR_CODE2_BEGIN>>
+    // 在此添加中断函数用户代码  
+    if (DMA_ADC_CheckFlag())            //判断ADC DMA中断
+    {
+        DMA_ADC_ClearFlag();            //清除ADC DMA中断标志
+    }
+    //<<AICUBE_USER_ADC_ISR_CODE2_END>>
+}
 
 
 //<<AICUBE_USER_FUNCTION_IMPLEMENT_BEGIN>>
