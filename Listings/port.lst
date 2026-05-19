@@ -1,13 +1,0 @@
-C251 COMPILER V5.60.0,  port                                                               17/05/26  22:38:57  PAGE 1   
-
-
-C251 COMPILER V5.60.0, COMPILATION OF MODULE port
-OBJECT MODULE PLACED IN .\Objects\port.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\port.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listin
-                    -gs\port.lst) OBJECT(.\Objects\port.obj) 
-
-stmt  level    source
-
-*** ERROR C318 OF Sources\port.c: can't open file 'Sources\port.c'
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

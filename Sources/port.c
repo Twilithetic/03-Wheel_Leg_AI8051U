@@ -1,3 +1,5 @@
+
+#include "config.h"
 ////////////////////////////////////////
 // P1口初始化函数
 // 入口参数: 无
@@ -115,3 +117,11 @@ void PORT5_Init(void)
     //<<AICUBE_USER_PORT5_INITIAL_END>>
 }
 
+void PORT_Init(void)
+{
+    PORT1_Init();
+    PORT2_Init();
+    //PORT3_Init();
+    PORT4_Init();
+    PORT5_Init();
+}

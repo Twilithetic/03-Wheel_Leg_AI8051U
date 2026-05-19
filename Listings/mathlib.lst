@@ -1,13 +1,0 @@
-C251 COMPILER V5.60.0,  mathlib                                                            17/05/26  22:38:57  PAGE 1   
-
-
-C251 COMPILER V5.60.0, COMPILATION OF MODULE mathlib
-OBJECT MODULE PLACED IN .\Objects\mathlib.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\mathlib.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Lis
-                    -tings\mathlib.lst) OBJECT(.\Objects\mathlib.obj) 
-
-stmt  level    source
-
-*** ERROR C318 OF Sources\mathlib.c: can't open file 'Sources\mathlib.c'
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

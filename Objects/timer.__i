@@ -1,1 +1,0 @@
-"Sources\timer.c" LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listings\timer.lst) OBJECT(.\Objects\timer.obj)

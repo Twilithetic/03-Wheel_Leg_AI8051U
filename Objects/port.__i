@@ -1,1 +1,0 @@
-"Sources\port.c" LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listings\port.lst) OBJECT(.\Objects\port.obj)

@@ -1,13 +1,0 @@
-C251 COMPILER V5.60.0,  usblib                                                             17/05/26  22:38:57  PAGE 1   
-
-
-C251 COMPILER V5.60.0, COMPILATION OF MODULE usblib
-OBJECT MODULE PLACED IN .\Objects\usblib.obj
-COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\usblib.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\List
-                    -ings\usblib.lst) OBJECT(.\Objects\usblib.obj) 
-
-stmt  level    source
-
-*** ERROR C318 OF Sources\usblib.c: can't open file 'Sources\usblib.c'
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

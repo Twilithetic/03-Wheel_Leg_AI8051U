@@ -64,9 +64,9 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
     }
 
     if(tick_1ms >= 1){
-        adc1 = ADC_Convert(1);     
-        adc2 = ADC_Convert(2);
-        adc3 = ADC_Convert(3);
+        adc1 = ADC_Convert(0);     
+        adc2 = ADC_Convert(1);
+        adc3 = ADC_Convert(2);
     }
 
     //<<AICUBE_USER_TIMER2_ISR_CODE1_END>>
@@ -125,15 +125,8 @@ void main(void)
     EAXFR = 1;			//允许访问扩展的特殊寄存器，XFR
 	WTST = 0;				//设置取程序代码等待时间，赋值为0表示不等待，程序以最快速度运行
 	CKCON = 0;			//设置访问片内的xdata速度，赋值为 0表示用最快速度访问，不增加额外的等待时间 
-    P0M1 = 0x00;   P0M0 = 0x00;
-    P1M1 = 0x00;   P1M0 = 0x00;
-    P2M1 = 0x00;   P2M0 = 0x00;
-    P3M1 = 0x00;   P3M0 = 0x00;
-    P4M1 = 0x00;   P4M0 = 0x00;
-    P5M1 = 0x00;   P5M0 = 0x00;
-    P6M1 = 0x00;   P6M0 = 0x00;
-    P7M1 = 0x00;   P7M0 = 0x00;
     CLK_Init();
+    PORT_Init();
     USBLIB_Init();                                     //USB CDC 接口配置
     
     
@@ -143,7 +136,6 @@ void main(void)
     P42 = 0;
     // 启动定时器
     // 芯片外设初始化
-    PORT5_Init();
     ADC_Init();
     // 外设控制初始化
     DRV8311_init();
@@ -161,29 +153,6 @@ void main(void)
     }
 }
 
-////////////////////////////////////////
-// P5口初始化函数
-// 入口参数: 无
-// 函数返回: 无
-////////////////////////////////////////
-void PORT5_Init(void)
-{
-    SetP5nInitLevelHigh(PIN_ALL);       //设置P5初始化电平
-    SetP5nQuasiMode(PIN_7 | PIN_6 | PIN_5 | PIN_4); //设置P5.7,P5.6,P5.5,P5.4为准双向口模式
-    SetP5nPushPullMode(PIN_3 | PIN_2 | PIN_1 | PIN_0); //设置P5.3,P5.2,P5.1,P5.0为推挽输出模式
-    SetP5nAutoMode(PIN_ALL);            //设置P5自动配置端口模式
-
-    DisableP5nPullUp(PIN_ALL);          //关闭P5内部上拉电阻
-    DisableP5nPullDown(PIN_ALL);        //关闭P5内部下拉电阻
-    EnableP5nSchmitt(PIN_ALL);          //使能P5施密特触发
-    SetP5nSlewRateFast(PIN_ALL);        //设置P5快速翻转速度
-    SetP5nDrivingStrong(PIN_ALL);       //设置P5增强驱动能力
-    SetP5nAnalogInput(PIN_ALL);         //使能P5模拟信号输入功能
-
-    //<<AICUBE_USER_PORT5_INITIAL_BEGIN>>
-    // 在此添加用户初始化代码  
-    //<<AICUBE_USER_PORT5_INITIAL_END>>
-}
 
 ////////////////////////////////////////
 // USB库初始化函数

@@ -26,3 +26,73 @@
 --------------------
 [2026-05-19 14:14:15] : End
 --------------------------------------------------
+[2026-05-19 20:07:24] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-luntuichuanyue\03-Wheel_Leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月19日, 20:05:58
+*FILESIZE* : 30118 (0x0075A6)
+*CODESIZE* : 10704 (0x0029D0)
+*CHECKSUM* : 0x000EFF1C
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-19 20:07:27] : End
+--------------------------------------------------
+[2026-05-19 20:14:17] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-luntuichuanyue\03-Wheel_Leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月19日, 20:13:18
+*FILESIZE* : 30116 (0x0075A4)
+*CODESIZE* : 10703 (0x0029CF)
+*CHECKSUM* : 0x000EFE2B
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-19 20:14:19] : End
+--------------------------------------------------
+[2026-05-19 20:15:50] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-luntuichuanyue\03-Wheel_Leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月19日, 20:15:41
+*FILESIZE* : 30110 (0x00759E)
+*CODESIZE* : 10700 (0x0029CC)
+*CHECKSUM* : 0x000EFB1D
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-19 20:15:53] : End
+--------------------------------------------------
+[2026-05-19 20:15:57] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-luntuichuanyue\03-Wheel_Leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月19日, 20:15:41
+*FILESIZE* : 30110 (0x00759E)
+*CODESIZE* : 10700 (0x0029CC)
+*CHECKSUM* : 0x000EFB1D
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-19 20:15:59] : End
+--------------------------------------------------
+[2026-05-19 20:16:02] : Begin
+--------------------
+*MCUTYPE* : AI8051U-34K64
+*MCUID* : 78B4CAD004EE6A
+*FILENAME* : D:\03-luntuichuanyue\03-Wheel_Leg_AI8051U\Objects\03-March_Wheel_leg_FOC.hex
+*FILETIME* : 2026年05月19日, 20:15:41
+*FILESIZE* : 30110 (0x00759E)
+*CODESIZE* : 10700 (0x0029CC)
+*CHECKSUM* : 0x000EFB1D
+*ISPMODE* : 2
+*ISPRESULT* : 0
+--------------------
+[2026-05-19 20:16:05] : End
+--------------------------------------------------

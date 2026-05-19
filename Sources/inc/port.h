@@ -14,12 +14,13 @@
 // 在此添加用户宏定义  
 //<<AICUBE_USER_DEFINE_END>>
 
-
-
+void PORT1_Init(void);
+void PORT2_Init(void);
 void PORT3_Init(void);
+void PORT4_Init(void);
 void PORT5_Init(void);
 
-
+void PORT_Init(void);
 
 //<<AICUBE_USER_EXTERNAL_DECLARE_BEGIN>>
 // 在此添加用户外部函数和外部变量声明  
