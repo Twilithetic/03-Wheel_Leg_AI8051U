@@ -1,10 +1,10 @@
-C251 COMPILER V5.60.0,  drv8311                                                            18/05/26  14:17:07  PAGE 1   
+C251 COMPILER V5.60.0,  drv8311                                                            19/05/26  13:59:55  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE drv8311
 OBJECT MODULE PLACED IN .\Objects\drv8311.obj
 COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\drv8311.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Lis
-                    -tings\drv8311.lst) OBJECT(.\Objects\drv8311.obj) 
+                    -tings\drv8311.lst) TABS(2) OBJECT(.\Objects\drv8311.obj) 
 
 stmt  level    source
 

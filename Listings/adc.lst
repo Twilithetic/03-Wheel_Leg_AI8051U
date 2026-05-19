@@ -1,10 +1,10 @@
-C251 COMPILER V5.60.0,  adc                                                                18/05/26  14:17:07  PAGE 1   
+C251 COMPILER V5.60.0,  adc                                                                19/05/26  13:59:56  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE adc
 OBJECT MODULE PLACED IN .\Objects\adc.obj
 COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\adc.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
-                    -s\adc.lst) OBJECT(.\Objects\adc.obj) 
+                    -s\adc.lst) TABS(2) OBJECT(.\Objects\adc.obj) 
 
 stmt  level    source
 
@@ -66,7 +66,7 @@ stmt  level    source
    56          ////////////////////////////////////////
    57          uint16_t ADC_Convert(uint8_t ch)
    58          {
-C251 COMPILER V5.60.0,  adc                                                                18/05/26  14:17:07  PAGE 2   
+C251 COMPILER V5.60.0,  adc                                                                19/05/26  13:59:56  PAGE 2   
 
    59   1          uint16_t res;                       //定义保存ADC结果的变量
    60   1      

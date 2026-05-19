@@ -1,8 +1,9 @@
-Build started: Project: 03-March_Wheel_leg_FOC
 Build target '03-March_Wheel_leg_FOC'
-compiling main.c...
-ÿþlinking...
-ÿProgram Size: data=8.3 edata+hdata=256 xdata=405 const=86 code=10369
+linking...
+ÿ*** WARNING L52: EVAL VERSION USED BEFORE, REBUILD ALL *.OBJ FILES
+    MODULE:  .\Objects\drv8311.obj (drv8311)
+
+Program Size: data=8.3 edata+hdata=256 xdata=405 const=86 code=10369
 þcreating hex file from ".\Objects\03-March_Wheel_leg_FOC"...
-ÿþ".\Objects\03-March_Wheel_leg_FOC" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:01
+ÿþ".\Objects\03-March_Wheel_leg_FOC" - 0 Error(s), 1 Warning(s).
+Build Time Elapsed:  00:00:00

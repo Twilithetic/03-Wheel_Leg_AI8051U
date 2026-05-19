@@ -1,1 +1,1 @@
-"Sources\adc.c" LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listings\adc.lst) OBJECT(.\Objects\adc.obj)
+"Sources\adc.c" LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listings\adc.lst) TABS (2) OBJECT(.\Objects\adc.obj)

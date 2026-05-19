@@ -1,10 +1,10 @@
-C251 COMPILER V5.60.0,  pwm                                                                18/05/26  14:17:07  PAGE 1   
+C251 COMPILER V5.60.0,  pwm                                                                19/05/26  13:59:56  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE pwm
 OBJECT MODULE PLACED IN .\Objects\pwm.obj
 COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Sources\pwm.c LARGE BROWSE INCDIR(.\Sources\inc) DEBUG PRINT(.\Listing
-                    -s\pwm.lst) OBJECT(.\Objects\pwm.obj) 
+                    -s\pwm.lst) TABS(2) OBJECT(.\Objects\pwm.obj) 
 
 stmt  level    source
 
@@ -66,7 +66,7 @@ stmt  level    source
    56   1          PWMB_CC6PEnable();                  //打开通道
    57   1          PWM_UpdateDuty(PWMB_CH6, 500);      //设置通道的PWM占空比
    58   1          PWMB_OC6REFPWMMode1();              //设置通道输出参考信号为PWM模式1信号
-C251 COMPILER V5.60.0,  pwm                                                                18/05/26  14:17:07  PAGE 2   
+C251 COMPILER V5.60.0,  pwm                                                                19/05/26  13:59:56  PAGE 2   
 
    59   1          PWMB_BufferCCR6();                  //使能CCRn预装载功能
    60   1          PWMB_CC6PNonInverted();             //设置正极通道输出高电平有效
@@ -134,7 +134,7 @@ stmt  level    source
   122          
   123          ////////////////////////////////////////
   124          // 读取PWM通道捕获值
-C251 COMPILER V5.60.0,  pwm                                                                18/05/26  14:17:07  PAGE 3   
+C251 COMPILER V5.60.0,  pwm                                                                19/05/26  13:59:56  PAGE 3   
 
   125          // 入口参数: PWMx: (目标PWM组和通道索引)
   126          // 函数返回: 捕获值
@@ -202,7 +202,7 @@ stmt  level    source
   188          // 函数返回: 捕获值
   189          ////////////////////////////////////////
   190          uint16_t HSPWM_ReadCapture(uint8_t PWMx)
-C251 COMPILER V5.60.0,  pwm                                                                18/05/26  14:17:07  PAGE 4   
+C251 COMPILER V5.60.0,  pwm                                                                19/05/26  13:59:56  PAGE 4   
 
   191          {
   192   1          uint16_t cap;
@@ -270,7 +270,7 @@ stmt  level    source
   254          // 入口参数: addr: (PWMB特殊功能寄存器的低7位)
   255          //           dat: (待写入的数据)
   256          // 函数返回: 无
-C251 COMPILER V5.60.0,  pwm                                                                18/05/26  14:17:07  PAGE 5   
+C251 COMPILER V5.60.0,  pwm                                                                19/05/26  13:59:56  PAGE 5   
 
   257          ////////////////////////////////////////;
   258          void HSPWMB_WriteReg(uint8_t addr, uint8_t dat)
