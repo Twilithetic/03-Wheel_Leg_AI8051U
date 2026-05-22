@@ -15,6 +15,7 @@ void usb_callback();
 // ==================== 全局变量 ====================
 volatile unsigned int tick_1s = 0;   // 10ms 计数器
 volatile unsigned int tick_1ms = 0;   // 10ms 计数器
+volatile unsigned int tick_100ms = 0;   // 10ms 计数器
 
 void TIMER2_Init(void)
 {
@@ -46,15 +47,20 @@ void TIMER2_ISR(void) interrupt TMR2_VECTOR
     //<<AICUBE_USER_TIMER2_ISR_CODE1_BEGIN>>
     // 在此添加中断函数用户代码  
     // 这个时钟1ms
-    tick_1s++;               // 每 10ms +1
+    tick_1s++;               // 每 1ms +1
     tick_1ms++;
+    tick_100ms++;
+
+    if(tick_100ms >= 100){    // 100 ms到了
+        tick_100ms = 0;
+        P42 = ~P42;            // 翻转 LED（0.1s 亮, 0.1s 灭 = 5Hz 闪烁）
+    }
     
     if (tick_1s >= 1000)      // 1 秒到了（1ms × 1000 = 1000ms）
     {
         uint16_t duty;         // C90: 变量声明必须放在 block 开头
 
         tick_1s = 0;
-        P42 = ~P42;            // 翻转 LED（0.5s 亮, 0.5s 灭 = 1Hz 闪烁）
 
         // 占空比 +100，溢出回 0
         duty = HSPWM_ReadCapture(PWMB_CH5) + 100;
